@@ -6,7 +6,7 @@
         WARNING. These modules is under development and can be change anytime!
 	 </description>
 
-    <!-- FOCUS is realtion to camera. FIX This! --> 
+    <!-- FOCUS is relation to camera. FIX This! --> 
     <output name="FOCUS" sourcemodule="MarkerTracker" source="MATRIX" />
 
     <!-- Vision -->

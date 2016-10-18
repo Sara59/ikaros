@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+
+<group name="GetXYZCoordinates" description="Gets the X, Y and Z coordinates">
+
+	<description type="text">
+		Module that takes the X and Y coordinates from a matrix and produces the X, Y and Z coordinates as separate outputs. 
+	</description>
+
+	<example description="A simple example">
+		<module
+			class="GetXYZCoordinates"
+			name="GetXYZCoordinates"
+		/>
+	</example>
+
+	<input name="XYINPUT" description="The x, y coordinates" />
+	<input name="DEPTH" description="The input from Depth camera" />
+
+	<output name="OUTPUTX" description="The x cordinate" size="1"/>
+	<output name="OUTPUTY" description="The y cordinate" size="1"/>
+	<output name="OUTPUTZ" description="The z cordinate" size="1"/>
+
+	<output name="OUTPUTMATRIX" description="The x, y, z coordinates in a matrix for epi blue" size_x="4" size_y="4"/>
+
+	<module class="GetXYZCoordinates" />
+
+	<author>
+		<name>Sara Lindgren</name>
+		<email>dic13sli@student.lu.se</email>
+	</author>
+
+   <files>
+   		<file>GetXYZCoordinates.h</file>
+   		<file>GetXYZCoordinates.cc</file>
+   		<file>GetXYZCoordinates.ikc</file>
+   </files>
+
+</group>
+

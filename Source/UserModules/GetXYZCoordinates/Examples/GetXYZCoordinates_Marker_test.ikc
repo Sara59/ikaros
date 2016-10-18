@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+
+<group title="GetXYZCoordinates Marker Example">
+	
+		<module
+        	class   = "Kinect"
+        	name	= "Kinect"
+        	mode    = "mm"
+    		/>
+
+		<module
+			class = "GetXYZCoordinates"
+			name = "GetCoordinates"
+		/>
+
+		<module
+			class   = "MarkerTracker"
+			name	= "MarkerTracker"
+			description = "The calibration parameters are set to no camera distortion to produce vertices in image coodinates."
+			_calibrationForKinect = "640 480 317.584948 260.888465 522.573778 522.756999 0.161722 -0.285527 0.004218 0.001601  0.00000 0 10"
+			calibration = "640 480 317.584948 260.888465 522.573778 522.756999 0.161722 -0.285527 0.004218 0.001601  0.00000 0 10"					
+			max_markers	="20"
+			sort    = "no"
+			marker_size = "0 57 60; 1000 9000 25"
+			use_history = "no"
+			threshold = "auto"
+		/>
+
+
+
+        <connection sourcemodule="Kinect" source="INTENSITY" targetmodule="MarkerTracker" target="INPUT" />
+        <connection sourcemodule = "MarkerTracker" source = "IMAGE_POSITION" targetmodule = "GetCoordinates" target = "XYINPUT" />
+
+        <connection sourcemodule = "Kinect" source = "DEPTH" targetmodule = "GetCoordinates" target = "DEPTH" />
+
+
+
+
+		<view name="View">
+			
+			<object
+				class   ="Image"
+                		title   = "Camera"
+				type	= "rgb"
+				module  = "Kinect"
+				source  = "RED+GREEN+BLUE"
+				x="0" y="0"
+				w="3" h="2"
+				min = "0"
+				max = "1"
+			/>
+
+			<object
+                		class   = "Table"
+                		module  = "GetCoordinates"
+                		source  = "OUTPUTX"
+                		title = "X value"
+                		x="4" y="0"
+                		w="2" h="1"
+                		font_size = "48"
+                		decimals = "0"
+ 			/>
+
+			<object
+                		class   = "Table"
+                		module  = "GetCoordinates"
+                		source  = "OUTPUTY"
+                		title = "Y value"
+                		x="6" y="0"
+                		w="2" h="1"
+                		font_size = "48"
+                		decimals = "0"
+ 			/>
+
+			<object
+                		class   = "Table"
+                		module  = "GetCoordinates"
+                		source  = "OUTPUTZ"
+                		title = "Z value"
+                		x="4" y="1"
+                		w="2" h="1"
+                		font_size = "48"
+                		decimals = "0"
+ 			/>
+
+			<object
+				class   = "Path"
+				module  = "MarkerTracker"
+				source  = "MARKERS"
+                		length_source = "MARKER_COUNT"
+				x="0" y="0"
+				w="3" h="2"
+				min = "0"
+				max = "1"
+    		    		select = "20"
+                		count = "4"
+                		close = "yes"  
+                		color="red"
+                		stroke_width="7"
+                		fill = "rgba(255,0,0,0.45)"
+                		line_join="round"
+			/>
+
+		</view>
+
+</group>
+ 
