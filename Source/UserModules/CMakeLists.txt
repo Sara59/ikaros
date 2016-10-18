@@ -3,7 +3,6 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 add_subdirectory(MinimalModule)
 add_subdirectory(MyModule)
 add_subdirectory(ClosestPoint)
-add_subdirectory(ClosestPointTest)
 add_subdirectory(GetXYZCoordinates)
 add_subdirectory(ConvertPixelToMeter)
 

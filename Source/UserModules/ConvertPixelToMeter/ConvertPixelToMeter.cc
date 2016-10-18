@@ -1,7 +1,7 @@
 //
-//	MyModule.cc		This file is a part of the IKAROS project
+//	ConvertPixelToMeter.cc		This file is a part of the IKAROS project
 //
-//    Copyright (C) 2012 <Author Name>
+//    Copyright (C) 2016 Simon Holk (Built from the shoulder of giants aka christian, thanks)
 //
 //    This program is free software; you can redistribute it and/or modify
 //    it under the terms of the GNU General Public License as published by
@@ -36,11 +36,8 @@ using namespace ikaros;
 void
 ConvertPixelToMeter::Init()
 {
-
     input		= GetInputMatrix("INPUT");
-    output 		= GetOutputMatrix("OUTPUT");
-
-    
+    output 		= GetOutputMatrix("OUTPUT");  
 }
 
 
@@ -61,8 +58,8 @@ ConvertPixelToMeter::Tick()
     const double xRes = 640;
     const double yRes = 480;
 
-    const double FOV_h = 1; // horizontal field of view, in radians.
-    const double FOV_v = 0.75; // vertical field of view, in radians.
+    const double FOV_h = 1; // horizontal field of view, in radians. Default value is for the xbox 360 kinect
+    const double FOV_v = 0.75; // vertical field of view, in radians. Default value is for the xbox 360 kinect
 
     const double fXToZ = tan(FOV_h/2)*2;
     const double fYToZ = tan(FOV_v/2)*2;
@@ -73,7 +70,7 @@ ConvertPixelToMeter::Tick()
 
     float tx = (float)((x / xRes - 0.5) * z * fXToZ);
     float ty = (float)((0.5 - y / yRes) * z * fYToZ);
-    float tz = z; //convert from mm to meter
+    float tz = z; 
 
     // shift to sensor coordinate system
     // x is pointing forwards and y to the side; z is up
@@ -82,9 +79,9 @@ ConvertPixelToMeter::Tick()
     y = -tx;
     z = ty;
 	
-	for (int i=0;i<4;i++) {
-		output[i][i] = 1;
-	}
+    for (int i=0;i<4;i++) {
+	output[i][i] = 1;
+    }
     
     output[0][3] = x;
     output[1][3] = y;
