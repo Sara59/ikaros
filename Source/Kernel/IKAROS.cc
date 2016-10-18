@@ -486,7 +486,7 @@ Module::GetDefault(const char * n)
             {
                 const char * d = kernel->GetXMLAttribute(parameter, "default");
                 if(d)
-                    return d;
+                    return (*d != '\0' ? d : NULL); // return NULL if default is an empty string
             }
             
             const char * t = kernel->GetXMLAttribute(parameter, "target");
@@ -500,7 +500,7 @@ Module::GetDefault(const char * n)
                     // use default if it exists
                     const char * d = kernel->GetXMLAttribute(parameter, "default");
                     if(d)
-                        return d;
+                        return (*d != '\0' ? d : NULL); // return NULL if default is an empty string;
                     
                     // the parameter element redefines our parameter name; get the new name
                     const char * newname = kernel->GetXMLAttribute(parameter, "name");
@@ -703,7 +703,10 @@ Module::GetArray(const char * n, int size)
     float * a = create_array(size);
     const char * v = GetValue(n);
     if (v == NULL)
-        return a;
+	{
+		destroy_array(a);
+        return NULL;
+	}
     for (int i=0; i<size;i++)
     {
         for (; isspace(*v) && *v != '\0'; v++) ;
@@ -724,10 +727,27 @@ Module::GetArray(const char * n, int size)
 int *
 Module::GetIntArray(const char * n, int & size)
 {
-    size = 0;
+    int requested_size = size;
+    int data_size = 0;
+
     const char * v = GetValue(n);
     if (v == NULL)
-        return NULL;
+    {
+        if(requested_size > 0)
+        {
+            size = requested_size;
+            int * a = new int [size];
+            for(int i=0; i<size; i++)
+                a[i] = 0;
+            return a;
+        }
+        else
+        {
+            size = 0;
+            return NULL;
+        }
+    }
+
     const char * vv = v;
     
     // Count values
@@ -737,18 +757,26 @@ Module::GetIntArray(const char * n, int & size)
         int x;
         for (; isspace(*v) && *v != '\0'; v++) ;
         if (sscanf(v, "%d", &x)!=-1)
-            size++;
+            data_size++;
         for (; !isspace(*v) && *v != '\0'; v++) ;
     }
     
-    int * a = new int[size];
+    if(size == 0)
+    {
+        requested_size = data_size;
+        size = data_size;
+    }
+    
+    int d = 0;
+    int * a = new int[requested_size];
     v = vv;
     
-    for (int i=0; i<size;i++)
+    for (int i=0; i<requested_size;i++)
     {
         for (; isspace(*v) && *v != '\0'; v++) ;
-        if (sscanf(v, "%d", &a[i])==-1)
-            a[i] = 0; // this should never happen
+        if (i >= requested_size || (sscanf(v, "%d", &a[i])==-1))
+            a[i] = d;
+        d = a[i]; // save last as default value
         for (; !isspace(*v) && *v != '\0'; v++) ;
     }
     
@@ -1663,6 +1691,27 @@ Kernel::AddClass(const char * name, ModuleCreator mc, const char * path)
 bool
 Kernel::Terminate()
 {
+    if (max_ticks != -1)
+    {
+        const int segments = 50;
+        int lp = int(100*float(tick-1)/float(max_ticks));
+        int percent = int(100*float(tick)/float(max_ticks));
+         if(tick > 0 && percent != lp)
+        {
+            int p = (segments*percent)/100;
+            printf("  Progress: [");
+            for(int i=0; i<segments; i++)
+                if(i < p)
+                    printf("=");
+                else
+                    printf(" ");
+            printf("] %3d%%\r", percent);
+            fflush(stdout);
+            if(tick == max_ticks)
+                printf("\n");
+        }
+    }
+    
     if (max_ticks != -1 && tick >= max_ticks)
     {
         Notify(msg_verbose, "Max ticks reached.\n");

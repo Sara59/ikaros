@@ -157,11 +157,14 @@ endif (PNG_FOUND)
 # Add extra libraries when linking
 target_link_libraries(ikaros ${EXTRA_LIBS} )
 
-# Ikaros modules' include directories and libraires
+# Ikaros modules' include directories and libraries
 set(MODULES_INCLUDS ${MODULES_INCLUDS})
 set(MODULES_LIBS ${MODULES_LIBS})
 include_directories(${MODULES_INCLUDS})
 target_link_libraries (ikaros ${MODULES_LIBS})
   add_dependencies(ikaros MPIFaceDetector)
+
+# Set binary name to ikaros_d in debug mode 
+set_target_properties(ikaros PROPERTIES DEBUG_POSTFIX "_d")
 
 

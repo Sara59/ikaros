@@ -79,6 +79,8 @@ public:
     
     MFTracker     * tracker;
     unsigned char * buffer;
+	
+	int         distanceUnit;
 };
 
 #endif

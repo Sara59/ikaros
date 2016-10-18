@@ -37,14 +37,15 @@ FadeCandy::FadeCandy(Parameter * p):
     Module(p)
 {
     // Starting fade candy server
-
+	startServer = false;
     fcserver_pid = -1;
-    const char * c = GetValue("command");
-    if(strlen(c) != 0)
+	const char * c = GetValue("command");
+	startServer = GetBoolValue("start_server");
+    if(strlen(c) != 0 and startServer)
     {
         char * cmd = create_formatted_string("%s%s", GetClassPath(), GetValue("command"));
 
-        printf("Staring: %s\n", cmd);
+        printf("Starting: %s\n", cmd);
 
         char * argv[3] = { cmd, NULL, NULL };
 
@@ -143,7 +144,16 @@ FadeCandy::Init()
 
 FadeCandy::~FadeCandy()
 {
-    kill(fcserver_pid, -9);
+	if (startServer)
+	{
+		sleep(1); // Added a sleep here to make sure the fcserver started and its ready to be killed.
+		if((kill(fcserver_pid,SIGKILL)) == 0)
+		{
+			//	printf("Killed fcserver (PID %i)\n",fcserver_pid);
+		}
+		else
+			printf("Could not kill fcserver (PID %i).\n",fcserver_pid);
+		}
     // delete ***
 }
 
@@ -171,8 +181,6 @@ FadeCandy::Tick()
     socket->SendRequest("127.0.0.1", 7890, (char *)request, len);
     socket->Close();
 }
-
-
 
 // Install the module. This code is executed during start-up.
 

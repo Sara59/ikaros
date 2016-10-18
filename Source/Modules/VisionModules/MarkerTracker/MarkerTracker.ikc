@@ -54,6 +54,8 @@
 
     <parameter name="frame_id" type="int" default="0" description="The ID of the reference franme for the tracker, typically the ID of the camera coordinate system" />
 
+    <parameter name="distance_unit" type="list" values="mm/cm/dm/m" default="mm" description="What unit should the MARKERS and MATRIX outputs have for the x,y,z values in the h_matrix." />
+
 	<input name="INPUT" description="The image input" />
     
 	<output name="MARKERS" description="Output table where each row descibes a detected marker: transformation matrix (16 columns), id (1 column), confidence (1 columns), camera position (2 columns), edges (8 columns)" size_x="28" size_param_y="max_markers" />
