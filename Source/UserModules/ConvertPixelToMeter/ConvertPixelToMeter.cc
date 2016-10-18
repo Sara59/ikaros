@@ -1,5 +1,5 @@
 //
-//	GetXYZCoordinates.cc		This file is a part of the IKAROS project
+//	MyModule.cc		This file is a part of the IKAROS project
 //
 //    Copyright (C) 2012 <Author Name>
 //
@@ -24,85 +24,71 @@
 //  If you prefer to start with a clean example, use he module MinimalModule instead.
 //
 
-#include "GetXYZCoordinates.h"
+#include "ConvertPixelToMeter.h"
+
 
 // use the ikaros namespace to access the math library
 // this is preferred to using <cmath>
 
 using namespace ikaros;
 
+
 void
-GetXYZCoordinates::Init()
+ConvertPixelToMeter::Init()
 {
 
-    xyinput = GetInputMatrix("XYINPUT");
-
-    depth = GetInputMatrix("DEPTH");
-    depth_size_x = GetInputSizeX("DEPTH");
-    depth_size_y = GetInputSizeY("DEPTH");
-
-    // Do the same for the outputs
-
-    outputX = GetOutputArray("OUTPUTX");
-    outputY = GetOutputArray("OUTPUTY");
-    outputZ = GetOutputArray("OUTPUTZ");
-
-    outputmatrix = GetOutputMatrix("OUTPUTMATRIX");
-
-
+    input		= GetInputMatrix("INPUT");
+    output 		= GetOutputMatrix("OUTPUT");
 
     
 }
 
 
 
-GetXYZCoordinates::~GetXYZCoordinates()
+ConvertPixelToMeter::~ConvertPixelToMeter()
 {
+
+    
 
 }
 
 
 
 void
-GetXYZCoordinates::Tick()
+ConvertPixelToMeter::Tick()
 {
 
-	x = xyinput[0][0]*640;
-	y = xyinput[0][1]*480;
+    const double xRes = 640;
+    const double yRes = 480;
+
+    const double FOV_h = 1; // horizontal field of view, in radians.
+    const double FOV_v = 0.75; // vertical field of view, in radians.
+
+    const double fXToZ = tan(FOV_h/2)*2;
+    const double fYToZ = tan(FOV_v/2)*2;
+    float x = input[0][3];
+    float y = input[1][3];
+    float z = input[2][3];
+    // compensate for perspective
+
+    float tx = (float)((x / xRes - 0.5) * z * fXToZ);
+    float ty = (float)((0.5 - y / yRes) * z * fYToZ);
+    float tz = z; //convert from mm to meter
+
+    // shift to sensor coordinate system
+    // x is pointing forwards and y to the side; z is up
+
+    x = tz;
+    y = -tx;
+    z = ty;
 	
-	int xcord = (int) x;
-	int ycord = (int) y;
-
-
-        z = depth[ycord][xcord];
-
-
-	*outputX = float(x);
-	*outputY = float(y); 
-	*outputZ = float(z);
-
-	outputmatrix[0][0] = 1; 
-	outputmatrix[0][1] = 0; 
-	outputmatrix[0][2] = 0; 
-	outputmatrix[0][3] = x; 
-
-	outputmatrix[1][0] = 0; 
-	outputmatrix[1][1] = 1; 
-	outputmatrix[1][2] = 0; 
-	outputmatrix[1][3] = y; 
-
-	outputmatrix[2][0] = 0; 
-	outputmatrix[2][1] = 0; 
-	outputmatrix[2][2] = 1; 
-	outputmatrix[2][3] = z; 
-
-	outputmatrix[3][0] = 0; 
-	outputmatrix[3][1] = 0; 
-	outputmatrix[3][2] = 0; 
-	outputmatrix[3][3] = 1; 
-
-
-
+	for (int i=0;i<4;i++) {
+		output[i][i] = 1;
+	}
+    
+    output[0][3] = x;
+    output[1][3] = y;
+    output[2][3] = z;
 
 }
 
@@ -110,6 +96,6 @@ GetXYZCoordinates::Tick()
 
 // Install the module. This code is executed during start-up.
 
-static InitClass init("GetXYZCoordinates", &GetXYZCoordinates::Create, "Source/UserModules/GetXYZCoordinates/");
+static InitClass init("ConvertPixelToMeter", &ConvertPixelToMeter::Create, "Source/UserModules/ConvertPixelToMeter/");
 
 

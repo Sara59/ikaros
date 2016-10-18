@@ -16,9 +16,9 @@
 	<input name="XYINPUT" description="The x, y coordinates" />
 	<input name="DEPTH" description="The input from Depth camera" />
 
-	<output name="OUTPUTX" description="The x cordinate" size="1"/>
-	<output name="OUTPUTY" description="The y cordinate" size="1"/>
-	<output name="OUTPUTZ" description="The z cordinate" size="1"/>
+	<output name="OUTPUTX" description="The x coordinate" size="1"/>
+	<output name="OUTPUTY" description="The y coordinate" size="1"/>
+	<output name="OUTPUTZ" description="The z coordinate" size="1"/>
 
 	<output name="OUTPUTMATRIX" description="The x, y, z coordinates in a matrix for epi blue" size_x="4" size_y="4"/>
 

@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+
+<group name="ConvertPixelToMeter" description="Calculates pixel coordinates from camera to meters">
+
+	<description type="text">
+		This module can be used to calculate pixels from a camera to meters for when you need to implement in meter coordinates. Takes pixels, depth and FoV to calculate coordinates.
+	</description>
+
+	<example description="A simple example">
+		<module
+			class="ConvertPixelToMeter"
+			name="ConvertPixelToMeter"
+		/>
+	</example>
+
+
+	<input name="INPUT" description="The input" size_x="4" size_y="4"/>
+
+	<output name="OUTPUT" description="The output" size_x="4" size_y="4" />
+
+	<module class="ConvertPixelToMeter" />
+
+	<author>
+		<name>Simon Holk</name>
+		<email>bts13sho@student.lu.se</email>
+		<affiliation>Lund Teknisk Högskola</affiliation>
+		<homepage>http://www.lth.se</homepage>
+	</author>
+
+   <files>
+   		<file>ConvertPixelToMeter.h</file>
+   		<file>ConvertPixelToMeter.cc</file>
+   		<file>ConvertPixelToMeter.ikc</file>
+   </files>
+
+</group>
+

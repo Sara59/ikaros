@@ -3,7 +3,7 @@
 <group title="Epi Head">
     
     <description>
-        WARNING. These modules is under development and can be change anytime!
+        WARNING. These modules are under development and can be change anytime!
 	 </description>
 
     <!-- Vision -->
@@ -13,18 +13,64 @@
     <!-- EpiHead Servoes -->
     <_module class = "EpiHeadFake" name = "Motor"/> <!-- Fake Epi -->
 	<module class = "EpiHeadBlue" name = "Motor"/>  <!-- EpiBlue -->
-        <connection sourcemodule = "Vision"             source = "FOCUS"                targetmodule = "Motor"                  target = "TARGET" />   
-
+       
     <!-- Forward model Used both for 3d webUI and --> 
     <module class = "EpiHeadForwardModel" name = "EpiHeadForwardModel"/>
-        <connection sourcemodule = "Motor"              source = "FEEDBACK_POSITION"    targetmodule = "EpiHeadForwardModel"    target = "FEEDBACK_POSITIONS" />
-        <connection sourcemodule = "EpiHeadToFocus"     source = "FOCUS_IN_EPI"         targetmodule = "Motor"                  target = "TARGET" />
+        <connection sourcemodule = "Motor" source = "FEEDBACK_POSITION" targetmodule = "EpiHeadForwardModel" target = "FEEDBACK_POSITIONS" />
+      
+	    <_connection sourcemodule = "EpiHeadToFocus" source = "FOCUS_IN_EPI" targetmodule = "Motor" target = "TARGET" />
 
+		<_connection sourcemodule="in med översatta koords här" />
+		
+		<_module class = "Constant" name = "KinectPos" data = "
+		1 0 0 0.12;
+		0 1 0 0;
+		0 0 1 0.05;
+		0 0 0 1;" />
+		
+		<module class="Kinect" name="kinect" mode="mm" xtion="false" />
+		<_module class="ClosestPoint" name="Closest"/>
+		<module class="ConvertPixelToMeter" name="Convert"/>
+			
+		<_connection sourcemodule="kinect" source="DEPTH" targetmodule="Closest" target="DEPTH" />	
+		<_connection sourcemodule="Closest" source="OUTPUT" targetmodule="Convert" target="INPUT" />	
+		
+		<module class="MPIFaceDetector" name="faceDet" />
+		<module class="GetXYZCoordinates" name="getCoords" />
+		
+        <connection sourcemodule="kinect" source="INTENSITY" targetmodule="faceDet" target="INPUT" />	
+        <connection sourcemodule = "faceDet" source = "FACE_POSITION" targetmodule = "getCoords" target = "XYINPUT" />
+        <connection sourcemodule="kinect" source="DEPTH" targetmodule="getCoords" target="DEPTH" />
+		
+		<_module
+		        class = "Scale"
+		        name = "Scale"   factor = "0.0001" />
+		
+		<_module class = "Constant" name = "KinectFoo" data = "
+		1 0 0 200;
+		0 1 0 300;
+		0 0 1 500;
+		0 0 0 1;"/>
+	    <_connection sourcemodule = "Closest" source = "OUTPUT" targetmodule = "Convert" target = "INPUT" />
+		<connection sourcemodule = "getCoords" source = "OUTPUTMATRIX" targetmodule = "Convert" target = "INPUT" />
+	    <connection sourcemodule = "Convert" source = "OUTPUT" targetmodule = "Motor" target = "TARGET" />
+		
+		<_module class="MovementDetector" name="mvmntDet" />
+			<_connection sourcemodule="kinect" source="INTENSITY" targetmodule="mvmntDet" target="INPUT" />
+			
+		
     <!-- Forward model to eyes and focus point. THIS WILL CHANGE IN THE FUTURE -->
     <module class = "EpiHeadToFocus" name = "EpiHeadToFocus"/>
         <connection sourcemodule = "Motor"              source = "FEEDBACK_POSITION"    targetmodule = "EpiHeadToFocus"         target = "FEEDBACK_POSITIONS" />
         <connection sourcemodule = "Vision"             source = "FOCUS"                targetmodule = "EpiHeadToFocus"         target = "FOCUS_IN_EYE" />
-
+	
+	<!-- Added by raz 
+	<module class="Kinect" name="kinect" mode="mm" xtion="false" />
+	<module class="MovementDetector" name="mvmntDet" />
+		<connection sourcemodule="kinect" source="INTENSITY" targetmodule="mvmntDet" target="INPUT" />
+	
+	 end of Raz -->
+	
     <view name="3D View">
         <object
         class   = "Simulator3D"

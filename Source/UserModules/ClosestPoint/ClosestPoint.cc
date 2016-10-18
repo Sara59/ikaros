@@ -39,18 +39,11 @@ void
 ClosestPoint::Init()
 {
 
-    red			= GetInputMatrix("RED");
-    green		= GetInputMatrix("GREEN");
-    blue		= GetInputMatrix("BLUE");
 
     depth 		= GetInputMatrix("DEPTH");
     depthX		= GetInputSizeX("DEPTH");
     depthY		= GetInputSizeY("DEPTH");
-    redc		= GetOutputMatrix("REDC");
-    greenc		= GetOutputMatrix("GREENC");
-    bluec		= GetOutputMatrix("BLUEC");
-    depthc 		= GetOutputMatrix("DEPTHC");
-    output 		= GetOutputMatrix("OUTPUT");
+        output 		= GetOutputMatrix("OUTPUT");
     connected		= InputConnected("DEPTH");
 
     
@@ -83,7 +76,7 @@ ClosestPoint::Tick()
     int smallestRow = 0;
     int smallestCol = 0;
     //double *values[20]; 
-    int divider = 80;
+    int divider = 20;
     int depthYY= (depthY)/divider;
     int depthXX= (depthX)/divider;
     int numberOfParts = depthYY*depthXX;
@@ -95,7 +88,7 @@ ClosestPoint::Tick()
  
     double views[numberOfParts];
 
-    while (count < 40){
+    while (count < numberOfParts-depthXX){
 	views[count] = 0;
 	int correctPixels = 0;
         for (int i = (count % depthXX)*divider; i <= (count % depthXX)*divider+divider; ++i){
@@ -130,7 +123,7 @@ ClosestPoint::Tick()
     double smallestPart = 0;
     
     for (int i = 0; i <= 40; i+=depthXX){
-	if (!(i-1 < 0 && i+1 > 40)){
+	if (!(i-1 < 0 && i+1 > numberOfParts-depthXX)){
 	    views[i-1] = 10001;
 	    views[i] = 10001;
 	}
@@ -143,12 +136,12 @@ ClosestPoint::Tick()
 	}
     }
     cout << "Value of smallest input: " << smallest << ", smallest part is: " << smallestPart;
-    output[0][3] = smallest;
+    output[2][3] = smallest;
     int smallestPartInt = smallestPart;
     //middle coord
     double xCoord = (smallestPartInt%depthXX)*divider+(divider/2);
     double yCoord = floor(smallestPartInt/depthXX)*divider+(divider/2);
-    output[2][3] = xCoord;
+    output[0][3] = xCoord;
     output[1][3] = yCoord;
     output[0][0] = 1;
     output[1][1] = 1;
