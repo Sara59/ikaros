@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+
+<group name="ClosestPoint" description="Closest point module">
+
+	<description type="text">
+		This module finds the closest point from the kinect, if it works.
+	</description>
+
+	<example description="A simple example">
+		<module
+			class="ClosestPoint"
+			name="ClosestPoint"
+		/>
+	</example>
+
+	<input name="DEPTH" description="The depth of the kinect" size_x="640" size_y="480" />
+	<input name="RED" description="Get the red input from the kinect" size_x="640" size_y="480" />
+	<input name="BLUE" description="Get the blue input from the kinect" size_x="640" size_y="480" />
+	<input name="GREEN" description="Get the green input from the kinect" size_x="640" size_y="480" />
+
+	<output name="REDC" description="The red output" size_x="640" size_y="480"  />
+	<output name="BLUEC" description="The blue output" size_x="640" size_y="480" />
+	<output name="GREENC" description="The green output" size_x="640" size_y="480" />
+	<output name="DEPTHC" description="The depth output" size_x="640" size_y="480" />
+	<output name="OUTPUT" description="The main output"  size_x="4" size_y="4" />
+
+	<module class="ClosestPoint" />
+
+	<author>
+		<name>Simon Holk</name>
+		<email>bts13sho@student.lu.se</email>
+		<affiliation>Lund University LTH</affiliation>
+		<homepage>http://www.lth.se</homepage>
+	</author>
+
+   <files>
+   		<file>ClosestPoint.h</file>
+   		<file>ClosestPoint.cc</file>
+   		<file>ClosestPoint.ikc</file>
+   </files>
+
+</group>
+
