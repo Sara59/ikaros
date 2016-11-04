@@ -2,7 +2,7 @@
 //	Kinect     This file is a part of the IKAROS project
 //                 A module to grab images from Kinect
 //
-//    Copyright (C) 2012  Christian Balkenius
+//    Copyright (C) 2016  Simon Holk (Built from the shoulder of giants aka christian, thanks)
 //
 //    This program is free software; you can redistribute it and/or modify
 //    it under the terms of the GNU General Public License as published by

@@ -2,7 +2,7 @@
 //	Kinect     This file is a part of the IKAROS project
 //                 A module to grab images from Kinect
 //
-//    Copyright (C) 2012  Christian Balkenius
+//    Copyright (C) 2016  Simon Holk
 //
 //    This program is free software; you can redistribute it and/or modify
 //    it under the terms of the GNU General Public License as published by
@@ -29,19 +29,12 @@ public:
     // pointers to inputs and outputs
     // and integers to represent their sizes
 
-    float **		depth;
-    float **            red;		
-    float **		green;		
-    float **		blue;		
-
-    float **		redc;
-    float **		greenc;
-    float **		bluec;
-    float **		depthc;
+    float **		depth;		
     int			depthX;
     int			depthY;
     bool 		connected;
     
+    int			divider;
 
     float **		output;
 
