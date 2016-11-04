@@ -36,20 +36,21 @@ public:
     void 		Init();
     void 		Tick();
 
-    //each inputs first spot will be if they wanna change or not while the others are the state(s) it belongs to
     float *     input1;
     float *     input2;
     float *     input3;
+    float *     input4;
+    float *     input5;
 
-    //each output will be a 1x2 vector with 0 being current state and 1 being value.
+
     float *	output1;
     float *	output2;
     float *	output3;
-
-    //float *     internal_input_array;
-    //float *	internal_output_array
+    float *	output4;
+    float *	output5;
 
     float	internalState;
+    float	previousState;
     double	startTime;
     bool	timerStarted;
     int		waitTime;
