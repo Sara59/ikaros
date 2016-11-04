@@ -1,5 +1,5 @@
 //
-//	GetXYZCoordinates.cc		This file is a part of the IKAROS project
+//	LookAway.cc		This file is a part of the IKAROS project
 //
 //    Copyright (C) 2012 <Author Name>
 //
@@ -24,7 +24,7 @@
 //  If you prefer to start with a clean example, use he module MinimalModule instead.
 //
 
-#include "GetXYZCoordinates.h"
+#include "LookAway.h"
 
 // use the ikaros namespace to access the math library
 // this is preferred to using <cmath>
@@ -32,33 +32,32 @@
 using namespace ikaros;
 
 void
-GetXYZCoordinates::Init()
+LookAway::Init()
 {
 
-    xyinput = GetInputMatrix("XYINPUT");
+    input_matrix = GetInputMatrix("INPUT");
 
-    depth = GetInputMatrix("DEPTH");
-    depth_size_x = GetInputSizeX("DEPTH");
-    depth_size_y = GetInputSizeY("DEPTH");
+    picture = GetInputMatrix("PICTURE");
+    picture_size_x = GetInputSizeX("PICTURE");
+    picture_size_y = GetInputSizeY("PICTURE");
 
     // Do the same for the outputs
+
 
     outputX = GetOutputArray("OUTPUTX");
     outputY = GetOutputArray("OUTPUTY");
     outputZ = GetOutputArray("OUTPUTZ");
 
-    outputmatrix = GetOutputMatrix("OUTPUTMATRIX");
+    output_matrix = GetOutputMatrix("OUTPUTMATRIX");
 
-    state = GetInputArray("STATE");
-    change_state = GetInputArray("CHANGESTATE")
-    value = GetInputArray("VALUE")
+
 
     
 }
 
 
 
-GetXYZCoordinates::~GetXYZCoordinates()
+LookAway::~LookAway()
 {
 
 }
@@ -66,53 +65,45 @@ GetXYZCoordinates::~GetXYZCoordinates()
 
 
 void
-GetXYZCoordinates::Tick()
+LookAway::Tick()
 {
 
-	x = xyinput[0][0]*640;
-	y = xyinput[0][1]*480;
-	
-	int xcord = (int) x;
-	int ycord = (int) y;
+	oldx = input_matrix[0][3];
+	oldy = input_matrix[1][3]; 
+	oldz = input_matrix[2][3];
 
-
-        z = depth[ycord][xcord];
-
-
-	*outputX = float(x);
-	*outputY = float(y); 
-	*outputZ = float(z);
-
-	outputmatrix[0][0] = 1; 
-	outputmatrix[0][1] = 0; 
-	outputmatrix[0][2] = 0; 
-	outputmatrix[0][3] = x; 
-
-	outputmatrix[1][0] = 0; 
-	outputmatrix[1][1] = 1; 
-	outputmatrix[1][2] = 0; 
-	outputmatrix[1][3] = y; 
-
-	outputmatrix[2][0] = 0; 
-	outputmatrix[2][1] = 0; 
-	outputmatrix[2][2] = 1; 
-	outputmatrix[2][3] = z; 
-
-	outputmatrix[3][0] = 0; 
-	outputmatrix[3][1] = 0; 
-	outputmatrix[3][2] = 0; 
-	outputmatrix[3][3] = 1; 
-
-	if(state == 0){
-		value = 0.3;
-	} else if(state == 1){
-		change_state = 2;
-		value = 1;
-	} else if(state == 2){
-		value = 0.7;
-	} else {
-		value = 0;
+	if(picture_size_x > (oldx + 50)){
+		newx = oldx + 50; 
+	}else{ 
+		newx = oldx - 50; 
 	}
+
+	newy = oldy; 
+	newz = oldz; 
+
+	*outputX = float(newx);
+	*outputY = float(newy); 
+	*outputZ = float(newz);
+
+	output_matrix[0][0] = 1; 
+	output_matrix[0][1] = 0; 
+	output_matrix[0][2] = 0; 
+	output_matrix[0][3] = newx; 
+
+	output_matrix[1][0] = 0; 
+	output_matrix[1][1] = 1; 
+	output_matrix[1][2] = 0; 
+	output_matrix[1][3] = newy; 
+
+	output_matrix[2][0] = 0; 
+	output_matrix[2][1] = 0; 
+	output_matrix[2][2] = 1; 
+	output_matrix[2][3] = newz; 
+
+	output_matrix[3][0] = 0; 
+	output_matrix[3][1] = 0; 
+	output_matrix[3][2] = 0; 
+	output_matrix[3][3] = 1; 
 
 
 
@@ -123,6 +114,6 @@ GetXYZCoordinates::Tick()
 
 // Install the module. This code is executed during start-up.
 
-static InitClass init("GetXYZCoordinates", &GetXYZCoordinates::Create, "Source/UserModules/GetXYZCoordinates/");
+static InitClass init("LookAway", &LookAway::Create, "Source/UserModules/LookAway/");
 
 

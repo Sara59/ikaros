@@ -5,6 +5,7 @@ add_subdirectory(MyModule)
 add_subdirectory(ClosestPoint)
 add_subdirectory(GetXYZCoordinates)
 add_subdirectory(ConvertPixelToMeter)
+add_subdirectory(LookAway)
 
 set(SOURCE ${SOURCE} PARENT_SCOPE)
 set(MODULES_INCLUDS ${MODULES_INCLUDS} PARENT_SCOPE)

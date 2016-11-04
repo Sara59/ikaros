@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+
+<group name="LookAway" description="Gets Epi to look away">
+
+	<description type="text">
+		Module that takes the X, Y and Z coordinates from a point and return coordinates sligtly to the side of that point.  
+	</description>
+
+	<example description="A simple example">
+		<module
+			class="LookAway"
+			name="LookAway"
+		/>
+	</example>
+
+	<input name="INPUT" description="The matrix, 4x4 for epi, with the coordinates to look away from" />
+	<input name="PICTURE" description="The input from the camera to define the picture" />
+
+	<output name="OUTPUTX" description="The x coordinate" size="1"/>
+	<output name="OUTPUTY" description="The y coordinate" size="1"/>
+	<output name="OUTPUTZ" description="The z coordinate" size="1"/>
+
+
+	<output name="OUTPUTMATRIX" description="The x, y, z coordinates in a matrix for epi blue that is slightly away from the input coordinates" size_x="4" size_y="4"/>
+
+	<module class="LookAway" />
+
+	<author>
+		<name>Sara Lindgren</name>
+		<email>dic13sli@student.lu.se</email>
+	</author>
+
+   <files>
+   		<file>LookAway.h</file>
+   		<file>LookAway.cc</file>
+   		<file>LookAway.ikc</file>
+   </files>
+
+</group>
+

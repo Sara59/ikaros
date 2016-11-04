@@ -1,5 +1,5 @@
 //
-//	GetXYZCoordinates.h		This file is a part of the IKAROS project
+//	LookAway.h		This file is a part of the IKAROS project
 //
 //    Copyright (C) 2012 <Author Name>
 //
@@ -20,18 +20,18 @@
 //    See http://www.ikaros-project.org/ for more information.
 //
 
-#ifndef GetXYZCoordinates_
-#define GetXYZCoordinates_
+#ifndef LookAway_
+#define LookAway_
 
 #include "IKAROS.h"
 
-class GetXYZCoordinates: public Module
+class LookAway: public Module
 {
 public:
-    static Module * Create(Parameter * p) { return new GetXYZCoordinates(p); }
+    static Module * Create(Parameter * p) { return new LookAway(p); }
 
-    GetXYZCoordinates(Parameter * p) : Module(p) {}
-    virtual ~GetXYZCoordinates();
+    LookAway(Parameter * p) : Module(p) {}
+    virtual ~LookAway();
 
     void 		Init();
     void 		Tick();
@@ -39,25 +39,24 @@ public:
     // pointers to inputs and outputs
     // and integers to represent their sizes
 
-    float **    xyinput;
+    float **    input_matrix;
 
-    float **	depth;
-    float       depth_size_x;
-    float       depth_size_y;
-
+    float **	picture;
+    float       picture_size_x;
+    float       picture_size_y;
 
     float*      outputX;
     float*      outputY;
     float*      outputZ;
-    float**	outputmatrix;
+    float**	output_matrix;
 
-    float*	state; 
-    float* 	change_state;
-    float*	value; 
+    float	oldx;
+    float	oldy;
+    float	oldz;
+    float	newx;
+    float	newy;
+    float	newz;
 
-    float	x;
-    float	y;
-    float	z;
 
 };
 
