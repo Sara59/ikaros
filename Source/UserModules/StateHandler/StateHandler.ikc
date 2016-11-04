@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+
+<group name="StateHandler" description="Handles states in a state machine">
+
+	<description type="text">
+		Statehandler have the mission to receive request for state changes and to send out states to other modules.
+		It's currently in a very primitive state and has to be tailored for the specific problem,
+		but in the future it's meant to work on general solutions.
+	</description>
+
+	<example description="A simple example">
+		<module
+			class="StateHandler"
+			name="StateHandler"
+		/>
+	</example>
+
+	<input name="INPUT1" description="The first input" />
+	<input name="INPUT2" description="The second input" />
+	<input name="INPUT3" description="The third input" />
+
+	<output name="OUTPUT1" description="The first output" size="1" />
+	<output name="OUTPUT2" description="The second output" size="1" />
+	<output name="OUTPUT3" description="The third output" size="1" />
+
+	<module class="StateHandler" />
+
+	<author>
+		<name>Simon Holk</name>
+		<email>bts13sho@student.lu.se</email>
+		<affiliation>Lund University, LTH</affiliation>
+		<homepage>http://www.lth.se</homepage>
+	</author>
+
+   <files>
+   		<file>StateHandler.h</file>
+   		<file>StateHandler.cc</file>
+   		<file>StateHandler.ikc</file>
+   </files>
+
+</group>
+

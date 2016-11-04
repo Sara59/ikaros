@@ -1,0 +1,8 @@
+<module class="StateHandler" name="stateHandler" />
+<module class="MovementDetector" name="mvmntDet" stateGrp="0, 4"/>
+<module class="ClosestPoint" name="closest" stateGrp="2, 3" />
+
+<connection sourcemodel="mvmntDet" source="STATECHANGE" targetmodule="stateHandler" target="MVMNTDETCHANGE" />
+<connection sourcemodule="closest" source="STATECHANGE" targetmodule="stateHandler" target="CLOSECHANGE" />
+<connection sourcemodule="stateHandler" source="STATE" targetmodule="mvmntDet" target="STATE" />
+<connection sourcemodule="stateHandler" source="STATE" targetmodule="closest" target="STATE" />
