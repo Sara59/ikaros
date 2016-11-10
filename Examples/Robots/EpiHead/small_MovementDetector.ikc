@@ -1,0 +1,80 @@
+<?xml version="1.0" ?>
+
+<group>
+		<module class="ChangeDetector" name="chDet" border="0" />
+		<module class="Arbiter" name="arbiter" no_of_inputs="6" />
+		<module class="Threshold" name="threshold" type="binary" threshold="0.1" />
+		<module class="Mean" name="mean_tl" />
+		<module class="Mean" name="mean_tm" />
+		<module class="Mean" name="mean_tr" />
+		<module class="Mean" name="mean_ll" />
+		<module class="Mean" name="mean_lm" />
+		<module class="Mean" name="mean_lr" />	
+		<module class = "Submatrix" name = "tl" x0 = "000" x1 = "50" y0 = "000" y1 = "75" />
+		<module	class = "Submatrix" name = "tm" x0 = "50" x1 = "100" y0 = "000" y1 = "75" />
+		<module class = "Submatrix" name = "tr" x0 = "100" x1 = "150" y0 = "000" y1 = "75" />
+		<module class = "Submatrix" name = "ll" x0 = "000" x1 = "50" y0 = "75" y1 = "150" />
+		<module class = "Submatrix" name = "lm" x0 = "50" x1 = "100" y0 = "75" y1 = "150" />
+		<module class = "Submatrix" name = "lr" x0 = "100" x1 = "150" y0 = "75" y1 = "150" />
+		<module class = "Constant" name = "tlC" outputsize = "1" data = "1" />
+		<module class = "Constant" name = "tmC" outputsize = "1" data = "2" />
+		<module class = "Constant" name = "trC" outputsize = "1" data = "3" />
+		<module class = "Constant" name = "llC" outputsize = "1" data = "4" />
+		<module class = "Constant" name = "lmC" outputsize = "1" data = "5" />
+		<module class = "Constant" name = "lrC" outputsize = "1" data = "6" />
+		<module class="Mean" name="stateInt" />
+		<module class="small_MvmntDetChooser" name="s_mdc" />
+		
+		<input name = "IMAGE" targetmodule="chDet" target="INPUT" />
+		<input name = "STATE" targetmodule="stateInt" target="INPUT" />
+
+		<connection sourcemodule="chDet" source="OUTPUT" targetmodule="tl" target="INPUT" />
+		<connection sourcemodule="chDet" source="OUTPUT" targetmodule="tm" target="INPUT" />
+		<connection sourcemodule="chDet" source="OUTPUT" targetmodule="tr" target="INPUT" />
+		<connection sourcemodule="chDet" source="OUTPUT" targetmodule="ll" target="INPUT" />
+		<connection sourcemodule="chDet" source="OUTPUT" targetmodule="lm" target="INPUT" />
+		<connection sourcemodule="chDet" source="OUTPUT" targetmodule="lr" target="INPUT" />
+		<connection sourcemodule="tl" source="OUTPUT" targetmodule="mean_tl" target="INPUT" />
+		<connection sourcemodule="tm" source="OUTPUT" targetmodule="mean_tm" target="INPUT" />
+		<connection sourcemodule="tr" source="OUTPUT" targetmodule="mean_tr" target="INPUT" />
+		<connection sourcemodule="ll" source="OUTPUT" targetmodule="mean_ll" target="INPUT" />
+		<connection sourcemodule="lm" source="OUTPUT" targetmodule="mean_lm" target="INPUT" />
+		<connection sourcemodule="lr" source="OUTPUT" targetmodule="mean_lr" target="INPUT" />
+		<connection sourcemodule = "tlC" source = "OUTPUT" targetmodule = "arbiter" target = "INPUT_1" delay="0" />
+		<connection sourcemodule = "tmC" source = "OUTPUT" targetmodule = "arbiter" target = "INPUT_2" delay="0" />
+		<connection sourcemodule = "trC" source = "OUTPUT" targetmodule = "arbiter" target = "INPUT_3" delay="0" />
+		<connection sourcemodule = "llC" source = "OUTPUT" targetmodule = "arbiter" target = "INPUT_4" delay="0" />
+		<connection sourcemodule = "lmC" source = "OUTPUT" targetmodule = "arbiter" target = "INPUT_5" delay="0" />
+		<connection sourcemodule = "lrC" source = "OUTPUT" targetmodule = "arbiter" target = "INPUT_6" delay="0" />
+		<connection sourcemodule = "mean_tl" source = "OUTPUT" targetmodule = "arbiter" target = "VALUE_1" delay="0" />
+		<connection sourcemodule = "mean_tm" source = "OUTPUT" targetmodule = "arbiter" target = "VALUE_2" delay="0" />
+		<connection sourcemodule = "mean_tr" source = "OUTPUT" targetmodule = "arbiter" target = "VALUE_3" delay="0" />
+		<connection sourcemodule = "mean_ll" source = "OUTPUT" targetmodule = "arbiter" target = "VALUE_4" delay="0" />
+		<connection sourcemodule = "mean_lm" source = "OUTPUT" targetmodule = "arbiter" target = "VALUE_5" delay="0" />
+		<connection sourcemodule = "mean_lr" source = "OUTPUT" targetmodule = "arbiter" target = "VALUE_6" delay="0" />
+		<connection sourcemodule = "arbiter" source="VALUE" targetmodule="threshold" target="INPUT" />
+		
+		<connection sourcemodule="stateInt" source="OUTPUT" targetmodule="s_mdc" target="STATEIN" />
+		<connection sourcemodule="threshold" source="OUTPUT" targetmodule="s_mdc" target="DEMANDATTENTION" />
+		<connection sourcemodule="arbiter" source="OUTPUT" targetmodule="s_mdc" target="REGION" />
+		
+		<output name="COORDS" sourcemodule="s_mdc" source="COORDSOUT" />
+		<output name="WEIGHT" sourcemodule="s_mdc" source="WEIGHTOUT" />
+		<output name="STATE" sourcemodule="s_mdc" source="STATEOUT" />
+		
+		<!-- ><view name="View">
+			<object class="Image" type="rgb" module="video" source="RED+GREEN+BLUE" x="0" y="0" w="2" h="2" />
+			<object class="Image" type="gray" module="tl" source="OUTPUT" x="2" y="0" />
+			<object class="Image" type="gray" module="tm" source="OUTPUT" x="3" y="0" />
+			<object class="Image" type="gray" module="tr" source="OUTPUT" x="4" y="0" />
+			<object class="Image" type="gray" module="ll" source="OUTPUT" x="2" y="1" />
+			<object class="Image" type="gray" module="lm" source="OUTPUT" x="3" y="1" />
+			<object class="Image" type="gray" module="lr" source="OUTPUT" x="4" y="1" />
+			
+			<object class="Table" module = "arbiter" source = "OUTPUT" title="Max mvmnt in which part?" font_size="60px" x="5" y="0" />
+			<object class="Table" module = "arbiter" source = "VALUE" title="How much mvmt in above part?" font_size="60px" x="5" y="1" />
+			<object class="Table" module="threshold" source="OUTPUT" title="Such mvmnt. Wow" font_size="60px" x="6" y="0" />
+		</view>
+		-->
+</group>
+ 

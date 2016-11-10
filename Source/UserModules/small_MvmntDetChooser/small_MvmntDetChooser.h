@@ -1,8 +1,8 @@
 //
-//	Kinect     This file is a part of the IKAROS project
-//                 A module to grab images from Kinect
+//	 This file is a part of the IKAROS project
+//        A C++ wrapper for IKC module MovementDetector
 //
-//    Copyright (C) 2012  Christian Balkenius
+//    Copyright (C) 2016	Rasmus Olofzon
 //
 //    This program is free software; you can redistribute it and/or modify
 //    it under the terms of the GNU General Public License as published by
@@ -19,26 +19,27 @@
 //    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
-#ifndef MvmntDetChooser_
-#define MvmntDetChooser_
+#ifndef small_MvmntDetChooser_
+#define small_MvmntDetChooser_
 
 #include "IKAROS.h"
 
-class MvmntDetChooser: public Module {
+class small_MvmntDetChooser: public Module {
 public:
-    // pointers to inputs and outputs
-    // and integers to represent their sizes
-
-    static Module * Create(Parameter * p) {return new MvmntDetChooser(p);};
+    static Module * Create(Parameter * p) {return new small_MvmntDetChooser(p);};
     
-    MvmntDetChooser(Parameter * p) : Module(p) {};
-    virtual ~MvmntDetChooser();
+    small_MvmntDetChooser(Parameter * p) : Module(p) {};
+    virtual ~small_MvmntDetChooser();
 
     void    Init();
     void    Tick();
 	
-    float  	*		input;
-    float 	*		output;
+    float  	*		demandAtt;
+	float 	*		region;
+	float	*		stateIn;
+	float	*		stateOut;
+	float	*		weightOut;
+    float 	*		coordsOut;
 };
 
 #endif

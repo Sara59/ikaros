@@ -3,7 +3,7 @@
 <group name="StateHandler" description="Handles states in a state machine">
 
 	<description type="text">
-		Statehandler have the mission to receive request for state changes and to send out states to other modules.
+		Statehandler have the mission to receive requests for state changes and to send out current state to other modules.
 		It's currently in a very primitive state and has to be tailored for the specific problem,
 		but in the future it's meant to work on general solutions.
 	</description>

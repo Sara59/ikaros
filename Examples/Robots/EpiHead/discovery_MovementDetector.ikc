@@ -3,7 +3,7 @@
 <group>
 		<module class="ChangeDetector" name="chDet" border="0" />
 		<module class="Arbiter" name="arbiter" no_of_inputs="6" />
-		<module class="Threshold" name="threshold" type="binary" threshold="0.1" />
+		<module class="Threshold" name="threshold" type="binary" threshold="0.02" />
 		<module class="Mean" name="mean_tl" />
 		<module class="Mean" name="mean_tm" />
 		<module class="Mean" name="mean_tr" />
@@ -22,21 +22,24 @@
 		<module class = "Constant" name = "llC" outputsize = "1" data = "4" />
 		<module class = "Constant" name = "lmC" outputsize = "1" data = "5" />
 		<module class = "Constant" name = "lrC" outputsize = "1" data = "6" />
+		<module class = "Mean" name = "stateInt" />
+		<module class = "discovery_MvmntDetChooser" name="d_mdc" />
 		
-		<input name = "INPUT" targetmodule="chDet" target="INPUT" />
+		<input name = "IMAGE" targetmodule="chDet" target="INPUT" />
+		<input name = "STATE" targetmodule="stateInt" target="INPUT" />
 
-		<connection sourcemodule="chDet" source="OUTPUT" targetmodule="tl" target="INPUT" />
-		<connection sourcemodule="chDet" source="OUTPUT" targetmodule="tm" target="INPUT" />
-		<connection sourcemodule="chDet" source="OUTPUT" targetmodule="tr" target="INPUT" />
-		<connection sourcemodule="chDet" source="OUTPUT" targetmodule="ll" target="INPUT" />
-		<connection sourcemodule="chDet" source="OUTPUT" targetmodule="lm" target="INPUT" />
-		<connection sourcemodule="chDet" source="OUTPUT" targetmodule="lr" target="INPUT" />
-		<connection sourcemodule="tl" source="OUTPUT" targetmodule="mean_tl" target="INPUT" />
-		<connection sourcemodule="tm" source="OUTPUT" targetmodule="mean_tm" target="INPUT" />
-		<connection sourcemodule="tr" source="OUTPUT" targetmodule="mean_tr" target="INPUT" />
-		<connection sourcemodule="ll" source="OUTPUT" targetmodule="mean_ll" target="INPUT" />
-		<connection sourcemodule="lm" source="OUTPUT" targetmodule="mean_lm" target="INPUT" />
-		<connection sourcemodule="lr" source="OUTPUT" targetmodule="mean_lr" target="INPUT" />
+		<connection sourcemodule = "chDet" source="OUTPUT" targetmodule="tl" target="INPUT" />
+		<connection sourcemodule = "chDet" source="OUTPUT" targetmodule="tm" target="INPUT" />
+		<connection sourcemodule = "chDet" source="OUTPUT" targetmodule="tr" target="INPUT" />
+		<connection sourcemodule = "chDet" source="OUTPUT" targetmodule="ll" target="INPUT" />
+		<connection sourcemodule = "chDet" source="OUTPUT" targetmodule="lm" target="INPUT" />
+		<connection sourcemodule = "chDet" source="OUTPUT" targetmodule="lr" target="INPUT" />
+		<connection sourcemodule = "tl" source="OUTPUT" targetmodule="mean_tl" target="INPUT" />
+		<connection sourcemodule = "tm" source="OUTPUT" targetmodule="mean_tm" target="INPUT" />
+		<connection sourcemodule = "tr" source="OUTPUT" targetmodule="mean_tr" target="INPUT" />
+		<connection sourcemodule = "ll" source="OUTPUT" targetmodule="mean_ll" target="INPUT" />
+		<connection sourcemodule = "lm" source="OUTPUT" targetmodule="mean_lm" target="INPUT" />
+		<connection sourcemodule = "lr" source="OUTPUT" targetmodule="mean_lr" target="INPUT" />
 		<connection sourcemodule = "tlC" source = "OUTPUT" targetmodule = "arbiter" target = "INPUT_1" delay="0" />
 		<connection sourcemodule = "tmC" source = "OUTPUT" targetmodule = "arbiter" target = "INPUT_2" delay="0" />
 		<connection sourcemodule = "trC" source = "OUTPUT" targetmodule = "arbiter" target = "INPUT_3" delay="0" />
@@ -51,8 +54,13 @@
 		<connection sourcemodule = "mean_lr" source = "OUTPUT" targetmodule = "arbiter" target = "VALUE_6" delay="0" />
 		<connection sourcemodule = "arbiter" source="VALUE" targetmodule="threshold" target="INPUT" />
 		
-		<output name="OUTPUT" sourcemodule="arbiter" source="OUTPUT" />
-		<output name="DEMAND_ATTENTION" sourcemodule="threshold" source="OUTPUT" />
+		<connection sourcemodule="stateInt" source="OUTPUT" targetmodule="d_mdc" target="STATEIN" />
+		<connection sourcemodule="threshold" source="OUTPUT" targetmodule="d_mdc" target="DEMANDATTENTION" />
+		<connection sourcemodule="arbiter" source="OUTPUT" targetmodule="d_mdc" target="REGION" />
+		
+		<output name="COORDS" sourcemodule="d_mdc" source="COORDOUT" />
+		<output name="WEIGHT" sourcemodule="d_mdc" source="WEIGHTOUT" />
+		<output name="STATE" sourcemodule="d_mdc" source="STATEOUT" />
 		
 		<!-- ><view name="View">
 			<object class="Image" type="rgb" module="video" source="RED+GREEN+BLUE" x="0" y="0" w="2" h="2" />

@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+
+<group name="discovery_MvmntDetChooser" description="A wrapper for ikc-written module MovementDetector">
+
+	<description type="text">
+		
+	</description>
+
+	<example description="A simple example">
+		<module
+			class="discovery_MvmntDetChooser"
+			name="discovery_MvmntDetChooser"
+		/>
+	</example>
+
+
+	<input name="DEMANDATTENTION" description="blah" size_x="1" size_y="1"/>
+
+	<output name="COORDSOUT" description="Coordinates for Epi" size_x="3" size_y="1" />
+
+	<module class="discovery_MvmntDetChooser" />
+
+	<author>
+		<name>Rasmus Olofzon</name>
+		<email>muh11rol@student.lu.se</email>
+		<affiliation>Lund Tekniska Högskola</affiliation>
+		<homepage>http://www.lth.se</homepage>
+	</author>
+
+   <files>
+   		<file>discovery_MvmntDetChooser.h</file>
+   		<file>discovery_MvmntDetChooser.cc</file>
+   		<file>discovery_MvmntDetChooser.ikc</file>
+   </files>
+
+</group>
+

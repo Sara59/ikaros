@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+
+<group name="small_MvmntDetChooser" description="A wrapper for ikc-written module MovementDetector">
+
+	<description type="text">
+		
+	</description>
+
+	<example description="A simple example">
+		<module
+			class="small_MvmntDetChooser"
+			name="small_MvmntDetChooser"
+		/>
+	</example>
+
+
+	<input name="INPUT" description="The input" size_x="4" size_y="4"/>
+
+	<output name="OUTPUT" description="The output" size_x="4" size_y="4" />
+
+	<module class="small_MvmntDetChooser" />
+
+	<author>
+		<name>Rasmus Olofzon</name>
+		<email>muh11rol@student.lu.se</email>
+		<affiliation>Lund Tekniska Högskola</affiliation>
+		<homepage>http://www.lth.se</homepage>
+	</author>
+
+   <files>
+   		<file>small_MvmntDetChooser.h</file>
+   		<file>small_MvmntDetChooser.cc</file>
+   		<file>small_MvmntDetChooser.ikc</file>
+   </files>
+
+</group>
+
