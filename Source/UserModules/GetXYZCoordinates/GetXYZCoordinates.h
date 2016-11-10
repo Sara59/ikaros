@@ -51,6 +51,10 @@ public:
     float*      outputZ;
     float**	outputmatrix;
 
+    float*	state; 
+    float* 	change_state;
+    float*	value; 
+
     float	x;
     float	y;
     float	z;

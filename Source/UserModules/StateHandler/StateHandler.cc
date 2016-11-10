@@ -40,11 +40,15 @@ StateHandler::Init()
 
     input1 = GetInputArray("INPUT1");
     input2 = GetInputArray("INPUT2");
-    input2 = GetInputArray("INPUT2");
+    input3 = GetInputArray("INPUT3");
+    input4 = GetInputArray("INPUT4");
+    input5 = GetInputArray("INPUT5");
 
     output1 = GetOutputArray("OUTPUT1");
     output2 = GetOutputArray("OUTPUT2");
     output3 = GetOutputArray("OUTPUT3");
+    output4 = GetOutputArray("OUTPUT4");
+    output5 = GetOutputArray("OUTPUT5");
 
     //internal_input_array = create_array(3);
     //internal_output_array = create_array(3);
@@ -53,6 +57,7 @@ StateHandler::Init()
     startTime = 0;
     timerStarted = false;
     waitTime = 0;
+    previousState = 0;
 
 
 }
@@ -74,7 +79,7 @@ StateHandler::Tick()
 	time_t end = time(0);
 	double time = difftime(end, startTime);
 	if (time > (double) waitTime){
-	    internalState = 0; //TODO:change this to either decrement or to the right state
+	    internalState = previousState; //TODO:change this to either decrement or to the right state
 	    startTime = 0;
 	    waitTime = 0;
 	    timerStarted = false;
@@ -86,40 +91,95 @@ StateHandler::Tick()
 
     //checks if any module wants to change state.
     if (input1[0] != 0){
-        if (input1[0] == 1){
-	    internalState++;
-	} else if (input1[0] == 2){
-	    internalState--;
-	} else if (input1[0] == 7 && !timerStarted){ //TODO:change this to the correct state
-	    time_t start = time(0);
-	    timerStarted = true;
-	    waitTime = rand() % 3 + 1;
+	previousState = internalState;
+        internalState = input1[0]
+	time_t start = time(0);
+        waitTime = 1000000;
+	timerStarted = true;
+	if (internalState == 4 || internalState == 5){
+	    waitTime = rand() % 100 + 50;
+	    waitTime = waitTime/100;
+	} else if (internalState == 3){
+	    waitTime = rand() % 200 + 50;
+	    waitTime = waitTime/100;
+	} else if (internalState == 2){
+	    waitTime = rand() % 900 + 300;
+	    waitTime = waitTime/100;
 	}
+	
+	
     } else if (input2[0] != 0){
-        if (input2[0] == 1){
-	    internalState++;
-	} else if (input2[0] == 2){
-	    internalState--;
-	} else if (input2[0] == 7 && !timerStarted){ //TODO:change this to the correct state
-	    time_t start = time(0);
-	    timerStarted = true;
-	    waitTime = rand() % 3 + 1;
+	previousState = internalState;
+        internalState = input2[0]
+	time_t start = time(0);
+	timerStarted = true;
+	waitTime = 1000000;
+	if (internalState == 4 || internalState == 5){
+	    waitTime = rand() % 100 + 50;
+	    waitTime = waitTime/100;
+	} else if (internalState == 3){
+	    waitTime = rand() % 200 + 50;
+	    waitTime = waitTime/100;
+	} else if (internalState == 2){
+	    waitTime = rand() % 900 + 300;
+	    waitTime = waitTime/100;
 	}
+
     } else if (input3[0] != 0){
-        if (input3[0] == 1){
-	    internalState++;
-	} else if (input3[0] == 2){
-	    internalState--;
-	} else if (input3[0] == 7 && !timerStarted){ //TODO:change this to the correct state
-	    time_t start = time(0);
-	    timerStarted = true;
-	    waitTime = rand() % 3 + 1;
+	previousState = internalState;
+        internalState = input3[0]
+	time_t start = time(0);
+	timerStarted = true;
+	waitTime = 1000000;
+	if (internalState == 4 || internalState == 5){
+	    waitTime = rand() % 100 + 50;
+	    waitTime = waitTime/100;
+	} else if (internalState == 3){
+	    waitTime = rand() % 200 + 50;
+	    waitTime = waitTime/100;
+	} else if (internalState == 2){
+	    waitTime = rand() % 900 + 300;
+	    waitTime = waitTime/100;
+	}
+    } else if (input4[0] != 0){
+	previousState = internalState;
+        internalState = input4[0]
+	time_t start = time(0);
+	timerStarted = true;
+	waitTime = 1000000;
+	if (internalState == 4 || internalState == 5){
+	    waitTime = rand() % 100 + 50;
+	    waitTime = waitTime/100;
+	} else if (internalState == 3){
+	    waitTime = rand() % 200 + 50;
+	    waitTime = waitTime/100;
+	} else if (internalState == 2){
+	    waitTime = rand() % 900 + 300;
+	    waitTime = waitTime/100;
+	}
+    } else if (input5[0] != 0){
+	previousState = internalState;
+        internalState = input5[0]
+	time_t start = time(0);
+	timerStarted = true;
+	waitTime = 1000000;
+	if (internalState == 4 || internalState == 5){
+	    waitTime = rand() % 100 + 50;
+	    waitTime = waitTime/100;
+	} else if (internalState == 3){
+	    waitTime = rand() % 200 + 50;
+	    waitTime = waitTime/100;
+	} else if (internalState == 2){
+	    waitTime = rand() % 900 + 300;
+	    waitTime = waitTime/100;
 	}
     }
 
     output1[0] = internalState;
     output2[0] = internalState;
     output3[0] = internalState;
+    output4[0] = internalState;
+    output5[0] = internalState;
 }
 
 

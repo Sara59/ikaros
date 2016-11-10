@@ -1,5 +1,5 @@
 //
-//	StateHandler.h		This file is a part of the IKAROS project
+//	LookAway.h		This file is a part of the IKAROS project
 //
 //    Copyright (C) 2012 <Author Name>
 //
@@ -20,40 +20,43 @@
 //    See http://www.ikaros-project.org/ for more information.
 //
 
-#ifndef StateHandler_
-#define StateHandler_
+#ifndef LookAway_
+#define LookAway_
 
 #include "IKAROS.h"
 
-class StateHandler: public Module
+class LookAway: public Module
 {
 public:
-    static Module * Create(Parameter * p) { return new StateHandler(p); }
+    static Module * Create(Parameter * p) { return new LookAway(p); }
 
-    StateHandler(Parameter * p) : Module(p) {}
-    virtual ~StateHandler();
+    LookAway(Parameter * p) : Module(p) {}
+    virtual ~LookAway();
 
     void 		Init();
     void 		Tick();
 
-    float *     input1;
-    float *     input2;
-    float *     input3;
-    float *     input4;
-    float *     input5;
+    // pointers to inputs and outputs
+    // and integers to represent their sizes
 
+    float **    input_matrix;
 
-    float *	output1;
-    float *	output2;
-    float *	output3;
-    float *	output4;
-    float *	output5;
+    float **	picture;
+    float       picture_size_x;
+    float       picture_size_y;
 
-    float	internalState;
-    float	previousState;
-    double	startTime;
-    bool	timerStarted;
-    int		waitTime;
+    float*      outputX;
+    float*      outputY;
+    float*      outputZ;
+    float**	output_matrix;
+
+    float	oldx;
+    float	oldy;
+    float	oldz;
+    float	newx;
+    float	newy;
+    float	newz;
+
 
 };
 
