@@ -9,7 +9,6 @@ add_subdirectory(StateHandler)
 add_subdirectory(discovery_MvmntDetChooser)
 add_subdirectory(small_MvmntDetChooser)
 add_subdirectory(LookAway)
-add_subdirectory(FaceMatrix)
 
 set(SOURCE ${SOURCE} PARENT_SCOPE)
 set(MODULES_INCLUDS ${MODULES_INCLUDS} PARENT_SCOPE)
