@@ -51,8 +51,8 @@ GetXYZCoordinates::Init()
     facematrix = GetOutputMatrix("OUTPUTFACEMATRIX");
 
     state = GetInputArray("STATE");
-    change_state = GetInputArray("CHANGESTATE");
-    value = GetInputArray("VALUE");
+    change_state = GetOutputArray("CHANGESTATE");
+    value = GetOutputArray("VALUE");
 
     
 }
@@ -107,19 +107,34 @@ GetXYZCoordinates::Tick()
 	if(z < 700){
 		for (int j=0; j<depth_size_y; j++){
         		for (int i=0; i<depth_size_x; i++){
-				output[j][i] = input[j][i];
+				facematrix[j][i] = input[j][i];
 			} 
     		}
 
 	}else if(z >= 700 && z < 1500){
-		for (int j=0; j<depth_size_y; j++){
-        		for (int i=0; i<depth_size_x; i++){
-				xcord = x - 200; 
-				output[j][i] = input[j][xcord];
-				xcord ++; 
-			} 
-    		}
-
+        	for(int i=0; i<400; i++){
+            		for(int j=0; j<depth_size_y; j++){
+				y0 = ycord - 200 + j;
+				x0 = xcord - 200 + i; 
+				if (y0 > depth_size_y)
+					y0 = depth_size_y;
+				if (x0 > depth_size_x)
+					x0 = depth_size_x;
+               			facematrix[j][i] = input[y0][x0];
+			}
+		}
+	}else if(z >= 1500){
+        	for(int i=0; i<200; i++){
+            		for(int j=0; j<depth_size_y; j++){
+				y0 = ycord - 100 + j;
+				x0 = xcord - 100 + i; 
+				if (y0 > depth_size_y)
+					y0 = depth_size_y;
+				if (x0 > depth_size_x)
+					x0 = depth_size_x;
+               			facematrix[j][i] = input[y0][x0];
+			}
+		}
 	}
 
 	if(state[0] == 0){
