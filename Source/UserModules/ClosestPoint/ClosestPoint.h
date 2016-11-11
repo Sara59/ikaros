@@ -34,9 +34,14 @@ public:
     int			depthY;
     bool 		connected;
     
+    
     int			divider;
 
     float **		output;
+
+    float *		inputState;
+    float *		outputState;
+    float *		value;
 
     static Module * Create(Parameter * p) {return new ClosestPoint(p);};
     

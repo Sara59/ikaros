@@ -77,8 +77,8 @@ StateHandler::Tick()
 
     if (timerStarted){
 	time_t end = time(0);
-	double time = difftime(end, startTime);
-	if (time > (double) waitTime){
+	double t = difftime(end, startTime);
+	if (t > (double) waitTime){
 	    internalState = previousState; //TODO:change this to either decrement or to the right state
 	    startTime = 0;
 	    waitTime = 0;
@@ -110,7 +110,7 @@ StateHandler::Tick()
 	
     } else if (input2[0] != 0){
 	previousState = internalState;
-        internalState = input2[0]
+        internalState = input2[0];
 	time_t start = time(0);
 	timerStarted = true;
 	waitTime = 1000000;
@@ -127,7 +127,7 @@ StateHandler::Tick()
 
     } else if (input3[0] != 0){
 	previousState = internalState;
-        internalState = input3[0]
+        internalState = input3[0];
 	time_t start = time(0);
 	timerStarted = true;
 	waitTime = 1000000;
@@ -143,7 +143,7 @@ StateHandler::Tick()
 	}
     } else if (input4[0] != 0){
 	previousState = internalState;
-        internalState = input4[0]
+        internalState = input4[0];
 	time_t start = time(0);
 	timerStarted = true;
 	waitTime = 1000000;
@@ -159,7 +159,7 @@ StateHandler::Tick()
 	}
     } else if (input5[0] != 0){
 	previousState = internalState;
-        internalState = input5[0]
+        internalState = input5[0];
 	time_t start = time(0);
 	timerStarted = true;
 	waitTime = 1000000;
@@ -183,6 +183,7 @@ StateHandler::Tick()
 }
 
 
+//aitvxq0105
 
 // Install the module. This code is executed during start-up.
 
