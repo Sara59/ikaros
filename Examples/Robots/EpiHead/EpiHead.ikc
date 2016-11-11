@@ -29,18 +29,55 @@
 		0 0 0 1;" />
 		
 		<module class="Kinect" name="kinect" mode="mm" xtion="false" />
-		<_module class="ClosestPoint" name="Closest"/>
+		<module class="ClosestPoint" name="Closest"/>
 		<module class="ConvertPixelToMeter" name="Convert"/>
-			
-		<_connection sourcemodule="kinect" source="DEPTH" targetmodule="Closest" target="DEPTH" />	
-		<_connection sourcemodule="Closest" source="OUTPUT" targetmodule="Convert" target="INPUT" />	
-		
 		<module class="MPIFaceDetector" name="faceDet" />
 		<module class="GetXYZCoordinates" name="getCoords" />
+		<module class="StateHandler" name="stateHandler" />
+		<module class="LookAway" name="lookAway" />
+		<module class="MovementDetector" name="mvmntDet" />
+		<module class = "Arbiter" name = "Arbiter" />
+			
+			
 		
-        <connection sourcemodule="kinect" source="INTENSITY" targetmodule="faceDet" target="INPUT" />	
+		<connection sourcemodule="Closest" source="OUTSTATE" targetmodule="StateHandler" target="INPUT1" />
+		<connection sourcemodule="getCoords" source="???" targetmodule="StateHandler" target="INPUT2" />
+		<connection sourcemodule="lookAway" source="???" targetmodule="StateHandler" target="INPUT3" />
+		<connection sourcemodule="mvmntDet" source="???" targetmodule="StateHandler" target="INPUT4" />
+		<connection sourcemodule="StateHandler" source="OUPUT1" targetmodule="Closest" target="INSTATE" />
+		<connection sourcemodule="StateHandler" source="OUPUT2" targetmodule="getCoords" target="???" />
+		<connection sourcemodule="StateHandler" source="OUPUT3" targetmodule="lookAway" target="???" />
+		<connection sourcemodule="StateHandler" source="OUPUT4" targetmodule="mvmntDet" target="???" />
+		
+	
+	<connection sourcemodule="kinect" source="DEPTH" targetmodule="Closest" target="DEPTH" />	
+	<connection sourcemodule="Closest" source="OUTPUT" targetmodule="Convert" target="INPUT" />
+		
+		
+        
+	<connection sourcemodule="kinect" source="INTENSITY" targetmodule="faceDet" target="INPUT" />	
         <connection sourcemodule = "faceDet" source = "FACE_POSITION" targetmodule = "getCoords" target = "XYINPUT" />
         <connection sourcemodule="kinect" source="DEPTH" targetmodule="getCoords" target="DEPTH" />
+
+	
+	<_connection sourcemodule="kinect" source="INTENSITY" targetmodule="mvmntDet" target="INPUT" />
+
+	
+	<connection sourcemodule="Closest" source="VALUE" targetmodule="Arbiter" target="VALUE_1" />
+	<connection sourcemodule="Closest" source="OUTPUT" targetmodule="Arbiter" target="INPUT_1" />
+
+	<connection sourcemodule="getCoords" source="???" targetmodule="Arbiter" target="VALUE_2" />
+	<connection sourcemodule="getCoords" source="???" targetmodule="Arbiter" target="INPUT_2" />
+
+	<connection sourcemodule="lookAway" source="???" targetmodule="Arbiter" target="VALUE_3" />
+	<connection sourcemodule="lookAway" source="???" targetmodule="Arbiter" target="INPUT_3" />
+
+	<_connection sourcemodule="mvmntDet" source="???" targetmodule="Arbiter" target="VALUE_4" />
+	<_connection sourcemodule="mvmntDet" source="???" targetmodule="Arbiter" target="INPUT_4" />
+
+
+	<connection sourcemodule = "Arbiter" source = "OUTPUT" targetmodule = "Convert" target = "INPUT" />
+	
 		
 		<_module
 		        class = "Scale"
@@ -51,12 +88,11 @@
 		0 1 0 300;
 		0 0 1 500;
 		0 0 0 1;"/>
-	    <_connection sourcemodule = "Closest" source = "OUTPUT" targetmodule = "Convert" target = "INPUT" />
-		<connection sourcemodule = "getCoords" source = "OUTPUTMATRIX" targetmodule = "Convert" target = "INPUT" />
+	    
 	    <connection sourcemodule = "Convert" source = "OUTPUT" targetmodule = "Motor" target = "TARGET" />
 		
-		<_module class="MovementDetector" name="mvmntDet" />
-			<_connection sourcemodule="kinect" source="INTENSITY" targetmodule="mvmntDet" target="INPUT" />
+
+			
 			
 		
     <!-- Forward model to eyes and focus point. THIS WILL CHANGE IN THE FUTURE -->

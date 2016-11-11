@@ -40,15 +40,15 @@ StateHandler::Init()
 
     input1 = GetInputArray("INPUT1");
     input2 = GetInputArray("INPUT2");
-    input3 = GetInputArray("INPUT3");
+    /*input3 = GetInputArray("INPUT3");
     input4 = GetInputArray("INPUT4");
-    input5 = GetInputArray("INPUT5");
+    input5 = GetInputArray("INPUT5");*/
 
     output1 = GetOutputArray("OUTPUT1");
     output2 = GetOutputArray("OUTPUT2");
     output3 = GetOutputArray("OUTPUT3");
-    output4 = GetOutputArray("OUTPUT4");
-    output5 = GetOutputArray("OUTPUT5");
+    /*output4 = GetOutputArray("OUTPUT4");
+    output5 = GetOutputArray("OUTPUT5");/*
 
     //internal_input_array = create_array(3);
     //internal_output_array = create_array(3);
@@ -58,6 +58,7 @@ StateHandler::Init()
     timerStarted = false;
     waitTime = 0;
     previousState = 0;
+    lookAway = false;
 
 
 }
@@ -81,10 +82,21 @@ StateHandler::Tick()
 	//double t = difftime(end, startTime);
 	double t = (end - startTime) / CLOCKS_PER_SEC;
 	if (t > (double) waitTime){
-	    internalState = previousState; //TODO:change this to either decrement or to the right state
-	    startTime = 0;
+	    if (lookAway){
+		previousState = 2;
+		internalState = 3;
+		waitTime = rand() % 200 + 50;
+	    	waitTime = waitTime/100;
+		timerStarted = true;
+	    } else {
+		internalState = previousState; //TODO:change this to either decrement or to the right state
+		startTime = 0;
+		timerStarted = false;
+	    }
+	    
+	    
 	    waitTime = 0;
-	    timerStarted = false;
+	    
 	}
     }
 
@@ -92,7 +104,7 @@ StateHandler::Tick()
     
 
     //checks if any module wants to change state.
-    if (input1[0] != 0){
+    if (input1[0] > 0){
 	previousState = internalState;
         internalState = input1[0];
 	//time_t start = time(0);
@@ -108,10 +120,11 @@ StateHandler::Tick()
 	} else if (internalState == 2){
 	    waitTime = rand() % 900 + 300;
 	    waitTime = waitTime/100;
+	    lookAway = true;
 	}
 	
 	
-    } else if (input2[0] != 0){
+    } else if (input2[0] > 0){
 	previousState = internalState;
         internalState = input2[0];
 	//time_t start = time(0);
@@ -127,9 +140,10 @@ StateHandler::Tick()
 	} else if (internalState == 2){
 	    waitTime = rand() % 900 + 300;
 	    waitTime = waitTime/100;
+	    lookAway = true;
 	}
 
-    } else if (input3[0] != 0){
+    } /*else if (input3[0] > 0){
 	previousState = internalState;
         internalState = input3[0];
 	//time_t start = time(0);
@@ -145,8 +159,9 @@ StateHandler::Tick()
 	} else if (internalState == 2){
 	    waitTime = rand() % 900 + 300;
 	    waitTime = waitTime/100;
+	    lookAway = true;
 	}
-    } else if (input4[0] != 0){
+    } else if (input4[0] > 0){
 	previousState = internalState;
         internalState = input4[0];
 	//time_t start = time(0);
@@ -162,8 +177,9 @@ StateHandler::Tick()
 	} else if (internalState == 2){
 	    waitTime = rand() % 900 + 300;
 	    waitTime = waitTime/100;
+	    lookAway = true;
 	}
-    } else if (input5[0] != 0){
+    } else if (input5[0] > 0){
 	previousState = internalState;
         internalState = input5[0];
 	//time_t start = time(0);
@@ -179,18 +195,19 @@ StateHandler::Tick()
 	} else if (internalState == 2){
 	    waitTime = rand() % 900 + 300;
 	    waitTime = waitTime/100;
+	    lookAway = true;
 	}
     }
-
+*/
     output1[0] = internalState;
     output2[0] = internalState;
     output3[0] = internalState;
-    output4[0] = internalState;
-    output5[0] = internalState;
+    /*output4[0] = internalState;
+    output5[0] = internalState;*/
 }
 
 
-//aitvxq0105
+
 
 // Install the module. This code is executed during start-up.
 
