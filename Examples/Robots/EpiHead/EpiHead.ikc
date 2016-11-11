@@ -62,6 +62,9 @@
 	
 	<_connection sourcemodule="kinect" source="INTENSITY" targetmodule="mvmntDet" target="INPUT" />
 
+	<connection sourcemodule="getCoords" source="OUTPUTMATRIX" targetmodule="lookAway" target="INPUT" />	
+	<connection sourcemodule="kinect" source="DEPTH" targetmodule="lookAway" target="PICTURE" />
+
 	
 	<connection sourcemodule="closest" source="VALUE" targetmodule="arbiter" target="VALUE_1" />
 	<connection sourcemodule="closest" source="OUTPUT" targetmodule="arbiter" target="INPUT_1" />

@@ -25,6 +25,8 @@
 //
 
 #include "GetXYZCoordinates.h"
+#include <iostream>
+using namespace std;
 
 // use the ikaros namespace to access the math library
 // this is preferred to using <cmath>
@@ -69,7 +71,7 @@ GetXYZCoordinates::~GetXYZCoordinates()
 void
 GetXYZCoordinates::Tick()
 {
-
+	cout << "got inside getXYZ";
 	x = xyinput[0][0]*640;
 	y = xyinput[0][1]*480;
 	
@@ -149,7 +151,7 @@ GetXYZCoordinates::Tick()
 	}
 
 
-
+	cout << "got outside! getX";
 
 }
 
