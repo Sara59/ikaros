@@ -107,7 +107,7 @@ GetXYZCoordinates::Tick()
 	if(z < 700){
 		for (int j=0; j<depth_size_y; j++){
         		for (int i=0; i<depth_size_x; i++){
-				facematrix[j][i] = input[j][i];
+				facematrix[j][i] = depth[j][i];
 			} 
     		}
 
@@ -120,7 +120,7 @@ GetXYZCoordinates::Tick()
 					y0 = depth_size_y;
 				if (x0 > depth_size_x)
 					x0 = depth_size_x;
-               			facematrix[j][i] = input[y0][x0];
+               			facematrix[j][i] = depth[y0][x0];
 			}
 		}
 	}else if(z >= 1500){
@@ -132,7 +132,7 @@ GetXYZCoordinates::Tick()
 					y0 = depth_size_y;
 				if (x0 > depth_size_x)
 					x0 = depth_size_x;
-               			facematrix[j][i] = input[y0][x0];
+               			facematrix[j][i] = depth[y0][x0];
 			}
 		}
 	}
