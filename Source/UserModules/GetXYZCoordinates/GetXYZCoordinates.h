@@ -61,7 +61,9 @@ public:
     float	z;
 
     int		xcord;
-    int 	ycord; 
+    int 	ycord;
+    int 	y0; 
+    int 	x0; 
 
 };
 
