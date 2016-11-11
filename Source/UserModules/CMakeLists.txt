@@ -6,6 +6,7 @@ add_subdirectory(ClosestPoint)
 add_subdirectory(GetXYZCoordinates)
 add_subdirectory(ConvertPixelToMeter)
 add_subdirectory(MvmntDetChooser)
+add_subdirectory(StateHandler)
 
 set(SOURCE ${SOURCE} PARENT_SCOPE)
 set(MODULES_INCLUDS ${MODULES_INCLUDS} PARENT_SCOPE)

@@ -43,9 +43,15 @@ ClosestPoint::Init()
     depth 		= GetInputMatrix("DEPTH");
     depthX		= GetInputSizeX("DEPTH");
     depthY		= GetInputSizeY("DEPTH");
+
     output 		= GetOutputMatrix("OUTPUT");
     connected		= InputConnected("DEPTH");
     Bind(divider, "matrixsize"); 
+
+    //extensions to the module
+    inputState		= GetInputArray("INSTATE");
+    outputState		= GetOutputArray("OUTSTATE");
+    value		= GetOutputArray("VALUE");
 
     
 }
@@ -139,8 +145,33 @@ ClosestPoint::Tick()
     output[1][1] = 1;
     output[2][2] = 1;
     output[3][3] = 1;
+    
+    double scaler = 1;
 
+
+
+    if (inputState[0] == 0 || inputState[0] == 1 || inputState[0] == 3 || inputState[0] == 4){
+        scaler = 0;
+    } else if (inputState[0] == 2){
+        scaler = 0.75;
+    } else if (inputState[0] == 5){
+	scaler = 1;
+    }
+
+    if (smallest <= 600){
+        value[0]= 1;
+    } else {
+	value[0] = 600/(smallest);
+    } 
+
+    if (value[0] >= 0.9){
+        outputState[0] = 1;
+    } else {
+	outputState[0] = -1;
+    }
 }
+
+
 
 
 
