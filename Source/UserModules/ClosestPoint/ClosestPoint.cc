@@ -104,7 +104,6 @@ ClosestPoint::Tick()
         }
 	
 	views[count] = views[count] / (correctPixels);
-	cout << "Value of count " << count << ": " << views[count];
 	if (count%depthXX == 0) {
 	    count2++;
 	}
