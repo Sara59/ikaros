@@ -107,7 +107,7 @@ LookAway::Tick()
 	output_matrix[3][2] = 0; 
 	output_matrix[3][3] = 1; 
 
-	if(state[0] == float(2){
+	if(state[0] == float(2)){
 		value[0] = float(1);
 	} else {
 		value[0] = float(0);

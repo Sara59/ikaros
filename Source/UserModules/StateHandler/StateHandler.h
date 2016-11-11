@@ -38,16 +38,16 @@ public:
 
     float *     input1;
     float *     input2;
-    float *     input3;
+    /*float *     input3;
     float *     input4;
-    float *     input5;
+    float *     input5;*/
 
 
     float *	output1;
     float *	output2;
     float *	output3;
-    float *	output4;
-    float *	output5;
+    /*float *	output4;
+    float *	output5;*/
 
     float	internalState;
     float	previousState;

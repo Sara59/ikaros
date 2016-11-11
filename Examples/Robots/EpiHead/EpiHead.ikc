@@ -41,13 +41,13 @@
 			
 		
 		<connection sourcemodule="Closest" source="OUTSTATE" targetmodule="StateHandler" target="INPUT1" />
-		<connection sourcemodule="getCoords" source="???" targetmodule="StateHandler" target="INPUT2" />
-		<connection sourcemodule="lookAway" source="???" targetmodule="StateHandler" target="INPUT3" />
-		<connection sourcemodule="mvmntDet" source="???" targetmodule="StateHandler" target="INPUT4" />
+		<connection sourcemodule="getCoords" source="CHANGESTATE" targetmodule="StateHandler" target="INPUT2" />
+		<_connection sourcemodule="lookAway" source="???" targetmodule="StateHandler" target="INPUT3" />
+		<_connection sourcemodule="mvmntDet" source="???" targetmodule="StateHandler" target="INPUT4" />
 		<connection sourcemodule="StateHandler" source="OUPUT1" targetmodule="Closest" target="INSTATE" />
-		<connection sourcemodule="StateHandler" source="OUPUT2" targetmodule="getCoords" target="???" />
-		<connection sourcemodule="StateHandler" source="OUPUT3" targetmodule="lookAway" target="???" />
-		<connection sourcemodule="StateHandler" source="OUPUT4" targetmodule="mvmntDet" target="???" />
+		<connection sourcemodule="StateHandler" source="OUPUT2" targetmodule="getCoords" target="STATE" />
+		<connection sourcemodule="StateHandler" source="OUPUT3" targetmodule="lookAway" target="STATE" />
+		<_connection sourcemodule="StateHandler" source="OUPUT4" targetmodule="mvmntDet" target="???" />
 		
 	
 	<connection sourcemodule="kinect" source="DEPTH" targetmodule="Closest" target="DEPTH" />	
@@ -66,11 +66,11 @@
 	<connection sourcemodule="Closest" source="VALUE" targetmodule="Arbiter" target="VALUE_1" />
 	<connection sourcemodule="Closest" source="OUTPUT" targetmodule="Arbiter" target="INPUT_1" />
 
-	<connection sourcemodule="getCoords" source="???" targetmodule="Arbiter" target="VALUE_2" />
-	<connection sourcemodule="getCoords" source="???" targetmodule="Arbiter" target="INPUT_2" />
+	<connection sourcemodule="getCoords" source="VALUE" targetmodule="Arbiter" target="VALUE_2" />
+	<connection sourcemodule="getCoords" source="OUTPUTMATRIX" targetmodule="Arbiter" target="INPUT_2" />
 
-	<connection sourcemodule="lookAway" source="???" targetmodule="Arbiter" target="VALUE_3" />
-	<connection sourcemodule="lookAway" source="???" targetmodule="Arbiter" target="INPUT_3" />
+	<connection sourcemodule="lookAway" source="VALUE" targetmodule="Arbiter" target="VALUE_3" />
+	<connection sourcemodule="lookAway" source="OUTPUTMATRIX" targetmodule="Arbiter" target="INPUT_3" />
 
 	<_connection sourcemodule="mvmntDet" source="???" targetmodule="Arbiter" target="VALUE_4" />
 	<_connection sourcemodule="mvmntDet" source="???" targetmodule="Arbiter" target="INPUT_4" />

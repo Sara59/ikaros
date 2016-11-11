@@ -48,7 +48,7 @@ StateHandler::Init()
     output2 = GetOutputArray("OUTPUT2");
     output3 = GetOutputArray("OUTPUT3");
     /*output4 = GetOutputArray("OUTPUT4");
-    output5 = GetOutputArray("OUTPUT5");/*
+    output5 = GetOutputArray("OUTPUT5");*/
 
     //internal_input_array = create_array(3);
     //internal_output_array = create_array(3);
@@ -60,6 +60,7 @@ StateHandler::Init()
     previousState = 0;
     lookAway = false;
 
+//./ikaros -R -t -r50 -p  ../Examples/Robots/EpiHead/EpiHead.ikc 
 
 }
 
