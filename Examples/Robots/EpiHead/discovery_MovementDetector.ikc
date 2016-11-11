@@ -58,7 +58,7 @@
 		<connection sourcemodule="threshold" source="OUTPUT" targetmodule="d_mdc" target="DEMANDATTENTION" />
 		<connection sourcemodule="arbiter" source="OUTPUT" targetmodule="d_mdc" target="REGION" />
 		
-		<output name="COORDS" sourcemodule="d_mdc" source="COORDOUT" />
+		<output name="COORDS" sourcemodule="d_mdc" source="COORDSOUT" />
 		<output name="WEIGHT" sourcemodule="d_mdc" source="WEIGHTOUT" />
 		<output name="STATE" sourcemodule="d_mdc" source="STATEOUT" />
 		
