@@ -76,8 +76,10 @@ StateHandler::Tick()
 {
 
     if (timerStarted){
-	time_t end = time(0);
-	double t = difftime(end, startTime);
+	clock_t end = clock();	
+	//time_t end = time(0);
+	//double t = difftime(end, startTime);
+	double t = (end - startTime) / CLOCKS_PER_SEC;
 	if (t > (double) waitTime){
 	    internalState = previousState; //TODO:change this to either decrement or to the right state
 	    startTime = 0;
@@ -92,8 +94,9 @@ StateHandler::Tick()
     //checks if any module wants to change state.
     if (input1[0] != 0){
 	previousState = internalState;
-        internalState = input1[0]
-	time_t start = time(0);
+        internalState = input1[0];
+	//time_t start = time(0);
+	time_t start = clock();
         waitTime = 1000000;
 	timerStarted = true;
 	if (internalState == 4 || internalState == 5){
@@ -111,7 +114,8 @@ StateHandler::Tick()
     } else if (input2[0] != 0){
 	previousState = internalState;
         internalState = input2[0];
-	time_t start = time(0);
+	//time_t start = time(0);
+	time_t start = clock();	
 	timerStarted = true;
 	waitTime = 1000000;
 	if (internalState == 4 || internalState == 5){
@@ -128,7 +132,8 @@ StateHandler::Tick()
     } else if (input3[0] != 0){
 	previousState = internalState;
         internalState = input3[0];
-	time_t start = time(0);
+	//time_t start = time(0);
+	time_t start = clock();
 	timerStarted = true;
 	waitTime = 1000000;
 	if (internalState == 4 || internalState == 5){
@@ -144,7 +149,8 @@ StateHandler::Tick()
     } else if (input4[0] != 0){
 	previousState = internalState;
         internalState = input4[0];
-	time_t start = time(0);
+	//time_t start = time(0);
+	time_t start = clock();
 	timerStarted = true;
 	waitTime = 1000000;
 	if (internalState == 4 || internalState == 5){
@@ -160,7 +166,8 @@ StateHandler::Tick()
     } else if (input5[0] != 0){
 	previousState = internalState;
         internalState = input5[0];
-	time_t start = time(0);
+	//time_t start = time(0);
+	time_t start = clock();
 	timerStarted = true;
 	waitTime = 1000000;
 	if (internalState == 4 || internalState == 5){
