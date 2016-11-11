@@ -50,6 +50,9 @@ public:
     float*      outputZ;
     float**	output_matrix;
 
+    float*	state; 
+    float*	value;
+
     float	oldx;
     float	oldy;
     float	oldz;

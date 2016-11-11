@@ -23,6 +23,10 @@
 
 	<output name="OUTPUTMATRIX" description="The x, y, z coordinates in a matrix for epi blue that is slightly away from the input coordinates" size_x="4" size_y="4"/>
 
+	<input name="STATE" description="Input from the State Module"/> 
+	<output name="CHANGESTATE" description="Output to the State Module" size="1"/> 
+	<output name="VALUE" description="Output to be sent to Arbiter" size="1"/> 
+
 	<module class="LookAway" />
 
 	<author>
