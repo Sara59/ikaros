@@ -54,6 +54,7 @@ public:
     double	startTime;
     bool	timerStarted;
     int		waitTime;
+    bool	lookAway;
 
 };
 
