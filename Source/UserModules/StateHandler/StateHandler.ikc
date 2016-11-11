@@ -19,10 +19,10 @@
 	<input name="INPUT2" description="The second input" />
 	<input name="INPUT3" description="The third input" />
 
-	<output name="OUTPUT1" description="The first output" size="1" />
-	<output name="OUTPUT2" description="The second output" size="1" />
-	<output name="OUTPUT3" description="The third output" size="1" />
-	<output name="OUTPUT4" description="The fourth output" size="1" />
+	<output name="OUTPUT1" description="The first output" size_x="1" size_y="1" />
+	<output name="OUTPUT2" description="The second output" size_x="1" size_y="1" />
+	<output name="OUTPUT3" description="The third output" size_x="1" size_y="1" />
+	<output name="OUTPUT4" description="The fourth output" size_x="1" size_y="1" />
 
 	<module class="StateHandler" />
 

@@ -47,41 +47,74 @@ discovery_MvmntDetChooser::Tick()
 			
 			switch ((int) region[0]) {
 				case 1:
-					coordsOut[0] = 0.3;
-					coordsOut[1] = 0.7;
-					coordsOut[2] = 2;
+					coordsOut[0] = 106;
+					coordsOut[1] = 120;
+					coordsOut[2] = 2000;
 					break;
 				case 2:
-					coordsOut[0] = 0.5;
-					coordsOut[1] = 0.7;
-					coordsOut[2] = 2;
+					coordsOut[0] = 3*106;
+					coordsOut[1] = 120;
+					coordsOut[2] = 2000;
 					break;
 				case 3:
-					coordsOut[0] = 0.7;
-					coordsOut[1] = 0.7;
-					coordsOut[2] = 2;
+					coordsOut[0] = 5*106;
+					coordsOut[1] = 120;
+					coordsOut[2] = 2000;
 					break;
 				case 4:
-					coordsOut[0] = 0.3;
-					coordsOut[1] = 0.3;
-					coordsOut[2] = 2;
+					coordsOut[0] = 106;
+					coordsOut[1] = 360;
+					coordsOut[2] = 2000;
 					break;
 				case 5:
-					coordsOut[0] = 0.5;
-					coordsOut[1] = 0.3;
-					coordsOut[2] = 2;
+					coordsOut[0] = 3*106;
+					coordsOut[1] = 360;
+					coordsOut[2] = 2000;
 					break;
 				case 6:
-					coordsOut[0] = 0.7;
-					coordsOut[1] = 0.3;
-					coordsOut[2] = 2;
+					coordsOut[0] = 5*106;
+					coordsOut[1] = 360;
+					coordsOut[2] = 2000;
 					break;
 			}
 		}
 	} else if (stateIn[0] == 1) {
 		weightOut[0] = 0.2;
-		//TODO: check mvmnt here, but only if allowed. How distinguish
-		// 		when allowed?
+		if (demandAtt[0] == 1) {
+			stateOut[0] = 1;
+			switch ((int) region[0]) {
+				case 1:
+					coordsOut[0] = 106;
+					coordsOut[1] = 120;
+					coordsOut[2] = 2000;
+					break;
+				case 2:
+					coordsOut[0] = 3*106;
+					coordsOut[1] = 120;
+					coordsOut[2] = 2000;
+					break;
+				case 3:
+					coordsOut[0] = 5*106;
+					coordsOut[1] = 120;
+					coordsOut[2] = 2000;
+					break;
+				case 4:
+					coordsOut[0] = 106;
+					coordsOut[1] = 360;
+					coordsOut[2] = 2000;
+					break;
+				case 5:
+					coordsOut[0] = 3*106;
+					coordsOut[1] = 360;
+					coordsOut[2] = 2000;
+					break;
+				case 6:
+					coordsOut[0] = 5*106;
+					coordsOut[1] = 360;
+					coordsOut[2] = 2000;
+					break;
+			}
+		}
 	} else {
 		weightOut[0] = 0;
 	}
@@ -89,5 +122,3 @@ discovery_MvmntDetChooser::Tick()
 
 // Install the module. This code is executed during start-up.
 static InitClass init("discovery_MvmntDetChooser", &discovery_MvmntDetChooser::Create, "Source/UserModules/discovery_MvmntDetChooser/");
-
-

@@ -15,15 +15,15 @@
 
 	<input name="XYINPUT" description="The x, y coordinates" />
 	<input name="DEPTH" description="The input from Depth camera" />
+	<input name="STATE" description="Input from the State Module" /> 
 
 	<output name="OUTPUTX" description="The x coordinate" size="1"/>
 	<output name="OUTPUTY" description="The y coordinate" size="1"/>
 	<output name="OUTPUTZ" description="The z coordinate" size="1"/>
 
 	<output name="OUTPUTMATRIX" description="The x, y, z coordinates in a matrix for epi blue" size_x="4" size_y="4"/>
-	<output name="OUTPUTFACEMATRIX" description="A smaller matrix around the face and body"/>
-
-	<input name="STATE" description="Input from the State Module"/> 
+	<output name="OUTPUTFACEMATRIX" description="A smaller matrix around the face and body" size_x="640" size_y="480" />
+	
 	<output name="CHANGESTATE" description="Output to the State Module" size="1"/> 
 	<output name="VALUE" description="Output to be sent to Arbiter" size="1"/> 
 

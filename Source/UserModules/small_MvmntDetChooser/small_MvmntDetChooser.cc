@@ -35,6 +35,11 @@ small_MvmntDetChooser::Init()
 	stateOut	= GetOutputArray("STATEOUT");    
 }
 
+/*void
+small_MvmntDetChooser::SetSizes() {
+	GetInputSize()
+}*/
+
 small_MvmntDetChooser::~small_MvmntDetChooser() {}
 
 void
@@ -44,7 +49,7 @@ small_MvmntDetChooser::Tick()
 		weightOut[0] = 1;
 		if (demandAtt[0] == 1/* && input[2] == 0*/) {
 			stateOut[0] = 4;
-			
+			/*  */
 			switch ((int) region[0]) {
 				case 1:
 					coordsOut[0] = 25;

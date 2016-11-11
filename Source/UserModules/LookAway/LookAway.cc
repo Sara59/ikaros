@@ -69,48 +69,52 @@ LookAway::~LookAway()
 void
 LookAway::Tick()
 {
-
-	oldx = input_matrix[0][3];
-	oldy = input_matrix[1][3]; 
-	oldz = input_matrix[2][3];
-
-	if(picture_size_x > (oldx + 50)){
-		newx = oldx + 50; 
-	}else{ 
-		newx = oldx - 50; 
-	}
-
-	newy = oldy; 
-	newz = oldz; 
-
-	*outputX = float(newx);
-	*outputY = float(newy); 
-	*outputZ = float(newz);
-
-	output_matrix[0][0] = 1; 
-	output_matrix[0][1] = 0; 
-	output_matrix[0][2] = 0; 
-	output_matrix[0][3] = newx; 
-
-	output_matrix[1][0] = 0; 
-	output_matrix[1][1] = 1; 
-	output_matrix[1][2] = 0; 
-	output_matrix[1][3] = newy; 
-
-	output_matrix[2][0] = 0; 
-	output_matrix[2][1] = 0; 
-	output_matrix[2][2] = 1; 
-	output_matrix[2][3] = newz; 
-
-	output_matrix[3][0] = 0; 
-	output_matrix[3][1] = 0; 
-	output_matrix[3][2] = 0; 
-	output_matrix[3][3] = 1; 
-
-	if(state[0] == float(2)){
-		value[0] = float(1);
+	if (input_matrix[0] == NULL || picture[0] == NULL) {
+		value[0] = 0;
 	} else {
-		value[0] = float(0);
+
+		oldx = input_matrix[0][3];
+		oldy = input_matrix[1][3]; 
+		oldz = input_matrix[2][3];
+
+		if(picture_size_x > (oldx + 50)){
+			newx = oldx + 50; 
+		}else{ 
+			newx = oldx - 50; 
+		}
+
+		newy = oldy; 
+		newz = oldz; 
+
+		*outputX = float(newx);
+		*outputY = float(newy); 
+		*outputZ = float(newz);
+
+		output_matrix[0][0] = 1; 
+		output_matrix[0][1] = 0; 
+		output_matrix[0][2] = 0; 
+		output_matrix[0][3] = newx; 
+
+		output_matrix[1][0] = 0; 
+		output_matrix[1][1] = 1; 
+		output_matrix[1][2] = 0; 
+		output_matrix[1][3] = newy; 
+
+		output_matrix[2][0] = 0; 
+		output_matrix[2][1] = 0; 
+		output_matrix[2][2] = 1; 
+		output_matrix[2][3] = newz; 
+
+		output_matrix[3][0] = 0; 
+		output_matrix[3][1] = 0; 
+		output_matrix[3][2] = 0; 
+		output_matrix[3][3] = 1; 
+
+		if(state[0] == float(2)){
+			value[0] = float(1);
+		} else {
+			value[0] = float(0);
+		}
 	}
 
 

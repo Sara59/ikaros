@@ -15,8 +15,11 @@ and then find the closest points in all directions.
 	</example>
 
 	<input name="DEPTH" description="The depth of the kinect" size_x="640" size_y="480" />
+	<input name="INSTATE" description="@Simon" />
 
 	<output name="OUTPUT" description="The output which gives x,y,z coordinates"  size_x="4" size_y="4" />
+	<output name="OUTSTATE" description="@Simon" size_x="1" size_y="1" />
+	<output name="VALUE" description="SIMON" size_x="1" size_y="1" />
 
         <parameter name="matrixsize" type="int" default="20" description="Decides the size of matrices that get checked for depth" />
 

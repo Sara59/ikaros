@@ -29,29 +29,29 @@
 		0 0 0 1;" />
 		
 		<module class="Kinect" name="kinect" mode="mm" xtion="false" />
-		<module class="ClosestPoint" name="Closest"/>
+		<module class="ClosestPoint" name="closest" />
 		<module class="ConvertPixelToMeter" name="Convert"/>
 		<module class="MPIFaceDetector" name="faceDet" />
 		<module class="GetXYZCoordinates" name="getCoords" />
 		<module class="StateHandler" name="stateHandler" />
 		<module class="LookAway" name="lookAway" />
-		<module class="MovementDetector" name="mvmntDet" />
-		<module class = "Arbiter" name = "Arbiter" />
+		<_module class="MovementDetector" name="mvmntDet" />
+		<module class = "Arbiter" name = "arbiter" no_of_inputs="3" />
 			
 			
 		
-		<connection sourcemodule="Closest" source="OUTSTATE" targetmodule="StateHandler" target="INPUT1" />
-		<connection sourcemodule="getCoords" source="CHANGESTATE" targetmodule="StateHandler" target="INPUT2" />
-		<_connection sourcemodule="lookAway" source="???" targetmodule="StateHandler" target="INPUT3" />
-		<_connection sourcemodule="mvmntDet" source="???" targetmodule="StateHandler" target="INPUT4" />
-		<connection sourcemodule="StateHandler" source="OUPUT1" targetmodule="Closest" target="INSTATE" />
-		<connection sourcemodule="StateHandler" source="OUPUT2" targetmodule="getCoords" target="STATE" />
-		<connection sourcemodule="StateHandler" source="OUPUT3" targetmodule="lookAway" target="STATE" />
-		<_connection sourcemodule="StateHandler" source="OUPUT4" targetmodule="mvmntDet" target="???" />
+		<connection sourcemodule="closest" source="OUTSTATE" targetmodule="stateHandler" target="INPUT1" />
+		<connection sourcemodule="getCoords" source="CHANGESTATE" targetmodule="stateHandler" target="INPUT2" />
+		<_connection sourcemodule="lookAway" source="???" targetmodule="stateHandler" target="INPUT3" />
+		<_connection sourcemodule="mvmntDet" source="???" targetmodule="stateHandler" target="INPUT4" />
+		<connection sourcemodule="stateHandler" source="OUTPUT1" targetmodule="closest" target="INSTATE" />
+		<connection sourcemodule="stateHandler" source="OUTPUT2" targetmodule="getCoords" target="STATE" />
+		<connection sourcemodule="stateHandler" source="OUTPUT3" targetmodule="lookAway" target="STATE" />
+		<_connection sourcemodule="stateHandler" source="OUPUT4" targetmodule="mvmntDet" target="???" />
 		
 	
-	<connection sourcemodule="kinect" source="DEPTH" targetmodule="Closest" target="DEPTH" />	
-	<connection sourcemodule="Closest" source="OUTPUT" targetmodule="Convert" target="INPUT" />
+	<connection sourcemodule="kinect" source="DEPTH" targetmodule="closest" target="DEPTH" />	
+	<connection sourcemodule="closest" source="OUTPUT" targetmodule="Convert" target="INPUT" />
 		
 		
         
@@ -63,20 +63,20 @@
 	<_connection sourcemodule="kinect" source="INTENSITY" targetmodule="mvmntDet" target="INPUT" />
 
 	
-	<connection sourcemodule="Closest" source="VALUE" targetmodule="Arbiter" target="VALUE_1" />
-	<connection sourcemodule="Closest" source="OUTPUT" targetmodule="Arbiter" target="INPUT_1" />
+	<connection sourcemodule="closest" source="VALUE" targetmodule="arbiter" target="VALUE_1" />
+	<connection sourcemodule="closest" source="OUTPUT" targetmodule="arbiter" target="INPUT_1" />
 
-	<connection sourcemodule="getCoords" source="VALUE" targetmodule="Arbiter" target="VALUE_2" />
-	<connection sourcemodule="getCoords" source="OUTPUTMATRIX" targetmodule="Arbiter" target="INPUT_2" />
+	<connection sourcemodule="getCoords" source="VALUE" targetmodule="arbiter" target="VALUE_2" />
+	<connection sourcemodule="getCoords" source="OUTPUTMATRIX" targetmodule="arbiter" target="INPUT_2" />
 
-	<connection sourcemodule="lookAway" source="VALUE" targetmodule="Arbiter" target="VALUE_3" />
-	<connection sourcemodule="lookAway" source="OUTPUTMATRIX" targetmodule="Arbiter" target="INPUT_3" />
+	<connection sourcemodule="lookAway" source="VALUE" targetmodule="arbiter" target="VALUE_3" />
+	<connection sourcemodule="lookAway" source="OUTPUTMATRIX" targetmodule="arbiter" target="INPUT_3" />
 
 	<_connection sourcemodule="mvmntDet" source="???" targetmodule="Arbiter" target="VALUE_4" />
 	<_connection sourcemodule="mvmntDet" source="???" targetmodule="Arbiter" target="INPUT_4" />
 
 
-	<connection sourcemodule = "Arbiter" source = "OUTPUT" targetmodule = "Convert" target = "INPUT" />
+	<connection sourcemodule = "arbiter" source = "OUTPUT" targetmodule = "Convert" target = "INPUT" />
 	
 		
 		<_module
