@@ -20,18 +20,18 @@
 //    See http://www.ikaros-project.org/ for more information.
 //
 
-#ifndef GetXYZCoordinates_
-#define GetXYZCoordinates_
+#ifndef FaceMatrix_
+#define FaceMatrix_
 
 #include "IKAROS.h"
 
-class GetXYZCoordinates: public Module
+class FaceMatrix: public Module
 {
 public:
-    static Module * Create(Parameter * p) { return new GetXYZCoordinates(p); }
+    static Module * Create(Parameter * p) { return new FaceMatrix(p); }
 
-    GetXYZCoordinates(Parameter * p) : Module(p) {}
-    virtual ~GetXYZCoordinates();
+    FaceMatrix(Parameter * p) : Module(p) {}
+    virtual ~FaceMatrix();
 
     void 		Init();
     void 		Tick();
@@ -39,29 +39,22 @@ public:
     // pointers to inputs and outputs
     // and integers to represent their sizes
 
-    float **    xyinput;
+    float **    face;
 
-    float **	depth;
-    float       depth_size_x;
-    float       depth_size_y;
 
 
     float*      outputX;
     float*      outputY;
     float*      outputZ;
     float**	outputmatrix;
-    float**	facematrix;
 
-    float*	state; 
-    float* 	change_state;
-    float*	value; 
+    //float*	state; 
+    //float* 	change_state;
+    //float*	value; 
 
     float	x;
     float	y;
     float	z;
-
-    int		xcord;
-    int 	ycord; 
 
 };
 

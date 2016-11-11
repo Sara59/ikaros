@@ -21,6 +21,7 @@
 	<output name="OUTPUTZ" description="The z coordinate" size="1"/>
 
 	<output name="OUTPUTMATRIX" description="The x, y, z coordinates in a matrix for epi blue" size_x="4" size_y="4"/>
+	<output name="OUTPUTFACEMATRIX" description="A smaller matrix around the face and body"/>
 
 	<input name="STATE" description="Input from the State Module"/> 
 	<output name="CHANGESTATE" description="Output to the State Module" size="1"/> 

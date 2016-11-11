@@ -48,10 +48,11 @@ GetXYZCoordinates::Init()
     outputZ = GetOutputArray("OUTPUTZ");
 
     outputmatrix = GetOutputMatrix("OUTPUTMATRIX");
+    facematrix = GetOutputMatrix("OUTPUTFACEMATRIX");
 
     state = GetInputArray("STATE");
-    change_state = GetInputArray("CHANGESTATE")
-    value = GetInputArray("VALUE")
+    change_state = GetInputArray("CHANGESTATE");
+    value = GetInputArray("VALUE");
 
     
 }
@@ -103,15 +104,33 @@ GetXYZCoordinates::Tick()
 	outputmatrix[3][2] = 0; 
 	outputmatrix[3][3] = 1; 
 
-	if(state == 0){
-		value = 0.3;
-	} else if(state == 1){
-		change_state = 2;
-		value = 1;
-	} else if(state == 2){
-		value = 0.7;
+	if(z < 700){
+		for (int j=0; j<depth_size_y; j++){
+        		for (int i=0; i<depth_size_x; i++){
+				output[j][i] = input[j][i];
+			} 
+    		}
+
+	}else if(z >= 700 && z < 1500){
+		for (int j=0; j<depth_size_y; j++){
+        		for (int i=0; i<depth_size_x; i++){
+				xcord = x - 200; 
+				output[j][i] = input[j][xcord];
+				xcord ++; 
+			} 
+    		}
+
+	}
+
+	if(state[0] == 0){
+		value[0] = float(0.3);
+	} else if(state[0] == float(1)){
+		change_state[0] = float(2);
+		value[0] = float(1);
+	} else if(state[0] == float(2)){
+		value[0] = float(0.7);
 	} else {
-		value = 0;
+		value[0] = 0;
 	}
 
 
