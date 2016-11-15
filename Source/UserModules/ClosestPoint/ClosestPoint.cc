@@ -39,7 +39,6 @@ void
 ClosestPoint::Init()
 {
 
-
     depth 		= GetInputMatrix("DEPTH");
     depthX		= GetInputSizeX("DEPTH");
     depthY		= GetInputSizeY("DEPTH");
@@ -53,6 +52,7 @@ ClosestPoint::Init()
     outputState		= GetOutputArray("OUTSTATE");
     value		= GetOutputArray("VALUE");
 
+	inputState[0] = 0;
     
 }
 
@@ -70,7 +70,7 @@ ClosestPoint::~ClosestPoint()
 void
 ClosestPoint::Tick()
 {	
-	cout << "got inside closest";
+
     if (connected){
         //cout << "depth: " <<  fixed << depth[50][50];
     }
@@ -159,17 +159,15 @@ ClosestPoint::Tick()
     }
 
     if (smallest <= 600){
-        value[0]= 1;
+        value[0]= 1*scaler;
     } else {
-	value[0] = 600/(smallest);
+	value[0] = (600/(smallest))*scaler;
     } 
 
-    if (value[0] >= 0.9){
-        outputState[0] = 1;
-    } else {
-	outputState[0] = 0;
-    }
-	cout << "got outside closest";
+    if (value[0] >= 0.9*scaler){
+        outputState[0] = 5;
+    } 
+
 }
 
 

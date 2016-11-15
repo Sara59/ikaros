@@ -20,13 +20,6 @@
       
 	    <_connection sourcemodule = "EpiHeadToFocus" source = "FOCUS_IN_EPI" targetmodule = "Motor" target = "TARGET" />
 
-		<_connection sourcemodule="in med översatta koords här" />
-		
-		<_module class = "Constant" name = "KinectPos" data = "
-		1 0 0 0.12;
-		0 1 0 0;
-		0 0 1 0.05;
-		0 0 0 1;" />
 		
 		<module class="Kinect" name="kinect" mode="mm" xtion="false" />
 		<module class="ClosestPoint" name="closest" />
@@ -58,9 +51,8 @@
 		<connection sourcemodule="stateHandler" source="OUTPUT4" targetmodule="d_md" target="STATE" />
 		<connection sourcemodule="stateHandler" source="OUTPUT5" targetmodule="s_md" target="STATE" />
 		
-	
-		<connection sourcemodule="kinect" source="DEPTH" targetmodule="closest" target="DEPTH" />	
-		<connection sourcemodule="closest" source="OUTPUT" targetmodule="Convert" target="INPUT" />
+		<connection sourcemodule="kinect" source="DEPTH" targetmodule="closest" target="DEPTH" />
+		<_connection sourcemodule="closest" source="OUTPUT" targetmodule="Convert" target="INPUT" />
 		
 		<connection sourcemodule="kinect" source="INTENSITY" targetmodule="faceDet" target="INPUT" />	
         <connection sourcemodule = "faceDet" source = "FACE_POSITION" targetmodule = "getCoords" target = "XYINPUT" />
@@ -71,6 +63,7 @@
 
 		<connection sourcemodule="getCoords" source="OUTPUTMATRIX" targetmodule="lookAway" target="INPUT" />	
 		<connection sourcemodule="kinect" source="DEPTH" targetmodule="lookAway" target="PICTURE" />
+
 
 		<connection sourcemodule="closest" source="VALUE" targetmodule="arbiter" target="VALUE_1" />
 		<connection sourcemodule="closest" source="OUTPUT" targetmodule="arbiter" target="INPUT_1" />
@@ -102,13 +95,6 @@
     <module class = "EpiHeadToFocus" name = "EpiHeadToFocus"/>
         <connection sourcemodule = "Motor"              source = "FEEDBACK_POSITION"    targetmodule = "EpiHeadToFocus"         target = "FEEDBACK_POSITIONS" />
         <connection sourcemodule = "Vision"             source = "FOCUS"                targetmodule = "EpiHeadToFocus"         target = "FOCUS_IN_EYE" />
-	
-	<!-- Added by raz 
-	<module class="Kinect" name="kinect" mode="mm" xtion="false" />
-	<module class="MovementDetector" name="mvmntDet" />
-		<connection sourcemodule="kinect" source="INTENSITY" targetmodule="mvmntDet" target="INPUT" />
-	
-	 end of Raz -->
 	
     <view name="3D View">
         <object

@@ -64,8 +64,8 @@ ConvertPixelToMeter::Tick()
     const double fXToZ = tan(FOV_h/2)*2;
     const double fYToZ = tan(FOV_v/2)*2;
     float x = input[0][3];
-    float y = input[1][3];
-    float z = input[2][3];
+    float y = input[0][7];
+    float z = input[0][11];
     // compensate for perspective
 
     float tx = (float)((x / xRes - 0.5) * z * fXToZ);

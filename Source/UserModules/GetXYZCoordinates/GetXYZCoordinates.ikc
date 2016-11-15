@@ -17,8 +17,8 @@
 	<input name="DEPTH" description="The input from Depth camera" />
 	<input name="STATE" description="Input from the State Module" /> 
 
-	<output name="OUTPUTX" description="The x coordinates, smallest on [0] and largest on [1]" size="2"/>
-	<output name="OUTPUTY" description="The y coordinates, smallest on [0] and largest on [1]" size="2"/>
+	<output name="OUTPUTX" description="The x coordinates sorunding the face, smallest on [0] and largest on [1]" size="2"/>
+	<output name="OUTPUTY" description="The y coordinates sorunding the face, smallest on [0] and largest on [1]" size="2"/>
 
 	<output name="OUTPUTMATRIX" description="The x, y, z coordinates in a matrix for epi blue" size_x="4" size_y="4"/>
 	<output name="OUTPUTFACEMATRIX" description="A smaller matrix around the face and body" size_x="640" size_y="480" />

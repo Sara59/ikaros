@@ -48,8 +48,8 @@ public:
 
     float*      outputX;
     float*      outputY;
-    float**		outputmatrix;
-    float**		facematrix;
+    float**	outputmatrix;
+    float**	facematrix;
 
     float*	state; 
     float* 	change_state;
