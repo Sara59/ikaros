@@ -27,11 +27,14 @@
 #include "StateHandler.h"
 #include <time.h>
 #include <stdlib.h> 
+#include <iostream>
+using namespace std;
 
 // use the ikaros namespace to access the math library
 // this is preferred to using <cmath>
 
 using namespace ikaros;
+
 
 
 void
@@ -81,7 +84,11 @@ StateHandler::Tick()
 	clock_t end = clock();	
 	//time_t end = time(0);
 	//double t = difftime(end, startTime);
+	cout << "fishinput1: " << input1[0];
+	cout << "fishinput2: " << input2[0] ;
+	cout << "fish1";
 	double t = (end - startTime) / CLOCKS_PER_SEC;
+	cout << "fish2 " << t;
 	if (t > (double) waitTime){
 	    if (lookAway){
 		previousState = 2;
@@ -99,6 +106,7 @@ StateHandler::Tick()
 	    waitTime = 0;
 	    
 	}
+	
     }
 
     
@@ -106,6 +114,7 @@ StateHandler::Tick()
 
     //checks if any module wants to change state.
     if (input1[0] > 0){
+	cout << "fishin0";
 	previousState = internalState;
         internalState = input1[0];
 	//time_t start = time(0);
@@ -126,6 +135,7 @@ StateHandler::Tick()
 	
 	
     } else if (input2[0] > 0){
+	cout << "fishin1";
 	previousState = internalState;
         internalState = input2[0];
 	//time_t start = time(0);
@@ -200,6 +210,8 @@ StateHandler::Tick()
 	}
     }
 */
+    cout << "fishinternal" << internalState;
+   
     output1[0] = internalState;
     output2[0] = internalState;
     output3[0] = internalState;

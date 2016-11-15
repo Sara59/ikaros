@@ -69,7 +69,8 @@ ClosestPoint::~ClosestPoint()
 
 void
 ClosestPoint::Tick()
-{
+{	
+	cout << "got inside closest";
     if (connected){
         //cout << "depth: " <<  fixed << depth[50][50];
     }
@@ -104,7 +105,6 @@ ClosestPoint::Tick()
         }
 	
 	views[count] = views[count] / (correctPixels);
-	cout << "Value of count " << count << ": " << views[count];
 	if (count%depthXX == 0) {
 	    count2++;
 	}
@@ -167,8 +167,9 @@ ClosestPoint::Tick()
     if (value[0] >= 0.9){
         outputState[0] = 1;
     } else {
-	outputState[0] = -1;
+	outputState[0] = 0;
     }
+	cout << "got outside closest";
 }
 
 
