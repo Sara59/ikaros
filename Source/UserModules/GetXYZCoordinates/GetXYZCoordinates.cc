@@ -45,10 +45,8 @@ GetXYZCoordinates::Init()
 
     // Do the same for the outputs
 
-    outputX = GetOutputArray("OUTPUTX0");
-    outputY = GetOutputArray("OUTPUTY0");
-    outputX = GetOutputArray("OUTPUTX1");
-    outputY = GetOutputArray("OUTPUTY1");
+    outputX = GetOutputArray("OUTPUTX");
+    outputY = GetOutputArray("OUTPUTY");
 
     outputmatrix = GetOutputMatrix("OUTPUTMATRIX");
     facematrix = GetOutputMatrix("OUTPUTFACEMATRIX");
@@ -103,44 +101,44 @@ GetXYZCoordinates::Tick()
 	outputmatrix[3][3] = 1; 
 
 	if(z < 700){
-		outputX0 = 0;
-		outputX1 = depth_size_x;
-		outputY0 = 0; 
-		outputY1 = depth_size_y;
+		outputX[0] = 0;
+		outputX[1] = depth_size_x;
+		outputY[0] = 0; 
+		outputY[1] = depth_size_y;
 	}else if(z >= 700 && z < 1500){
 		if((xcord - 200) < 0){
-			outputX0 = 0;
+			outputX[0] = 0;
 		} else {
-			outputX0 = xcord - 200;			
+			outputX[0] = xcord - 200;			
 		}
 		if((xcord + 200) > depth_size_x){
-			outputX1 = depth_size_x;
+			outputX[1] = depth_size_x;
 		} else {
-			outputX1 = xcord + 200;			
+			outputX[1] = xcord + 200;			
 		}
 		if((ycord - 200) < 0){
-			outputY0 = 0;
+			outputY[0] = 0;
 		} else {
-			outputY0 = ycord - 200;			
+			outputY[0] = ycord - 200;			
 		} 
-		outputY1 = depth_size_y;
+		outputY[1] = depth_size_y;
 	}else if(z >= 1500){
 		if((xcord - 100) < 0){
-			outputX0 = 0;
+			outputX[0] = 0;
 		} else {
-			outputX0 = xcord - 100;			
+			outputX[0] = xcord - 100;			
 		}
 		if((xcord + 100) > depth_size_x){
-			outputX1 = depth_size_x;
+			outputX[1] = depth_size_x;
 		} else {
-			outputX1 = xcord + 100;			
+			outputX[1] = xcord + 100;			
 		}
 		if((ycord - 100) < 0){
-			outputY0 = 0;
+			outputY[0] = 0;
 		} else {
-			outputY0 = ycord - 100;			
+			outputY[0] = ycord - 100;			
 		} 
-		outputY1 = depth_size_y;
+		outputY[1] = depth_size_y;
 	}
 
 	if(state[0] == 0){

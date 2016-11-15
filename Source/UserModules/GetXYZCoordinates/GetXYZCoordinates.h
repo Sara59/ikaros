@@ -46,10 +46,8 @@ public:
     float       depth_size_y;
 
 
-    float*      outputX0;
-    float*      outputX1;
-    float*      outputY0;
-    float*      outputY1;
+    float*      outputX;
+    float*      outputY;
     float**		outputmatrix;
     float**		facematrix;
 
