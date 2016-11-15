@@ -40,7 +40,6 @@ using namespace ikaros;
 void
 StateHandler::Init()
 {
-
     input1 = GetInputArray("INPUT1");
     input2 = GetInputArray("INPUT2");
     /*input3 = GetInputArray("INPUT3");
@@ -62,6 +61,8 @@ StateHandler::Init()
     waitTime = 0;
     previousState = 0;
     lookAway = false;
+	input1[0] = 0;
+	input2[0] = 0;
 
 //./ikaros -R -t -r50 -p  ../Examples/Robots/EpiHead/EpiHead.ikc 
 
@@ -79,6 +80,8 @@ StateHandler::~StateHandler()
 void
 StateHandler::Tick()
 {
+
+        cout << "INTERNALSTATE: " <<  internalState << "/n";
 
     if (timerStarted){
 	clock_t end = clock();	
@@ -109,7 +112,7 @@ StateHandler::Tick()
 	
     }
 
-    
+   
     
 
     //checks if any module wants to change state.
@@ -217,6 +220,7 @@ StateHandler::Tick()
     output3[0] = internalState;
     /*output4[0] = internalState;
     output5[0] = internalState;*/
+
 }
 
 

@@ -53,7 +53,7 @@ LookAway::Init()
     state = GetInputArray("STATE");
     value = GetOutputArray("VALUE");
 
-
+	state[0] = 0;
 
     
 }
@@ -71,6 +71,10 @@ void
 LookAway::Tick()
 {
 
+
+
+//	printf("INPUTSTATE = " + state + "\n");
+
 		oldx = input_matrix[0][3];
 		oldy = input_matrix[1][3]; 
 		oldz = input_matrix[2][3];
@@ -80,16 +84,12 @@ LookAway::Tick()
 		}else{ 
 			newx = oldx - 50; 
 		}
-		cout << "lookaway";
 		newy = oldy; 
 		newz = oldz; 
 
 		*outputX = float(newx);
 		*outputY = float(newy); 
 		*outputZ = float(newz);
-		cout << "lookawayouputx: " << outputX << " " << newx;
-		cout << "lookawayouputy: " << outputY << " " << newy;
-		cout << "lookawayouputz: " << outputZ << " " << newz;
 		output_matrix[0][0] = 1; 
 		output_matrix[0][1] = 0; 
 		output_matrix[0][2] = 0; 
@@ -115,7 +115,6 @@ LookAway::Tick()
 		} else {
 			value[0] = float(0);
 		}
-		cout << "lookaway made it!!!";
 
 
 }

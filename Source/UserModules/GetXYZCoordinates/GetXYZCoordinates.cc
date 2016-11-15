@@ -55,6 +55,8 @@ GetXYZCoordinates::Init()
     change_state = GetOutputArray("CHANGESTATE");
     value = GetOutputArray("VALUE");
 
+	state[0] = 0;
+
     
 }
 
@@ -70,7 +72,9 @@ GetXYZCoordinates::~GetXYZCoordinates()
 void
 GetXYZCoordinates::Tick()
 {
-	cout << "got inside getXYZ";
+
+
+//	printf("INPUTSTATE = " + state + "\n");
 	x = xyinput[0][0]*depth_size_x;
 	y = xyinput[0][1]*depth_size_y;
 	
@@ -143,6 +147,7 @@ GetXYZCoordinates::Tick()
 
 	if(state[0] == 0){
 		value[0] = float(0.3);
+		change_state[0] = float(1);
 	} else if(state[0] == float(1)){
 		change_state[0] = float(2);
 		value[0] = float(1);
@@ -151,9 +156,6 @@ GetXYZCoordinates::Tick()
 	} else {
 		value[0] = 0;
 	}
-
-
-	cout << "got outside! getX";
 
 }
 

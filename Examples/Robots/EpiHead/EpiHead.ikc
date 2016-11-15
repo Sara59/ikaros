@@ -20,13 +20,6 @@
       
 	    <_connection sourcemodule = "EpiHeadToFocus" source = "FOCUS_IN_EPI" targetmodule = "Motor" target = "TARGET" />
 
-		<_connection sourcemodule="in med översatta koords här" />
-		
-		<_module class = "Constant" name = "KinectPos" data = "
-		1 0 0 0.12;
-		0 1 0 0;
-		0 0 1 0.05;
-		0 0 0 1;" />
 		
 		<module class="Kinect" name="kinect" mode="mm" xtion="false" />
 		<module class="ClosestPoint" name="closest" />
@@ -51,7 +44,7 @@
 		
 	
 	<connection sourcemodule="kinect" source="DEPTH" targetmodule="closest" target="DEPTH" />	
-	<connection sourcemodule="closest" source="OUTPUT" targetmodule="Convert" target="INPUT" />
+	<_connection sourcemodule="closest" source="OUTPUT" targetmodule="Convert" target="INPUT" />
 		
 		
         
@@ -75,8 +68,8 @@
 	<connection sourcemodule="lookAway" source="VALUE" targetmodule="arbiter" target="VALUE_3" />
 	<connection sourcemodule="lookAway" source="OUTPUTMATRIX" targetmodule="arbiter" target="INPUT_3" />
 
-	<_connection sourcemodule="mvmntDet" source="???" targetmodule="Arbiter" target="VALUE_4" />
-	<_connection sourcemodule="mvmntDet" source="???" targetmodule="Arbiter" target="INPUT_4" />
+	<_connection sourcemodule="mvmntDet" source="???" targetmodule="arbiter" target="VALUE_4" />
+	<_connection sourcemodule="mvmntDet" source="???" targetmodule="arbiter" target="INPUT_4" />
 
 
 	<connection sourcemodule = "arbiter" source = "OUTPUT" targetmodule = "Convert" target = "INPUT" />
