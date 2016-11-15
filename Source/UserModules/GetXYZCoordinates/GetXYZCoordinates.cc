@@ -45,9 +45,10 @@ GetXYZCoordinates::Init()
 
     // Do the same for the outputs
 
-    outputX = GetOutputArray("OUTPUTX");
-    outputY = GetOutputArray("OUTPUTY");
-    outputZ = GetOutputArray("OUTPUTZ");
+    outputX = GetOutputArray("OUTPUTX0");
+    outputY = GetOutputArray("OUTPUTY0");
+    outputX = GetOutputArray("OUTPUTX1");
+    outputY = GetOutputArray("OUTPUTY1");
 
     outputmatrix = GetOutputMatrix("OUTPUTMATRIX");
     facematrix = GetOutputMatrix("OUTPUTFACEMATRIX");
@@ -81,11 +82,6 @@ GetXYZCoordinates::Tick()
 
         z = depth[ycord][xcord];
 
-
-	*outputX = float(x);
-	*outputY = float(y); 
-	*outputZ = float(z);
-
 	outputmatrix[0][0] = 1; 
 	outputmatrix[0][1] = 0; 
 	outputmatrix[0][2] = 0; 
@@ -107,36 +103,44 @@ GetXYZCoordinates::Tick()
 	outputmatrix[3][3] = 1; 
 
 	if(z < 700){
-		for (int j=0; j<depth_size_y; j++){
-        		for (int i=0; i<depth_size_x; i++){
-				facematrix[j][i] = depth[j][i];
-			} 
-    		}
-
+		outputX0 = 0;
+		outputX1 = depth_size_x;
+		outputY0 = 0; 
+		outputY1 = depth_size_y;
 	}else if(z >= 700 && z < 1500){
-        	for(int i=0; i<400; i++){
-            		for(int j=0; j<depth_size_y; j++){
-				y0 = ycord - 200 + j;
-				x0 = xcord - 200 + i; 
-				if (y0 > depth_size_y)
-					y0 = depth_size_y;
-				if (x0 > depth_size_x)
-					x0 = depth_size_x;
-               			facematrix[j][i] = depth[y0][x0];
-			}
+		if((xcord - 200) < 0){
+			outputX0 = 0;
+		} else {
+			outputX0 = xcord - 200;			
 		}
+		if((xcord + 200) > depth_size_x){
+			outputX1 = depth_size_x;
+		} else {
+			outputX1 = xcord + 200;			
+		}
+		if((ycord - 200) < 0){
+			outputY0 = 0;
+		} else {
+			outputY0 = ycord - 200;			
+		} 
+		outputY1 = depth_size_y;
 	}else if(z >= 1500){
-        	for(int i=0; i<200; i++){
-            		for(int j=0; j<depth_size_y; j++){
-				y0 = ycord - 100 + j;
-				x0 = xcord - 100 + i; 
-				if (y0 > depth_size_y)
-					y0 = depth_size_y;
-				if (x0 > depth_size_x)
-					x0 = depth_size_x;
-               			facematrix[j][i] = depth[y0][x0];
-			}
+		if((xcord - 100) < 0){
+			outputX0 = 0;
+		} else {
+			outputX0 = xcord - 100;			
 		}
+		if((xcord + 100) > depth_size_x){
+			outputX1 = depth_size_x;
+		} else {
+			outputX1 = xcord + 100;			
+		}
+		if((ycord - 100) < 0){
+			outputY0 = 0;
+		} else {
+			outputY0 = ycord - 100;			
+		} 
+		outputY1 = depth_size_y;
 	}
 
 	if(state[0] == 0){
