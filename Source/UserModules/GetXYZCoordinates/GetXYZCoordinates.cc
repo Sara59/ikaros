@@ -72,8 +72,8 @@ void
 GetXYZCoordinates::Tick()
 {
 	cout << "got inside getXYZ";
-	x = xyinput[0][0]*640;
-	y = xyinput[0][1]*480;
+	x = xyinput[0][0]*depth_size_x;
+	y = xyinput[0][1]*depth_size_y;
 	
 	int xcord = (int) x;
 	int ycord = (int) y;
