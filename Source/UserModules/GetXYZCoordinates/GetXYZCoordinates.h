@@ -46,11 +46,12 @@ public:
     float       depth_size_y;
 
 
-    float*      outputX;
-    float*      outputY;
-    float*      outputZ;
-    float**	outputmatrix;
-    float**	facematrix;
+    float*      outputX0;
+    float*      outputX1;
+    float*      outputY0;
+    float*      outputY1;
+    float**		outputmatrix;
+    float**		facematrix;
 
     float*	state; 
     float* 	change_state;
