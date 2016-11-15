@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+
+<group name="Splitter" description="A wrapper for ikc-written module MovementDetector">
+
+	<description type="text">
+		
+	</description>
+
+	<example description="A simple example">
+		<module
+			class="Splitter"
+			name="Splitter"
+		/>
+	</example>
+
+	<input name="GETX" description="" size_x="2" size_y="1" />
+	<input name="GETY" description="" size_x="2" size_y="1" />
+	<input name="GETCHANGEMATRIX" description="" />
+	
+	<output name="MEAN1" description="Mean for the upper leftmost region" size="1" />
+	<output name="MEAN2" description="Mean for the upper middle region" size="1" />
+	<output name="MEAN3" description="Mean for the upper rightmost region" size="1" />
+	<output name="MEAN4" description="Mean for the lower leftmost region" size="1" />
+	<output name="MEAN5" description="Mean for the lower middle region" size="1" />
+	<output name="MEAN6" description="Mean for the lower rightmost region" size="1" />
+
+	<module class="Splitter" />
+
+	<author>
+		<name>Rasmus Olofzon</name>
+		<email>muh11rol@student.lu.se</email>
+		<affiliation>Lund Tekniska Högskola</affiliation>
+		<homepage>http://www.lth.se</homepage>
+	</author>
+
+   <files>
+   		<file>Splitter.h</file>
+   		<file>Splitter.cc</file>
+   		<file>Splitter.ikc</file>
+   </files>
+
+</group>
+

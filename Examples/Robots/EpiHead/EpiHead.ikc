@@ -35,51 +35,55 @@
 		<module class="GetXYZCoordinates" name="getCoords" />
 		<module class="StateHandler" name="stateHandler" />
 		<module class="LookAway" name="lookAway" />
-		<_module class="MovementDetector" name="mvmntDet" />
+		<module class="discovery_MovementDetector" name="d_md" />
+		<module class="small_MovementDetector" name="s_md" />
 		<module class = "Arbiter" name = "arbiter" no_of_inputs="3" />
+		
+		
 			
-			
+		<connection sourcemodule="getCoords" source="OUTPUTX" targetmodule="s_md" target="GETX" />
+		<connection sourcemodule="getCoords" source="OUTPUTY" targetmodule="s_md" target="GETY" />
+		<connection sourcemodule="getCoords" source="OUTPUTFACEMATRIX" targetmodule="s_md" target="GETFACEMATRIX" />
 		
 		<connection sourcemodule="closest" source="OUTSTATE" targetmodule="stateHandler" target="INPUT1" />
 		<connection sourcemodule="getCoords" source="CHANGESTATE" targetmodule="stateHandler" target="INPUT2" />
+		<connection sourcemodule="d_md" source="STATE" targetmodule="stateHandler" target="INPUT4" />
+		<connection sourcemodule="s_md" source="STATE" targetmodule="stateHandler" target="INPUT5" />
+		
 		<_connection sourcemodule="lookAway" source="???" targetmodule="stateHandler" target="INPUT3" />
-		<_connection sourcemodule="mvmntDet" source="???" targetmodule="stateHandler" target="INPUT4" />
+		<_connection sourcemodule="s_md" source="???" targetmodule="stateHandler" target="INPUT4" />
 		<connection sourcemodule="stateHandler" source="OUTPUT1" targetmodule="closest" target="INSTATE" />
 		<connection sourcemodule="stateHandler" source="OUTPUT2" targetmodule="getCoords" target="STATE" />
 		<connection sourcemodule="stateHandler" source="OUTPUT3" targetmodule="lookAway" target="STATE" />
-		<_connection sourcemodule="stateHandler" source="OUPUT4" targetmodule="mvmntDet" target="???" />
+		<connection sourcemodule="stateHandler" source="OUTPUT4" targetmodule="d_md" target="STATE" />
+		<connection sourcemodule="stateHandler" source="OUTPUT5" targetmodule="s_md" target="STATE" />
 		
 	
-	<connection sourcemodule="kinect" source="DEPTH" targetmodule="closest" target="DEPTH" />	
-	<connection sourcemodule="closest" source="OUTPUT" targetmodule="Convert" target="INPUT" />
+		<connection sourcemodule="kinect" source="DEPTH" targetmodule="closest" target="DEPTH" />	
+		<connection sourcemodule="closest" source="OUTPUT" targetmodule="Convert" target="INPUT" />
 		
-		
-        
-	<connection sourcemodule="kinect" source="INTENSITY" targetmodule="faceDet" target="INPUT" />	
+		<connection sourcemodule="kinect" source="INTENSITY" targetmodule="faceDet" target="INPUT" />	
         <connection sourcemodule = "faceDet" source = "FACE_POSITION" targetmodule = "getCoords" target = "XYINPUT" />
         <connection sourcemodule="kinect" source="DEPTH" targetmodule="getCoords" target="DEPTH" />
 
 	
-	<_connection sourcemodule="kinect" source="INTENSITY" targetmodule="mvmntDet" target="INPUT" />
+		<connection sourcemodule="kinect" source="INTENSITY" targetmodule="d_md" target="IMAGE" />
 
-	<connection sourcemodule="getCoords" source="OUTPUTMATRIX" targetmodule="lookAway" target="INPUT" />	
-	<connection sourcemodule="kinect" source="DEPTH" targetmodule="lookAway" target="PICTURE" />
+		<connection sourcemodule="getCoords" source="OUTPUTMATRIX" targetmodule="lookAway" target="INPUT" />	
+		<connection sourcemodule="kinect" source="DEPTH" targetmodule="lookAway" target="PICTURE" />
 
-	
-	<connection sourcemodule="closest" source="VALUE" targetmodule="arbiter" target="VALUE_1" />
-	<connection sourcemodule="closest" source="OUTPUT" targetmodule="arbiter" target="INPUT_1" />
+		<connection sourcemodule="closest" source="VALUE" targetmodule="arbiter" target="VALUE_1" />
+		<connection sourcemodule="closest" source="OUTPUT" targetmodule="arbiter" target="INPUT_1" />
+		<connection sourcemodule="getCoords" source="VALUE" targetmodule="arbiter" target="VALUE_2" />
+		<connection sourcemodule="getCoords" source="OUTPUTMATRIX" targetmodule="arbiter" target="INPUT_2" />
+		<connection sourcemodule="lookAway" source="VALUE" targetmodule="arbiter" target="VALUE_3" />
+		<connection sourcemodule="lookAway" source="OUTPUTMATRIX" targetmodule="arbiter" target="INPUT_3" />
+		<connection sourcemodule="d_md" source="WEIGHT" targetmodule="Arbiter" target="VALUE_4" />
+		<connection sourcemodule="d_md" source="COORDS" targetmodule="Arbiter" target="INPUT_4" />
+		<connection sourcemodule="s_md" source="WEIGHT" targetmodule="Arbiter" target="VALUE_5" />
+		<connection sourcemodule="s_md" source="COORDS" targetmodule="Arbiter" target="INPUT_5" />
 
-	<connection sourcemodule="getCoords" source="VALUE" targetmodule="arbiter" target="VALUE_2" />
-	<connection sourcemodule="getCoords" source="OUTPUTMATRIX" targetmodule="arbiter" target="INPUT_2" />
-
-	<connection sourcemodule="lookAway" source="VALUE" targetmodule="arbiter" target="VALUE_3" />
-	<connection sourcemodule="lookAway" source="OUTPUTMATRIX" targetmodule="arbiter" target="INPUT_3" />
-
-	<_connection sourcemodule="mvmntDet" source="???" targetmodule="Arbiter" target="VALUE_4" />
-	<_connection sourcemodule="mvmntDet" source="???" targetmodule="Arbiter" target="INPUT_4" />
-
-
-	<connection sourcemodule = "arbiter" source = "OUTPUT" targetmodule = "Convert" target = "INPUT" />
+		<connection sourcemodule = "arbiter" source = "OUTPUT" targetmodule = "Convert" target = "INPUT" />
 	
 		
 		<_module
@@ -93,10 +97,6 @@
 		0 0 0 1;"/>
 	    
 	    <connection sourcemodule = "Convert" source = "OUTPUT" targetmodule = "Motor" target = "TARGET" />
-		
-
-			
-			
 		
     <!-- Forward model to eyes and focus point. THIS WILL CHANGE IN THE FUTURE -->
     <module class = "EpiHeadToFocus" name = "EpiHeadToFocus"/>

@@ -19,35 +19,34 @@
 //    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
-#ifndef small_MvmntDetChooser_
-#define small_MvmntDetChooser_
+#ifndef Splitter_
+#define Splitter_
 
 #include "IKAROS.h"
 
-class small_MvmntDetChooser: public Module {
+class Splitter: public Module {
 public:
-    static Module * Create(Parameter * p) {return new small_MvmntDetChooser(p);};
+    static Module * Create(Parameter * p) {return new Splitter(p);};
     
-    small_MvmntDetChooser(Parameter * p) : Module(p) {};
-    virtual ~small_MvmntDetChooser();
+    Splitter(Parameter * p) : Module(p) {};
+    virtual ~Splitter();
 
     void    Init();
     void    Tick();
 	
-    float  	*		demandAtt;
-	float 	*		region;
-	float	*		stateIn;
-	float	*		getX;
-	float	*		getY;
+    float  	*		getX;
+	float 	*		getY;
+	float	**		changeMatrix;
 	
-	float	*		stateOut;
-	float	*		weightOut;
-    float 	*		coordsOut;
+	float	*		mean1;
+	float	*		mean2;
+    float 	*		mean3;
+	float 	*		mean4;
+	float 	*		mean5;
+	float 	*		mean6;
 	
-	int				incrementX;
-	int				incrementY;
-	int				x1, x2, x3;
-	int				y1, y2;
+	int			incrementX;
+	int			incrementY;
 };
 
 #endif
