@@ -2,7 +2,7 @@
 
 <group>
 		<module class="ChangeDetector" name="chDet" border="0" />
-		<module class="Arbiter" name="arbiter" no_of_inputs="6" />
+		<module class="Arbiter" name="arb" no_of_inputs="6" />
 		<module class="Threshold" name="threshold" type="binary" threshold="0.1" />
 		<_module class="Mean" name="mean_tl" />
 		<_module class="Mean" name="mean_tm" />
@@ -50,23 +50,23 @@
 		<_connection sourcemodule="splitter" source="REGIONOUT4" targetmodule="mean_ll" target="INPUT" />
 		<_connection sourcemodule="splitter" source="REGIONOUT5" targetmodule="mean_lm" target="INPUT" />
 		<_connection sourcemodule="splitter" source="REGIONOUT6" targetmodule="mean_lr" target="INPUT" />
-		<connection sourcemodule = "tlC" source = "OUTPUT" targetmodule = "arbiter" target = "INPUT_1" delay="0" />
-		<connection sourcemodule = "tmC" source = "OUTPUT" targetmodule = "arbiter" target = "INPUT_2" delay="0" />
-		<connection sourcemodule = "trC" source = "OUTPUT" targetmodule = "arbiter" target = "INPUT_3" delay="0" />
-		<connection sourcemodule = "llC" source = "OUTPUT" targetmodule = "arbiter" target = "INPUT_4" delay="0" />
-		<connection sourcemodule = "lmC" source = "OUTPUT" targetmodule = "arbiter" target = "INPUT_5" delay="0" />
-		<connection sourcemodule = "lrC" source = "OUTPUT" targetmodule = "arbiter" target = "INPUT_6" delay="0" />
-		<connection sourcemodule="splitter" source="MEAN1" targetmodule = "arbiter" target = "VALUE_1" delay="0" />
-		<connection sourcemodule="splitter" source="MEAN2" targetmodule = "arbiter" target = "VALUE_2" delay="0" />
-		<connection sourcemodule="splitter" source="MEAN3" targetmodule = "arbiter" target = "VALUE_3" delay="0" />
-		<connection sourcemodule="splitter" source="MEAN4" targetmodule = "arbiter" target = "VALUE_4" delay="0" />
-		<connection sourcemodule="splitter" source="MEAN5" targetmodule = "arbiter" target = "VALUE_5" delay="0" />
-		<connection sourcemodule="splitter" source="MEAN6" targetmodule = "arbiter" target = "VALUE_6" delay="0" />
-		<connection sourcemodule="arbiter" source="VALUE" targetmodule="threshold" target="INPUT" />
+		<connection sourcemodule = "tlC" source = "OUTPUT" targetmodule = "arb" target = "INPUT_1" delay="0" />
+		<connection sourcemodule = "tmC" source = "OUTPUT" targetmodule = "arb" target = "INPUT_2" delay="0" />
+		<connection sourcemodule = "trC" source = "OUTPUT" targetmodule = "arb" target = "INPUT_3" delay="0" />
+		<connection sourcemodule = "llC" source = "OUTPUT" targetmodule = "arb" target = "INPUT_4" delay="0" />
+		<connection sourcemodule = "lmC" source = "OUTPUT" targetmodule = "arb" target = "INPUT_5" delay="0" />
+		<connection sourcemodule = "lrC" source = "OUTPUT" targetmodule = "arb" target = "INPUT_6" delay="0" />
+		<connection sourcemodule="splitter" source="MEAN1" targetmodule = "arb" target = "VALUE_1" delay="0" />
+		<connection sourcemodule="splitter" source="MEAN2" targetmodule = "arb" target = "VALUE_2" delay="0" />
+		<connection sourcemodule="splitter" source="MEAN3" targetmodule = "arb" target = "VALUE_3" delay="0" />
+		<connection sourcemodule="splitter" source="MEAN4" targetmodule = "arb" target = "VALUE_4" delay="0" />
+		<connection sourcemodule="splitter" source="MEAN5" targetmodule = "arb" target = "VALUE_5" delay="0" />
+		<connection sourcemodule="splitter" source="MEAN6" targetmodule = "arb" target = "VALUE_6" delay="0" />
+		<connection sourcemodule="arb" source="VALUE" targetmodule="threshold" target="INPUT" />
 		
 		<connection sourcemodule="stateInt" source="OUTPUT" targetmodule="s_mdc" target="STATEIN" />
 		<connection sourcemodule="threshold" source="OUTPUT" targetmodule="s_mdc" target="DEMANDATTENTION" />
-		<connection sourcemodule="arbiter" source="OUTPUT" targetmodule="s_mdc" target="REGION" />
+		<connection sourcemodule="arb" source="OUTPUT" targetmodule="s_mdc" target="REGION" />
 		
 		<output name="COORDS" sourcemodule="s_mdc" source="COORDSOUT" />
 		<output name="WEIGHT" sourcemodule="s_mdc" source="WEIGHTOUT" />
@@ -81,8 +81,8 @@
 			<object class="Image" type="gray" module="lm" source="OUTPUT" x="3" y="1" />
 			<object class="Image" type="gray" module="lr" source="OUTPUT" x="4" y="1" />
 			
-			<object class="Table" module = "arbiter" source = "OUTPUT" title="Max mvmnt in which part?" font_size="60px" x="5" y="0" />
-			<object class="Table" module = "arbiter" source = "VALUE" title="How much mvmt in above part?" font_size="60px" x="5" y="1" />
+			<object class="Table" module = "arb" source = "OUTPUT" title="Max mvmnt in which part?" font_size="60px" x="5" y="0" />
+			<object class="Table" module = "arb" source = "VALUE" title="How much mvmt in above part?" font_size="60px" x="5" y="1" />
 			<object class="Table" module="threshold" source="OUTPUT" title="Such mvmnt. Wow" font_size="60px" x="6" y="0" />
 		</view>
 		-->

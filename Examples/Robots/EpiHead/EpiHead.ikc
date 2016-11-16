@@ -19,7 +19,6 @@
         <connection sourcemodule = "Motor" source = "FEEDBACK_POSITION" targetmodule = "EpiHeadForwardModel" target = "FEEDBACK_POSITIONS" />
       
 	    <_connection sourcemodule = "EpiHeadToFocus" source = "FOCUS_IN_EPI" targetmodule = "Motor" target = "TARGET" />
-
 		
 		<module class="Kinect" name="kinect" mode="mm" xtion="false" />
 		<module class="ClosestPoint" name="closest" />
@@ -30,9 +29,7 @@
 		<module class="LookAway" name="lookAway" />
 		<module class="discovery_MovementDetector" name="d_md" />
 		<module class="small_MovementDetector" name="s_md" />
-		<module class = "Arbiter" name = "arbiter" no_of_inputs="3" />
-		
-		
+		<module class = "Arbiter" name = "arbiter" no_of_inputs="5" />
 			
 		<connection sourcemodule="getCoords" source="OUTPUTX" targetmodule="s_md" target="GETX" />
 		<connection sourcemodule="getCoords" source="OUTPUTY" targetmodule="s_md" target="GETY" />
@@ -71,10 +68,10 @@
 		<connection sourcemodule="getCoords" source="OUTPUTMATRIX" targetmodule="arbiter" target="INPUT_2" />
 		<connection sourcemodule="lookAway" source="VALUE" targetmodule="arbiter" target="VALUE_3" />
 		<connection sourcemodule="lookAway" source="OUTPUTMATRIX" targetmodule="arbiter" target="INPUT_3" />
-		<connection sourcemodule="d_md" source="WEIGHT" targetmodule="Arbiter" target="VALUE_4" />
-		<connection sourcemodule="d_md" source="COORDS" targetmodule="Arbiter" target="INPUT_4" />
-		<connection sourcemodule="s_md" source="WEIGHT" targetmodule="Arbiter" target="VALUE_5" />
-		<connection sourcemodule="s_md" source="COORDS" targetmodule="Arbiter" target="INPUT_5" />
+		<connection sourcemodule="d_md" source="WEIGHT" targetmodule="arbiter" target="VALUE_4" />
+		<connection sourcemodule="d_md" source="COORDS" targetmodule="arbiter" target="INPUT_4" />
+		<connection sourcemodule="s_md" source="WEIGHT" targetmodule="arbiter" target="VALUE_5" />
+		<connection sourcemodule="s_md" source="COORDS" targetmodule="arbiter" target="INPUT_5" />
 
 		<connection sourcemodule = "arbiter" source = "OUTPUT" targetmodule = "Convert" target = "INPUT" />
 	

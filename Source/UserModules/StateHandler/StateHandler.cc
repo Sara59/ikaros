@@ -42,15 +42,15 @@ StateHandler::Init()
 {
     input1 = GetInputArray("INPUT1");
     input2 = GetInputArray("INPUT2");
-    /*input3 = GetInputArray("INPUT3");
+    //input3 = GetInputArray("INPUT3");
     input4 = GetInputArray("INPUT4");
-    input5 = GetInputArray("INPUT5");*/
+    input5 = GetInputArray("INPUT5");
 
     output1 = GetOutputArray("OUTPUT1");
     output2 = GetOutputArray("OUTPUT2");
     output3 = GetOutputArray("OUTPUT3");
-    /*output4 = GetOutputArray("OUTPUT4");
-    output5 = GetOutputArray("OUTPUT5");*/
+    output4 = GetOutputArray("OUTPUT4");
+    output5 = GetOutputArray("OUTPUT5");
 
     //internal_input_array = create_array(3);
     //internal_output_array = create_array(3);

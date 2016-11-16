@@ -1,5 +1,5 @@
 //
-//	MyModule.cc		This file is a part of the IKAROS project
+//	  Splitter.cc		This file is a part of the IKAROS project
 //
 //    Copyright (C) 2016 Rasmus olofzon
 //
