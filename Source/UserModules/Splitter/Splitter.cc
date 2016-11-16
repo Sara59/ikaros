@@ -34,7 +34,7 @@ Splitter::Init()
 {
     getX			= GetInputArray("GETX"); 
 	getY			= GetInputArray("GETY");
-	changeMatrix	= GetInputMatrix("GETFACEMATRIX");
+	changeMatrix	= GetInputMatrix("GETCHANGEMATRIX");
 	
     mean1			= GetOutputArray("MEAN1");
 	mean2			= GetOutputArray("MEAN2");
