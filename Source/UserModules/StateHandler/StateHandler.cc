@@ -42,9 +42,9 @@ StateHandler::Init()
 {
     input1 = GetInputArray("INPUT1");
     input2 = GetInputArray("INPUT2");
-    //input3 = GetInputArray("INPUT3");
+    input3 = GetInputArray("INPUT3");
     input4 = GetInputArray("INPUT4");
-    input5 = GetInputArray("INPUT5");
+    //input5 = GetInputArray("INPUT5");
 
     output1 = GetOutputArray("OUTPUT1");
     output2 = GetOutputArray("OUTPUT2");

@@ -37,16 +37,14 @@
 		
 		<connection sourcemodule="closest" source="OUTSTATE" targetmodule="stateHandler" target="INPUT1" />
 		<connection sourcemodule="getCoords" source="CHANGESTATE" targetmodule="stateHandler" target="INPUT2" />
-		<connection sourcemodule="d_md" source="STATEOUT" targetmodule="stateHandler" target="INPUT4" />
-		<connection sourcemodule="s_md" source="STATEOUT" targetmodule="stateHandler" target="INPUT5" />
+		<connection sourcemodule="d_md" source="STATEOUT" targetmodule="stateHandler" target="INPUT3" />
+		<connection sourcemodule="s_md" source="STATEOUT" targetmodule="stateHandler" target="INPUT4" />
 		
-		<_connection sourcemodule="lookAway" source="???" targetmodule="stateHandler" target="INPUT3" />
-		<_connection sourcemodule="s_md" source="???" targetmodule="stateHandler" target="INPUT4" />
 		<connection sourcemodule="stateHandler" source="OUTPUT1" targetmodule="closest" target="INSTATE" />
 		<connection sourcemodule="stateHandler" source="OUTPUT2" targetmodule="getCoords" target="STATE" />
-		<connection sourcemodule="stateHandler" source="OUTPUT3" targetmodule="lookAway" target="STATE" />
-		<connection sourcemodule="stateHandler" source="OUTPUT4" targetmodule="d_md" target="STATE" />
-		<connection sourcemodule="stateHandler" source="OUTPUT5" targetmodule="s_md" target="STATE" />
+		<connection sourcemodule="stateHandler" source="OUTPUT3" targetmodule="d_md" target="STATE" />
+		<connection sourcemodule="stateHandler" source="OUTPUT4" targetmodule="s_md" target="STATE" />
+		<connection sourcemodule="stateHandler" source="OUTPUT5" targetmodule="lookAway" target="STATE" />
 		
 		<connection sourcemodule="kinect" source="DEPTH" targetmodule="closest" target="DEPTH" />
 		<_connection sourcemodule="closest" source="OUTPUT" targetmodule="Convert" target="INPUT" />
