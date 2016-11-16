@@ -81,18 +81,19 @@ void
 StateHandler::Tick()
 {
 
-        cout << "INTERNALSTATE: " <<  internalState << "/n";
+        cout << "INTERNALSTATE: " <<  internalState ;
 
     if (timerStarted){
+	        cout << "timer started ";
 	clock_t end = clock();	
 	//time_t end = time(0);
 	//double t = difftime(end, startTime);
-	cout << "fishinput1: " << input1[0];
-	cout << "fishinput2: " << input2[0] ;
-	cout << "fish1";
+	cout << "starttime " << startTime;
+	cout << "endtime " << end ;
 	double t = (end - startTime) / CLOCKS_PER_SEC;
-	cout << "fish2 " << t;
-	if (t > (double) waitTime){
+	cout << "end-start" << t ;
+	cout << "waittime " << waitTime ;
+	if (t > 10){
 	    if (lookAway){
 		previousState = 2;
 		internalState = 3;
@@ -100,7 +101,7 @@ StateHandler::Tick()
 	    	waitTime = waitTime/100;
 		timerStarted = true;
 	    } else {
-		internalState = previousState; //TODO:change this to either decrement or to the right state
+		internalState = 2; //TODO:change this to either decrement or to the right state
 		startTime = 0;
 		timerStarted = false;
 	    }
@@ -116,7 +117,7 @@ StateHandler::Tick()
     
 
     //checks if any module wants to change state.
-    if (input1[0] > 0){
+    if (input1[0] > 0 ){
 	cout << "fishin0";
 	previousState = internalState;
         internalState = input1[0];
