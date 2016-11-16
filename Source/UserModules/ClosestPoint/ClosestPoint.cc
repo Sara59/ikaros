@@ -164,7 +164,7 @@ ClosestPoint::Tick()
 	value[0] = (600/(smallest))*scaler;
     } 
 
-    if (value[0] >= 0.9*scaler){
+    if (value[0] >= 0.9){
         outputState[0] = 5;
     } 
 
