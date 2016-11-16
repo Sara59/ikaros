@@ -37,8 +37,8 @@
 		
 		<connection sourcemodule="closest" source="OUTSTATE" targetmodule="stateHandler" target="INPUT1" />
 		<connection sourcemodule="getCoords" source="CHANGESTATE" targetmodule="stateHandler" target="INPUT2" />
-		<connection sourcemodule="d_md" source="STATE" targetmodule="stateHandler" target="INPUT4" />
-		<connection sourcemodule="s_md" source="STATE" targetmodule="stateHandler" target="INPUT5" />
+		<connection sourcemodule="d_md" source="STATEOUT" targetmodule="stateHandler" target="INPUT4" />
+		<connection sourcemodule="s_md" source="STATEOUT" targetmodule="stateHandler" target="INPUT5" />
 		
 		<_connection sourcemodule="lookAway" source="???" targetmodule="stateHandler" target="INPUT3" />
 		<_connection sourcemodule="s_md" source="???" targetmodule="stateHandler" target="INPUT4" />
@@ -53,14 +53,11 @@
 		
 		<connection sourcemodule="kinect" source="INTENSITY" targetmodule="faceDet" target="INPUT" />	
         <connection sourcemodule = "faceDet" source = "FACE_POSITION" targetmodule = "getCoords" target = "XYINPUT" />
-        <connection sourcemodule="kinect" source="DEPTH" targetmodule="getCoords" target="DEPTH" />
-
-	
+        <connection sourcemodule="kinect" source="DEPTH" targetmodule="getCoords" target="DEPTH" />	
 		<connection sourcemodule="kinect" source="INTENSITY" targetmodule="d_md" target="IMAGE" />
 
 		<connection sourcemodule="getCoords" source="OUTPUTMATRIX" targetmodule="lookAway" target="INPUT" />	
 		<connection sourcemodule="kinect" source="DEPTH" targetmodule="lookAway" target="PICTURE" />
-
 
 		<connection sourcemodule="closest" source="VALUE" targetmodule="arbiter" target="VALUE_1" />
 		<connection sourcemodule="closest" source="OUTPUT" targetmodule="arbiter" target="INPUT_1" />

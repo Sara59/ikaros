@@ -117,6 +117,7 @@ discovery_MvmntDetChooser::Tick()
 		}
 	} else {
 		weightOut[0] = 0;
+		stateOut[0] = stateIn[0];
 	}
 }
 

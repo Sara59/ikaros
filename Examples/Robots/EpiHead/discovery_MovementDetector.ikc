@@ -60,7 +60,7 @@
 		
 		<output name="COORDS" sourcemodule="d_mdc" source="COORDSOUT" />
 		<output name="WEIGHT" sourcemodule="d_mdc" source="WEIGHTOUT" />
-		<output name="STATE" sourcemodule="d_mdc" source="STATEOUT" />
+		<output name="STATEOUT" sourcemodule="d_mdc" source="STATEOUT" />
 		
 		<!-- ><view name="View">
 			<object class="Image" type="rgb" module="video" source="RED+GREEN+BLUE" x="0" y="0" w="2" h="2" />
