@@ -38,7 +38,7 @@ public:
 	float	*		stateIn;
 	float	*		stateOut;
 	float	*		weightOut;
-    float 	*		coordsOut;
+    float 	**		coordsOut;
 };
 
 #endif

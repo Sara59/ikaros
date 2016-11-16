@@ -42,7 +42,7 @@ public:
 	
 	float	*		stateOut;
 	float	*		weightOut;
-    float 	*		coordsOut;
+    float 	**		coordsOut;
 	
 	int				incrementX;
 	int				incrementY;

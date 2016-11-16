@@ -30,9 +30,17 @@ discovery_MvmntDetChooser::Init()
     demandAtt	= GetInputArray("DEMANDATTENTION"); 
 	region		= GetInputArray("REGION");
 	stateIn		= GetInputArray("STATEIN");
-    coordsOut	= GetOutputArray("COORDSOUT");
+    coordsOut	= GetOutputMatrix("COORDSOUT");
 	weightOut	= GetOutputArray("WEIGHTOUT");
 	stateOut	= GetOutputArray("STATEOUT"); 
+	
+	for (int i=0;i<4;i++) 
+		for (int j=0;j<4;j++) 
+			coordsOut[i][j] = 0;
+	coordsOut[0][0] = 1;
+	coordsOut[1][1] = 1;
+	coordsOut[2][2] = 1;
+	coordsOut[3][3] = 1;
 	
 	stateIn[0] = 0;  
 }
@@ -49,34 +57,34 @@ discovery_MvmntDetChooser::Tick()
 			
 			switch ((int) region[0]) {
 				case 1:
-					coordsOut[0] = 106;
-					coordsOut[1] = 120;
-					coordsOut[2] = 2000;
+					coordsOut[0][3] = 106;
+					coordsOut[1][3] = 120;
+					coordsOut[2][3] = 2000;
 					break;
 				case 2:
-					coordsOut[0] = 3*106;
-					coordsOut[1] = 120;
-					coordsOut[2] = 2000;
+					coordsOut[0][3] = 3*106;
+					coordsOut[1][3] = 120;
+					coordsOut[2][3] = 2000;
 					break;
 				case 3:
-					coordsOut[0] = 5*106;
-					coordsOut[1] = 120;
-					coordsOut[2] = 2000;
+					coordsOut[0][3] = 5*106;
+					coordsOut[1][3] = 120;
+					coordsOut[2][3] = 2000;
 					break;
 				case 4:
-					coordsOut[0] = 106;
-					coordsOut[1] = 360;
-					coordsOut[2] = 2000;
+					coordsOut[0][3] = 106;
+					coordsOut[1][3] = 360;
+					coordsOut[2][3] = 2000;
 					break;
 				case 5:
-					coordsOut[0] = 3*106;
-					coordsOut[1] = 360;
-					coordsOut[2] = 2000;
+					coordsOut[0][3] = 3*106;
+					coordsOut[1][3] = 360;
+					coordsOut[2][3] = 2000;
 					break;
 				case 6:
-					coordsOut[0] = 5*106;
-					coordsOut[1] = 360;
-					coordsOut[2] = 2000;
+					coordsOut[0][3] = 5*106;
+					coordsOut[1][3] = 360;
+					coordsOut[2][3] = 2000;
 					break;
 			}
 		}
@@ -86,34 +94,34 @@ discovery_MvmntDetChooser::Tick()
 			stateOut[0] = 1;
 			switch ((int) region[0]) {
 				case 1:
-					coordsOut[0] = 106;
-					coordsOut[1] = 120;
-					coordsOut[2] = 2000;
+					coordsOut[0][3] = 106;
+					coordsOut[1][3] = 120;
+					coordsOut[2][3] = 2000;
 					break;
 				case 2:
-					coordsOut[0] = 3*106;
-					coordsOut[1] = 120;
-					coordsOut[2] = 2000;
+					coordsOut[0][3] = 3*106;
+					coordsOut[1][3] = 120;
+					coordsOut[2][3] = 2000;
 					break;
 				case 3:
-					coordsOut[0] = 5*106;
-					coordsOut[1] = 120;
-					coordsOut[2] = 2000;
+					coordsOut[0][3] = 5*106;
+					coordsOut[1][3] = 120;
+					coordsOut[2][3] = 2000;
 					break;
 				case 4:
-					coordsOut[0] = 106;
-					coordsOut[1] = 360;
-					coordsOut[2] = 2000;
+					coordsOut[0][3] = 106;
+					coordsOut[1][3] = 360;
+					coordsOut[2][3] = 2000;
 					break;
 				case 5:
-					coordsOut[0] = 3*106;
-					coordsOut[1] = 360;
-					coordsOut[2] = 2000;
+					coordsOut[0][3] = 3*106;
+					coordsOut[1][3] = 360;
+					coordsOut[2][3] = 2000;
 					break;
 				case 6:
-					coordsOut[0] = 5*106;
-					coordsOut[1] = 360;
-					coordsOut[2] = 2000;
+					coordsOut[0][3] = 5*106;
+					coordsOut[1][3] = 360;
+					coordsOut[2][3] = 2000;
 					break;
 			}
 		}

@@ -20,7 +20,7 @@
 	<input name="GETX" description="" size_x="2" size_y="1" />
 	<input name="GETY" description="" size_x="2" size_y="1" />
 
-	<output name="COORDSOUT" description="Coordinates for where Epi should look after movement (in the order x, y, z and with Kinect resolution 640x480 pixels x[0..640] (integers) and y[0..480], z coordinates in mm [0..n])" size_x="3" size_y="1" />
+	<output name="COORDSOUT" description="Coordinates for where Epi should look after movement (in the order x, y, z and with Kinect resolution 640x480 pixels x[0..640] (integers) and y[0..480], z coordinates in mm [0..n])" size_x="4" size_y="4" />
 	<output name="WEIGHTOUT" description="Weight factor, used for deciding which states this module should be active in [0..1] (continous)" size="1"  />
 	<output name="STATEOUT" description="Which state this module requests [0..5] (int)" size="1"  />
 
