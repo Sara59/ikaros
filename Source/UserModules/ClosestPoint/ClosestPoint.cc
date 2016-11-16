@@ -160,11 +160,13 @@ ClosestPoint::Tick()
 
     if (smallest <= 600){
         value[0]= 1*scaler;
+
     } else {
 	value[0] = (600/(smallest))*scaler;
     } 
-
+    	cout << "ClosestPoint value: " << value[0] << "\n";
     if (value[0] >= 0.9){
+	cout << "ClosestPoint changing state \n";
         outputState[0] = 5;
     } 
 
