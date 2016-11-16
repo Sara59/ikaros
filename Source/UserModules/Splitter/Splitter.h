@@ -44,6 +44,8 @@ public:
 	float 	*		mean4;
 	float 	*		mean5;
 	float 	*		mean6;
+	float 	*		Xout;
+	float 	*		Yout;
 	
 	int			incrementX;
 	int			incrementY;

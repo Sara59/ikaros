@@ -42,6 +42,8 @@ Splitter::Init()
 	mean4			= GetOutputArray("MEAN4");
 	mean5			= GetOutputArray("MEAN5");
 	mean6			= GetOutputArray("MEAN6");
+	Xout			= GetOutputArray("XOUT");
+	Yout			= GetOutputArray("YOUT");
 	
 	incrementX = (int) (getX[1] - getX[0])/3;
 	incrementY = (int) (getY[1] - getY[0])/2;   
@@ -78,6 +80,9 @@ Splitter::Tick()
 	*mean5 = mean(m5, incrementX*incrementY);
 	*mean6 = mean(m6, incrementX*incrementY);
 	//float mean(float ** a, int sizex, int sizey);
+	
+	Xout = getX;
+	Yout = getY;
 }
 
 // Install the module. This code is executed during start-up.

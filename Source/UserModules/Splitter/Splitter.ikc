@@ -23,6 +23,8 @@
 	<output name="MEAN4" description="Mean for the lower leftmost region" size="1" />
 	<output name="MEAN5" description="Mean for the lower middle region" size="1" />
 	<output name="MEAN6" description="Mean for the lower rightmost region" size="1" />
+	<output name="XOUT" description="" size_x="2" size_y="1" />
+	<output name="YOUT" description="" size_x="2" size_y="1" />
 
 	<module class="Splitter" />
 

@@ -67,6 +67,8 @@
 		<connection sourcemodule="stateInt" source="OUTPUT" targetmodule="s_mdc" target="STATEIN" />
 		<connection sourcemodule="threshold" source="OUTPUT" targetmodule="s_mdc" target="DEMANDATTENTION" />
 		<connection sourcemodule="arb" source="OUTPUT" targetmodule="s_mdc" target="REGION" />
+		<connection sourcemodule="splitter" source="XOUT" targetmodule="s_mdc" target="GETX" />
+		<connection sourcemodule="splitter" source="YOUT" targetmodule="s_mdc" target="GETY" />
 		
 		<output name="COORDS" sourcemodule="s_mdc" source="COORDSOUT" />
 		<output name="WEIGHT" sourcemodule="s_mdc" source="WEIGHTOUT" />
