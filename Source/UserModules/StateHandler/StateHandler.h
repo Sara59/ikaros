@@ -53,7 +53,7 @@ public:
     float	previousState;
     double	startTime;
     bool	timerStarted;
-    int		waitTime;
+    float	waitTime;
     bool	lookAway;
 
 };

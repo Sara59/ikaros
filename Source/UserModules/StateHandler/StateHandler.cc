@@ -84,15 +84,15 @@ StateHandler::Tick()
         cout << "INTERNALSTATE: " <<  internalState ;
 
     if (timerStarted){
-	        cout << "timer started ";
+
 	clock_t end = clock();	
 	//time_t end = time(0);
 	//double t = difftime(end, startTime);
-	cout << "starttime " << startTime;
-	cout << "endtime " << end ;
+	cout << "starttime " << startTime << "\n";
+	cout << "endtime " << end << "\n";;
 	double t = (end - startTime) / CLOCKS_PER_SEC;
-	cout << "end-start" << t ;
-	cout << "waittime " << waitTime ;
+	cout << "end-start" << t << "\n";;
+	cout << "waittime " << waitTime << "\n";;
 	if (t > 10){
 	    if (lookAway){
 		previousState = 2;
@@ -117,6 +117,8 @@ StateHandler::Tick()
     
 
     //checks if any module wants to change state.
+    cout << "Input1 value " << input1[0] << "\n";
+    cout << "Input2 value " << input2[0] << "\n";
     if (input1[0] > 0 ){
 	cout << "fishin0";
 	previousState = internalState;
