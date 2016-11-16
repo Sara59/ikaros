@@ -32,7 +32,9 @@ discovery_MvmntDetChooser::Init()
 	stateIn		= GetInputArray("STATEIN");
     coordsOut	= GetOutputArray("COORDSOUT");
 	weightOut	= GetOutputArray("WEIGHTOUT");
-	stateOut	= GetOutputArray("STATEOUT");   
+	stateOut	= GetOutputArray("STATEOUT"); 
+	
+	stateIn[0] = 0;  
 }
 
 discovery_MvmntDetChooser::~discovery_MvmntDetChooser() {}

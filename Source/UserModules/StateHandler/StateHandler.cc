@@ -111,10 +111,7 @@ StateHandler::Tick()
 	    
 	}
 	
-    }
-
-   
-    
+    }    
 
     //checks if any module wants to change state.
     cout << "Input1 value " << input1[0] << "\n";
@@ -160,7 +157,7 @@ StateHandler::Tick()
 	    lookAway = true;
 	}
 
-    } /*else if (input3[0] > 0){
+    } else if (input3[0] > 0){
 	previousState = internalState;
         internalState = input3[0];
 	//time_t start = time(0);
@@ -196,7 +193,7 @@ StateHandler::Tick()
 	    waitTime = waitTime/100;
 	    lookAway = true;
 	}
-    } else if (input5[0] > 0){
+    } /*else if (input5[0] > 0){
 	previousState = internalState;
         internalState = input5[0];
 	//time_t start = time(0);
@@ -221,8 +218,8 @@ StateHandler::Tick()
     output1[0] = internalState;
     output2[0] = internalState;
     output3[0] = internalState;
-    /*output4[0] = internalState;
-    output5[0] = internalState;*/
+    output4[0] = internalState;
+    output5[0] = internalState;
 
 }
 

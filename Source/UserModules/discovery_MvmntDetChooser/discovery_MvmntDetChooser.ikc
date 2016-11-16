@@ -14,13 +14,13 @@
 	</example>
 
 
-	<input name="DEMANDATTENTION" description="Whether enough movement has been detected to trigger a gaze from Epi (boolean)" size_x="1" size_y="1" />
-	<input name="REGION" description="Which of the six regions in the picture that should be gazed upon [0..n] (int)" size_x="1" size_y="1" />
-	<input name="STATEIN" description="The current state in the state machine [0..5] (int)" size_x="1" size_y="1" />
+	<input name="DEMANDATTENTION" description="Whether enough movement has been detected to trigger a gaze from Epi (boolean)" size="1"  />
+	<input name="REGION" description="Which of the six regions in the picture that should be gazed upon [0..n] (int)" size="1" />
+	<input name="STATEIN" description="The current state in the state machine [0..5] (int)" size="1" />
 
 	<output name="COORDSOUT" description="Coordinates for where Epi should look after movement (in the order x, y, z and with Kinect resolution 640x480 pixels x[0..640] (integers) and y[0..480], z coordinates in mm [0..n])" size_x="3" size_y="1" />
-	<output name="WEIGHTOUT" description="Weight factor, used for deciding which states this module should be active in [0..1] (continous)" size_x="1" size_y="1" />
-	<output name="STATEOUT" description="Which state this module requests [0..5] (integers)" size_x="1" size_y="1" />
+	<output name="WEIGHTOUT" description="Weight factor, used for deciding which states this module should be active in [0..1] (continous)" size="1" />
+	<output name="STATEOUT" description="Which state this module requests [0..5] (integers)" size="1" />
 
 	<module class="discovery_MvmntDetChooser" />
 

@@ -44,6 +44,8 @@ small_MvmntDetChooser::Init()
 	x3 = (int) getX[0] + incrementX*2 + incrementX/2;
 	y1 = (int) getY[0] + incrementY/2;
 	y2 = (int) getY[0] + incrementY*1 + incrementY/2;
+	
+	stateIn[0] = 0;
 }
 
 /*void
