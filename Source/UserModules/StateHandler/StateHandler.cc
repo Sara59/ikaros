@@ -136,7 +136,6 @@ StateHandler::Tick()
 	    lookAway = true;
 	}
 	
-	
     } else if (input2[0] != internalState){
 		cout << "fishin1";
 		previousState = internalState;
@@ -145,18 +144,17 @@ StateHandler::Tick()
 		time_t start = clock();	
 		timerStarted = true;
 		waitTime = 1000000;
-	if (internalState == 4 || internalState == 5){
-	    waitTime = rand() % 100 + 50;
-	    waitTime = waitTime/100;
-	} else if (internalState == 3){
-	    waitTime = rand() % 200 + 50;
-	    waitTime = waitTime/100;
-	} else if (internalState == 2){
-	    waitTime = rand() % 900 + 300;
-	    waitTime = waitTime/100;
-	    lookAway = true;
-	}
-
+		if (internalState == 4 || internalState == 5){
+		    waitTime = rand() % 100 + 50;
+		    waitTime = waitTime/100;
+		} else if (internalState == 3){
+		    waitTime = rand() % 200 + 50;
+		    waitTime = waitTime/100;
+		} else if (internalState == 2){
+		    waitTime = rand() % 900 + 300;
+		    waitTime = waitTime/100;
+		    lookAway = true;
+		}
     } else if (input3[0] != internalState){
 		previousState = internalState;
 	        internalState = input3[0];
