@@ -51,9 +51,9 @@ public:
 
     float	internalState;
     float	previousState;
-    double	startTime;
+    //float	startTime;
     bool	timerStarted;
-    float	waitTime;
+    double	waitTime;
     bool	lookAway;
 
 };
