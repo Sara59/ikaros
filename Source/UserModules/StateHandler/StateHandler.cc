@@ -85,45 +85,45 @@ StateHandler::Tick()
 
     if (timerStarted){
 
-	clock_t end = clock();	
-	//time_t end = time(0);
-	//double t = difftime(end, startTime);
-	cout << "starttime " << startTime << "\n";
-	cout << "endtime " << end << "\n";;
-	double t = (end - startTime) / CLOCKS_PER_SEC;
-	cout << "end-start" << t << "\n";;
-	cout << "waittime " << waitTime << "\n";;
-	if (t > 10){
-	    if (lookAway){
-		previousState = 2;
-		internalState = 3;
-		waitTime = rand() % 200 + 50;
-	    	waitTime = waitTime/100;
-		timerStarted = true;
-	    } else {
-		internalState = 2; //TODO:change this to either decrement or to the right state
-		startTime = 0;
-		timerStarted = false;
-	    }
+		clock_t end = clock();	
+		//time_t end = time(0);
+		//double t = difftime(end, startTime);
+		cout << "starttime " << startTime << "\n";
+		cout << "endtime " << end << "\n";;
+		double t = (end - startTime) / CLOCKS_PER_SEC;
+		cout << "end-start" << t << "\n";;
+		cout << "waittime " << waitTime << "\n";;
+		if (t > waitTime){
+		    if (lookAway){
+			previousState = 2;
+			internalState = 3;
+			waitTime = rand() % 200 + 50;
+		    waitTime = waitTime/100;
+			timerStarted = true;
+		    } else {
+			internalState = 2; 
+			startTime = 0;
+			timerStarted = false;
+		    }
+		    waitTime = 0;
 	    
-	    
-	    waitTime = 0;
-	    
-	}
+		}
 	
     }    
 
     //checks if any module wants to change state.
     cout << "Input1 value " << input1[0] << "\n";
     cout << "Input2 value " << input2[0] << "\n";
-    if (input1[0] > 0 ){
-	cout << "fishin0";
-	previousState = internalState;
-        internalState = input1[0];
-	//time_t start = time(0);
-	time_t start = clock();
-        waitTime = 1000000;
-	timerStarted = true;
+	cout << "Input3 value " << input3[0] << "\n";
+	cout << "Input4 value " << input4[0] << "\n";
+    if (input1[0] != internalState){
+		cout << "fishin0";
+		previousState = internalState;
+	        internalState = input1[0];
+		//time_t start = time(0);
+		time_t start = clock();
+	        waitTime = 1000000;
+		timerStarted = true;
 	if (internalState == 4 || internalState == 5){
 	    waitTime = rand() % 100 + 50;
 	    waitTime = waitTime/100;
@@ -137,14 +137,14 @@ StateHandler::Tick()
 	}
 	
 	
-    } else if (input2[0] > 0){
-	cout << "fishin1";
-	previousState = internalState;
-        internalState = input2[0];
-	//time_t start = time(0);
-	time_t start = clock();	
-	timerStarted = true;
-	waitTime = 1000000;
+    } else if (input2[0] != internalState){
+		cout << "fishin1";
+		previousState = internalState;
+	        internalState = input2[0];
+		//time_t start = time(0);
+		time_t start = clock();	
+		timerStarted = true;
+		waitTime = 1000000;
 	if (internalState == 4 || internalState == 5){
 	    waitTime = rand() % 100 + 50;
 	    waitTime = waitTime/100;
@@ -157,43 +157,43 @@ StateHandler::Tick()
 	    lookAway = true;
 	}
 
-    } else if (input3[0] > 0){
-	previousState = internalState;
-        internalState = input3[0];
-	//time_t start = time(0);
-	time_t start = clock();
-	timerStarted = true;
-	waitTime = 1000000;
-	if (internalState == 4 || internalState == 5){
-	    waitTime = rand() % 100 + 50;
-	    waitTime = waitTime/100;
-	} else if (internalState == 3){
-	    waitTime = rand() % 200 + 50;
-	    waitTime = waitTime/100;
-	} else if (internalState == 2){
-	    waitTime = rand() % 900 + 300;
-	    waitTime = waitTime/100;
-	    lookAway = true;
-	}
-    } else if (input4[0] > 0){
-	previousState = internalState;
-        internalState = input4[0];
-	//time_t start = time(0);
-	time_t start = clock();
-	timerStarted = true;
-	waitTime = 1000000;
-	if (internalState == 4 || internalState == 5){
-	    waitTime = rand() % 100 + 50;
-	    waitTime = waitTime/100;
-	} else if (internalState == 3){
-	    waitTime = rand() % 200 + 50;
-	    waitTime = waitTime/100;
-	} else if (internalState == 2){
-	    waitTime = rand() % 900 + 300;
-	    waitTime = waitTime/100;
-	    lookAway = true;
-	}
-    } /*else if (input5[0] > 0){
+    } else if (input3[0] != internalState){
+		previousState = internalState;
+	        internalState = input3[0];
+		//time_t start = time(0);
+		time_t start = clock();
+		timerStarted = true;
+		waitTime = 1000000;
+		if (internalState == 4 || internalState == 5){
+		    waitTime = rand() % 100 + 50;
+		    waitTime = waitTime/100;
+		} else if (internalState == 3){
+		    waitTime = rand() % 200 + 50;
+		    waitTime = waitTime/100;
+		} else if (internalState == 2){
+		    waitTime = rand() % 900 + 300;
+		    waitTime = waitTime/100;
+		    lookAway = true;
+		}
+    } else if (input4[0] != internalState){
+		previousState = internalState;
+	        internalState = input4[0];
+		//time_t start = time(0);
+		time_t start = clock();
+		timerStarted = true;
+		waitTime = 1000000;
+		if (internalState == 4 || internalState == 5){
+		    waitTime = rand() % 100 + 50;
+		    waitTime = waitTime/100;
+		} else if (internalState == 3){
+		    waitTime = rand() % 200 + 50;
+		    waitTime = waitTime/100;
+		} else if (internalState == 2){
+		    waitTime = rand() % 900 + 300;
+		    waitTime = waitTime/100;
+		    lookAway = true;
+		}
+    } /*else if (input5[0] == internalState){
 	previousState = internalState;
         internalState = input5[0];
 	//time_t start = time(0);

@@ -168,7 +168,9 @@ ClosestPoint::Tick()
     if (value[0] >= 0.9){
 	cout << "ClosestPoint changing state \n";
         outputState[0] = 5;
-    } 
+    } else {
+    	outputState[0] = inputState[0];
+    }
 
 }
 

@@ -155,6 +155,7 @@ GetXYZCoordinates::Tick()
 		value[0] = float(0.7);
 	} else {
 		value[0] = 0;
+		change_state[0] = state[0];
 	}
 
 }
