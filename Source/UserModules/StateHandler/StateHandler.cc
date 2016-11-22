@@ -67,6 +67,8 @@ StateHandler::Init()
     
 	input1[0] = 0;
 	input2[0] = 0;
+	input3[0] = 0;
+	input4[0] = 0;
 
 //./ikaros -R -t -r50 -p  ../Examples/Robots/EpiHead/EpiHead.ikc 
 
@@ -82,6 +84,26 @@ StateHandler::~StateHandler()
 clock_t startTime;	
 
 void
+StateHandler::StartTimer()
+{
+	startTime = clock();
+	//auto start = Clock::now();
+	waitTime = 1000000;
+	timerStarted = true;
+	if (internalState == 4 || internalState == 5){
+	    waitTime = rand() % 100 + 50;
+	    waitTime = waitTime/100;
+	} else if (internalState == 3){
+	    waitTime = rand() % 200 + 50;
+	    waitTime = waitTime/100;
+	} else if (internalState == 2){
+	    waitTime = rand() % 900 + 300;
+	    waitTime = waitTime/100;
+	    lookAway = true;
+	}
+}
+
+void
 StateHandler::Tick()
 {
 
@@ -93,105 +115,54 @@ StateHandler::Tick()
     cout << "Face value " << input2[0] << "\n";
 	cout << "DisMovement value " << input3[0] << "\n";
 	cout << "SmallMovement value " << input4[0] << "\n";
+	
+	bool closest, face, d_md, s_md = false;
+	if (input1[0] != internalState) closest = true;
+	if (input2[0] != internalState) face = true;
+	if (input3[0] != internalState) d_md = true;
+	if (input4[0] != internalState) s_md = true;
+	
+	float chosen = previousState;
+	
+	if (internalState == 0) {
+		if (d_md) chosen = input4[0];
+		else if (face) chosen = input2[0];
+	} else if (internalState == 1) {
+		if (face) chosen = input2[0];
+		else if (d_md) chosen = input3[0];
+	} else if (internalState == 2) {
+		if (s_md) chosen = input4[0];
+		else if (closest) chosen = input1[0];
+		else if (face) chosen = input2[0];
+	} else if (internalState == 4) {
+		if (s_md) chosen = input4[0];
+	} else if (internalState == 5) {
+		if (closest) chosen = input1[0];
+	}
     
-    if (input1[0] != previousState){
+	if (chosen != previousState) {
 		previousState = internalState;
-	        internalState = input1[0];
-		startTime = clock();
-		//auto start = Clock::now();
-	        waitTime = 1000000;
-		timerStarted = true;
-	if (internalState == 4 || internalState == 5){
-	    waitTime = rand() % 100 + 50;
-	    waitTime = waitTime/100;
-	} else if (internalState == 3){
-	    waitTime = rand() % 200 + 50;
-	    waitTime = waitTime/100;
-	} else if (internalState == 2){
-	    waitTime = rand() % 900 + 300;
-	    waitTime = waitTime/100;
-	    lookAway = true;
+	    internalState = chosen;
+		StartTimer();
 	}
 	
+    /*if (input1[0] != previousState){
+		
     } else if (input2[0] != previousState){
 		previousState = internalState;
-	        internalState = input2[0];
-		startTime = clock();
-		//auto start = Clock::now();	
-		timerStarted = true;
-		waitTime = 1000000;
-		if (internalState == 4 || internalState == 5){
-		    waitTime = rand() % 100 + 50;
-		    waitTime = waitTime/100;
-		} else if (internalState == 3){
-		    waitTime = rand() % 200 + 50;
-		    waitTime = waitTime/100;
-		} else if (internalState == 2){
-		    waitTime = rand() % 900 + 300;
-		    waitTime = waitTime/100;
-		    lookAway = true;
-		}
+	    internalState = input2[0];
+		StartTimer();
     } else if (input3[0] != previousState){
 		previousState = internalState;
-	        internalState = input3[0];
-		startTime = clock();
-		//auto start = Clock::now();
-		timerStarted = true;
-		waitTime = 1000000;
-		if (internalState == 4 || internalState == 5){
-		    waitTime = rand() % 100 + 50;
-		    waitTime = waitTime/100;
-		} else if (internalState == 3){
-		    waitTime = rand() % 200 + 50;
-		    waitTime = waitTime/100;
-		} else if (internalState == 2){
-		    waitTime = rand() % 900 + 300;
-		    waitTime = waitTime/100;
-		    lookAway = true;
-		}
+	    internalState = input3[0];
+		StartTimer();
     } else if (input4[0] != previousState){
 		previousState = internalState;
-	        internalState = input4[0];
-		startTime = clock();
-		//auto start = Clock::now();
-		timerStarted = true;
-		waitTime = 1000000;
-		if (internalState == 4 || internalState == 5){
-		    waitTime = rand() % 100 + 50;
-		    waitTime = waitTime/100;
-		} else if (internalState == 3){
-		    waitTime = rand() % 200 + 50;
-		    waitTime = waitTime/100;
-		} else if (internalState == 2){
-		    waitTime = rand() % 900 + 300;
-		    waitTime = waitTime/100;
-		    lookAway = true;
-		}
-    } /*else if (input5[0] == internalState){
-	previousState = internalState;
-        internalState = input5[0];
-	//time_t start = time(0);
-	time_t start = clock();
-	timerStarted = true;
-	waitTime = 1000000;
-	if (internalState == 4 || internalState == 5){
-	    waitTime = rand() % 100 + 50;
-	    waitTime = waitTime/100;
-	} else if (internalState == 3){
-	    waitTime = rand() % 200 + 50;
-	    waitTime = waitTime/100;
-	} else if (internalState == 2){
-	    waitTime = rand() % 900 + 300;
-	    waitTime = waitTime/100;
-	    lookAway = true;
-	}
-    }
-*/
-
-
+	    internalState = input4[0];
+		StartTimer();
+    }*/
 
     if (timerStarted){
-
 		clock_t end = clock();	
 		//auto end = Clock::now();
 		//time_t end = time(0);
@@ -201,24 +172,21 @@ StateHandler::Tick()
 		//double t = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()/1000;
 		//double t = (end - star);
 		if (t > waitTime){
-			cout << "INSIDE IF \n";
 		    if (lookAway){
-			previousState = 2;
-			internalState = 3;
-			//waitTime = rand() % 200 + 50;
-		    	//waitTime = waitTime/100;
-			//timerStarted = true;
-			lookAway = false;
+			cout << "INSIDE IF \n";
+				previousState = 3;
+				internalState = 3;
+				waitTime = rand() % 200 + 50;
+				waitTime = waitTime/100;
+				timerStarted = true;
+				lookAway = false;
 		    } else {
-			internalState = 2; 
-			startTime = 0;
-			
+				internalState = 2; 
+				startTime = 0;
+			    timerStarted = false;
+			    waitTime = 0;
 		    }
-		    timerStarted = false;
-		    waitTime = 0;
-	    
 		}
-	
     }  
    
     output1[0] = internalState;
@@ -229,11 +197,6 @@ StateHandler::Tick()
 
 }
 
-
-
-
 // Install the module. This code is executed during start-up.
 
 static InitClass init("StateHandler", &StateHandler::Create, "Source/UserModules/StateHandler/");
-
-

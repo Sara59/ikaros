@@ -11,6 +11,7 @@
 			name	= "CAMERA"			
 			size_x  = "640"
 			size_y  = "480"
+			frame_rate = "25"
 		/>
 
         <module

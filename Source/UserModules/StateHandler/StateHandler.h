@@ -34,6 +34,7 @@ public:
     virtual ~StateHandler();
 
     void 		Init();
+	void		StartTimer();
     void 		Tick();
 
     float *     input1;

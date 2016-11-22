@@ -52,12 +52,12 @@ GetXYZCoordinates::Init()
     facematrix = GetOutputMatrix("OUTPUTFACEMATRIX");
 
     state = GetInputArray("STATE");
+	facesinput = GetInputMatrix("FACESINPUT");
     change_state = GetOutputArray("CHANGESTATE");
     value = GetOutputArray("VALUE");
 
 	state[0] = 0;
-
-    
+	change_state[0] = 0;
 }
 
 
@@ -82,7 +82,7 @@ GetXYZCoordinates::Tick()
 	int ycord = (int) y;
 
 
-        z = depth[ycord][xcord];
+    z = depth[ycord][xcord];
 
 	outputmatrix[0][0] = 1; 
 	outputmatrix[0][1] = 0; 
@@ -144,15 +144,21 @@ GetXYZCoordinates::Tick()
 		} 
 		outputY[1] = depth_size_y;
 	}
-
-	if(state[0] == 0){
-		value[0] = float(0.3);
-		change_state[0] = float(1);
-	} else if(state[0] == float(1)){
-		change_state[0] = float(2);
-		value[0] = float(1);
-	} else if(state[0] == float(2)){
-		value[0] = float(0.7);
+	
+	if (facesinput[0][0] != -1.0000) {
+		cout << "INSIDE XYZ IF" << endl;
+		if(state[0] == 0){
+			value[0] = float(0.3);
+			change_state[0] = float(1);
+		} else if(state[0] == float(1)){
+			change_state[0] = float(2);
+			value[0] = float(1);
+		} else if(state[0] == float(2)){
+			value[0] = float(0.7);
+		} else {
+			value[0] = 0;
+			change_state[0] = state[0];
+		}
 	} else {
 		value[0] = 0;
 		change_state[0] = state[0];

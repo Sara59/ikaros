@@ -50,6 +50,7 @@
 		<_connection sourcemodule="closest" source="OUTPUT" targetmodule="Convert" target="INPUT" />
 		
 		<connection sourcemodule="kinect" source="INTENSITY" targetmodule="faceDet" target="INPUT" />	
+		<connection sourcemodule="faceDet" source="FACES" targetmodule="getCoords" target="FACESINPUT" />
         <connection sourcemodule = "faceDet" source = "FACE_POSITION" targetmodule = "getCoords" target = "XYINPUT" />
         <connection sourcemodule="kinect" source="DEPTH" targetmodule="getCoords" target="DEPTH" />	
 		<connection sourcemodule="kinect" source="INTENSITY" targetmodule="d_md" target="IMAGE" />

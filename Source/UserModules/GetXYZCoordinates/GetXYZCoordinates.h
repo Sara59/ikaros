@@ -44,6 +44,7 @@ public:
     float **	depth;
     float       depth_size_x;
     float       depth_size_y;
+	float **	facesinput;
 
 
     float*      outputX;
