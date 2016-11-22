@@ -86,6 +86,7 @@ StateHandler::Tick()
 {
 
          cout << "INTERNALSTATE: " <<  internalState << "\n";
+         cout << "PREVIOUSSTATE: " <<  previousState << "\n";
 
     //checks if any module wants to change state.
     cout << "Closest value " << input1[0] << "\n";
@@ -93,7 +94,7 @@ StateHandler::Tick()
 	cout << "DisMovement value " << input3[0] << "\n";
 	cout << "SmallMovement value " << input4[0] << "\n";
     
-    if (input1[0] != internalState){
+    if (input1[0] != previousState){
 		previousState = internalState;
 	        internalState = input1[0];
 		startTime = clock();
@@ -112,7 +113,7 @@ StateHandler::Tick()
 	    lookAway = true;
 	}
 	
-    } else if (input2[0] != internalState){
+    } else if (input2[0] != previousState){
 		previousState = internalState;
 	        internalState = input2[0];
 		startTime = clock();
@@ -130,7 +131,7 @@ StateHandler::Tick()
 		    waitTime = waitTime/100;
 		    lookAway = true;
 		}
-    } else if (input3[0] != internalState){
+    } else if (input3[0] != previousState){
 		previousState = internalState;
 	        internalState = input3[0];
 		startTime = clock();
@@ -148,7 +149,7 @@ StateHandler::Tick()
 		    waitTime = waitTime/100;
 		    lookAway = true;
 		}
-    } else if (input4[0] != internalState){
+    } else if (input4[0] != previousState){
 		previousState = internalState;
 	        internalState = input4[0];
 		startTime = clock();
@@ -200,6 +201,7 @@ StateHandler::Tick()
 		//double t = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()/1000;
 		//double t = (end - star);
 		if (t > waitTime){
+			cout << "INSIDE IF \n";
 		    if (lookAway){
 			previousState = 2;
 			internalState = 3;
