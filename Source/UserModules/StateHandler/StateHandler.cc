@@ -85,16 +85,15 @@ void
 StateHandler::Tick()
 {
 
-         cout << "INTERNALSTATE: " <<  internalState ;
+         cout << "INTERNALSTATE: " <<  internalState << "\n";
 
     //checks if any module wants to change state.
-    cout << "Input1 value " << input1[0] << "\n";
-    cout << "Input2 value " << input2[0] << "\n";
-	cout << "Input3 value " << input3[0] << "\n";
-	cout << "Input4 value " << input4[0] << "\n";
+    cout << "Closest value " << input1[0] << "\n";
+    cout << "Face value " << input2[0] << "\n";
+	cout << "DisMovement value " << input3[0] << "\n";
+	cout << "SmallMovement value " << input4[0] << "\n";
     
     if (input1[0] != internalState){
-		cout << "fishin0";
 		previousState = internalState;
 	        internalState = input1[0];
 		startTime = clock();
@@ -114,7 +113,6 @@ StateHandler::Tick()
 	}
 	
     } else if (input2[0] != internalState){
-		cout << "fishin1";
 		previousState = internalState;
 	        internalState = input2[0];
 		startTime = clock();
@@ -197,14 +195,10 @@ StateHandler::Tick()
 		//auto end = Clock::now();
 		//time_t end = time(0);
 		//double t = difftime(end, startTime);
-		cout << "starttime " << startTime << "\n";
-		cout << "endtime " << end << "\n";
 		clock_t wow = (end - startTime);
 		double t = wow / CLOCKS_PER_SEC;
 		//double t = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()/1000;
 		//double t = (end - star);
-		cout << "end-start" << t << "\n";;
-		cout << "waittime " << waitTime << "\n";;
 		if (t > waitTime){
 		    if (lookAway){
 			previousState = 2;
@@ -224,7 +218,6 @@ StateHandler::Tick()
 		}
 	
     }  
-    cout << "fishinternal" << internalState;
    
     output1[0] = internalState;
     output2[0] = internalState;

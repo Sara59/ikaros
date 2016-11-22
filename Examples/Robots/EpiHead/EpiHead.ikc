@@ -35,10 +35,10 @@
 		<connection sourcemodule="getCoords" source="OUTPUTY" targetmodule="s_md" target="GETY" />
 		<connection sourcemodule="getCoords" source="OUTPUTFACEMATRIX" targetmodule="s_md" target="GETFACEMATRIX" />
 		
-		<connection sourcemodule="closest" source="OUTSTATE" targetmodule="stateHandler" target="INPUT1" />
-		<connection sourcemodule="getCoords" source="CHANGESTATE" targetmodule="stateHandler" target="INPUT2" />
+		<connection sourcemodule="closest" source="OUTSTATE" targetmodule="stateHandler" target="INPUT1" delay="5" />
+		<connection sourcemodule="getCoords" source="CHANGESTATE" targetmodule="stateHandler" target="INPUT2" delay="5" />
 		<connection sourcemodule="d_md" source="STATEOUT" targetmodule="stateHandler" target="INPUT3" />
-		<connection sourcemodule="s_md" source="STATEOUT" targetmodule="stateHandler" target="INPUT4" />
+		<connection sourcemodule="s_md" source="STATEOUT" targetmodule="stateHandler" target="INPUT4" delay="2" />
 		
 		<connection sourcemodule="stateHandler" source="OUTPUT1" targetmodule="closest" target="INSTATE" />
 		<connection sourcemodule="stateHandler" source="OUTPUT2" targetmodule="getCoords" target="STATE" />
