@@ -21,8 +21,10 @@
 //
 
 #include "small_MvmntDetChooser.h"
+#include <iostream>
 
 using namespace ikaros;
+using namespace std;
 
 void
 small_MvmntDetChooser::Init()
@@ -67,8 +69,10 @@ small_MvmntDetChooser::~small_MvmntDetChooser() {}
 void
 small_MvmntDetChooser::Tick()
 {
+	cout << "s_mdc: STATEIN = " << stateIn[0] << endl;
 	if (stateIn[0] == 2) {
 		weightOut[0] = 1;
+		stateOut[0] = stateIn[0];
 		if (demandAtt[0] == 1) {
 			stateOut[0] = 4;
 			switch ((int) region[0]) {
@@ -106,6 +110,7 @@ small_MvmntDetChooser::Tick()
 		}
 	} else if (stateIn[0] == 4) {
 		weightOut[0] = 1;
+		stateOut[0] = stateIn[0];
 		switch ((int) region[0]) {
 			case 1:
 				coordsOut[0][3] = x1;

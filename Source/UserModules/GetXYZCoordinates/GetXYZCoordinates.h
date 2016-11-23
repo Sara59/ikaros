@@ -64,6 +64,8 @@ public:
     int 	ycord;
     int 	y0; 
     int 	x0; 
+	
+	bool previousFace;
 
 };
 

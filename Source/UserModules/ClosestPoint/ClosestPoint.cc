@@ -70,7 +70,7 @@ ClosestPoint::~ClosestPoint()
 void
 ClosestPoint::Tick()
 {	
-
+	cout << "Closest: INSTATE = " << inputState[0] << endl;
     if (connected){
         //cout << "depth: " <<  fixed << depth[50][50];
     }

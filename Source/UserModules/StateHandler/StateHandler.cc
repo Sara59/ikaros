@@ -69,6 +69,8 @@ StateHandler::Init()
 	input2[0] = 0;
 	input3[0] = 0;
 	input4[0] = 0;
+	
+	nothingFound = false;
 
 //./ikaros -R -t -r50 -p  ../Examples/Robots/EpiHead/EpiHead.ikc 
 
@@ -89,24 +91,31 @@ StateHandler::StartTimer()
 	startTime = clock();
 	//auto start = Clock::now();
 	waitTime = 1000000;
-	timerStarted = true;
+	
 	if (internalState == 4 || internalState == 5){
+		timerStarted = true;
 	    waitTime = rand() % 100 + 50;
 	    waitTime = waitTime/100;
 	} else if (internalState == 3){
+		timerStarted = true;
 	    waitTime = rand() % 200 + 50;
 	    waitTime = waitTime/100;
 	} else if (internalState == 2){
+		timerStarted = true;
 	    waitTime = rand() % 900 + 300;
 	    waitTime = waitTime/100;
 	    lookAway = true;
+	} else if (internalState == 1) {
+		timerStarted = true;
+	    waitTime = rand() % 200 + 50;
+	    waitTime = waitTime/100;
+		nothingFound = true;
 	}
 }
 
 void
 StateHandler::Tick()
 {
-
          cout << "INTERNALSTATE: " <<  internalState << "\n";
          cout << "PREVIOUSSTATE: " <<  previousState << "\n";
 
@@ -116,16 +125,24 @@ StateHandler::Tick()
 	cout << "DisMovement value " << input3[0] << "\n";
 	cout << "SmallMovement value " << input4[0] << "\n";
 	
-	bool closest, face, d_md, s_md = false;
+	bool closest = false;
+	bool face = false;
+	bool d_md = false;
+	bool s_md = false;
+	
 	if (input1[0] != internalState) closest = true;
 	if (input2[0] != internalState) face = true;
 	if (input3[0] != internalState) d_md = true;
 	if (input4[0] != internalState) s_md = true;
 	
 	float chosen = previousState;
-	
-	if (internalState == 0) {
-		if (d_md) chosen = input4[0];
+	//cout << "d_md = " << d_md << endl;
+	if (internalState == float(0)) {
+		//cout << "inside internalState = 0\n";
+		if (d_md) {
+			//cout << "inside d_md if" << endl;
+			chosen = input3[0];
+		}
 		else if (face) chosen = input2[0];
 	} else if (internalState == 1) {
 		if (face) chosen = input2[0];
@@ -139,11 +156,15 @@ StateHandler::Tick()
 	} else if (internalState == 5) {
 		if (closest) chosen = input1[0];
 	}
-    
+    cout << "chosen = " << chosen << endl;
 	if (chosen != previousState) {
+		cout << "inside chosen if" << endl;
+		
 		previousState = internalState;
 	    internalState = chosen;
 		StartTimer();
+	} else {
+		previousState = internalState;
 	}
 	
     /*if (input1[0] != previousState){
@@ -180,6 +201,12 @@ StateHandler::Tick()
 				waitTime = waitTime/100;
 				timerStarted = true;
 				lookAway = false;
+		    } else if (nothingFound){
+				internalState = 0; 
+				startTime = 0;
+			    timerStarted = false;
+			    waitTime = 0;
+				nothingFound = false;
 		    } else {
 				internalState = 2; 
 				startTime = 0;

@@ -56,6 +56,7 @@ public:
     bool	timerStarted;
     double	waitTime;
     bool	lookAway;
+	bool	nothingFound;
 
 };
 

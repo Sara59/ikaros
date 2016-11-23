@@ -58,6 +58,7 @@ GetXYZCoordinates::Init()
 
 	state[0] = 0;
 	change_state[0] = 0;
+	previousFace = false;
 }
 
 
@@ -72,7 +73,7 @@ GetXYZCoordinates::~GetXYZCoordinates()
 void
 GetXYZCoordinates::Tick()
 {
-
+	cout << "getCoords: STATE = " << state[0] << endl;
 
 //	printf("INPUTSTATE = " + state + "\n");
 	x = xyinput[0][0]*depth_size_x;
@@ -145,23 +146,28 @@ GetXYZCoordinates::Tick()
 		outputY[1] = depth_size_y;
 	}
 	
-	if (facesinput[0][0] != -1.0000) {
+	if (facesinput[0][0] >= 0) {
 		cout << "INSIDE XYZ IF" << endl;
-		if(state[0] == 0){
-			value[0] = float(0.3);
-			change_state[0] = float(1);
-		} else if(state[0] == float(1)){
-			change_state[0] = float(2);
-			value[0] = float(1);
-		} else if(state[0] == float(2)){
-			value[0] = float(0.7);
+		if (previousFace) { 
+			if(state[0] == 0){
+				value[0] = float(0.3);
+				//change_state[0] = float(2);
+			} else if(state[0] == float(1)){
+				change_state[0] = float(2);
+				value[0] = float(1);
+			} else if(state[0] == float(2)){
+				value[0] = float(0.7);
+			} else {
+				value[0] = 0;
+				change_state[0] = state[0];
+			}
 		} else {
-			value[0] = 0;
-			change_state[0] = state[0];
+			previousFace = true;
 		}
 	} else {
 		value[0] = 0;
 		change_state[0] = state[0];
+		previousFace = false;
 	}
 
 }

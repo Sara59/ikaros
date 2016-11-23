@@ -21,8 +21,11 @@
 //
 
 #include "discovery_MvmntDetChooser.h"
+#include <stdlib.h> 
+#include <iostream>
 
 using namespace ikaros;
+using namespace std;
 
 void
 discovery_MvmntDetChooser::Init()
@@ -50,6 +53,7 @@ discovery_MvmntDetChooser::~discovery_MvmntDetChooser() {}
 void
 discovery_MvmntDetChooser::Tick()
 {
+	cout << "d_md: STATEIN = " << stateIn[0] << endl;
 	if (stateIn[0] == 0) {
 		weightOut[0] = 1;
 		if (demandAtt[0] == 1/* && input[2] == 0*/) {

@@ -30,15 +30,17 @@
 		<module class="discovery_MovementDetector" name="d_md" />
 		<module class="small_MovementDetector" name="s_md" />
 		<module class = "Arbiter" name = "arbiter" no_of_inputs="5" />
+		
+		<connection sourcemodule="faceDet" source="FACES" targetmodule="getCoords" target="FACESINPUT" />
 			
 		<connection sourcemodule="getCoords" source="OUTPUTX" targetmodule="s_md" target="GETX" />
 		<connection sourcemodule="getCoords" source="OUTPUTY" targetmodule="s_md" target="GETY" />
 		<connection sourcemodule="getCoords" source="OUTPUTFACEMATRIX" targetmodule="s_md" target="GETFACEMATRIX" />
 		
-		<connection sourcemodule="closest" source="OUTSTATE" targetmodule="stateHandler" target="INPUT1" delay="5" />
-		<connection sourcemodule="getCoords" source="CHANGESTATE" targetmodule="stateHandler" target="INPUT2" delay="5" />
+		<connection sourcemodule="closest" source="OUTSTATE" targetmodule="stateHandler" target="INPUT1" />
+		<connection sourcemodule="getCoords" source="CHANGESTATE" targetmodule="stateHandler" target="INPUT2" />
 		<connection sourcemodule="d_md" source="STATEOUT" targetmodule="stateHandler" target="INPUT3" />
-		<connection sourcemodule="s_md" source="STATEOUT" targetmodule="stateHandler" target="INPUT4" delay="2" />
+		<connection sourcemodule="s_md" source="STATEOUT" targetmodule="stateHandler" target="INPUT4" />
 		
 		<connection sourcemodule="stateHandler" source="OUTPUT1" targetmodule="closest" target="INSTATE" />
 		<connection sourcemodule="stateHandler" source="OUTPUT2" targetmodule="getCoords" target="STATE" />
@@ -50,7 +52,6 @@
 		<_connection sourcemodule="closest" source="OUTPUT" targetmodule="Convert" target="INPUT" />
 		
 		<connection sourcemodule="kinect" source="INTENSITY" targetmodule="faceDet" target="INPUT" />	
-		<connection sourcemodule="faceDet" source="FACES" targetmodule="getCoords" target="FACESINPUT" />
         <connection sourcemodule = "faceDet" source = "FACE_POSITION" targetmodule = "getCoords" target = "XYINPUT" />
         <connection sourcemodule="kinect" source="DEPTH" targetmodule="getCoords" target="DEPTH" />	
 		<connection sourcemodule="kinect" source="INTENSITY" targetmodule="d_md" target="IMAGE" />
