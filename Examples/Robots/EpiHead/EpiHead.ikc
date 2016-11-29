@@ -31,16 +31,16 @@
 		<module class="small_MovementDetector" name="s_md" />
 		<module class = "Arbiter" name = "arbiter" no_of_inputs="5" />
 		
-		<connection sourcemodule="faceDet" source="FACES" targetmodule="getCoords" target="FACESINPUT" />
+		<connection sourcemodule="faceDet" source="FACES" targetmodule="getCoords" target="FACESINPUT" delay="0" />
 			
-		<connection sourcemodule="getCoords" source="OUTPUTX" targetmodule="s_md" target="GETX" />
-		<connection sourcemodule="getCoords" source="OUTPUTY" targetmodule="s_md" target="GETY" />
-		<connection sourcemodule="getCoords" source="OUTPUTFACEMATRIX" targetmodule="s_md" target="GETFACEMATRIX" />
+		<connection sourcemodule="getCoords" source="OUTPUTX" targetmodule="s_md" target="GETX" delay="0" />
+		<connection sourcemodule="getCoords" source="OUTPUTY" targetmodule="s_md" target="GETY" delay="0" />
+		<connection sourcemodule="getCoords" source="OUTPUTFACEMATRIX" targetmodule="s_md" target="GETFACEMATRIX" delay="0" />
 		
-		<connection sourcemodule="closest" source="OUTSTATE" targetmodule="stateHandler" target="INPUT1" />
-		<connection sourcemodule="getCoords" source="CHANGESTATE" targetmodule="stateHandler" target="INPUT2" />
-		<connection sourcemodule="d_md" source="STATEOUT" targetmodule="stateHandler" target="INPUT3" />
-		<connection sourcemodule="s_md" source="STATEOUT" targetmodule="stateHandler" target="INPUT4" />
+		<connection sourcemodule="closest" source="OUTSTATE" targetmodule="stateHandler" target="INPUT1" delay="0" />
+		<connection sourcemodule="getCoords" source="CHANGESTATE" targetmodule="stateHandler" target="INPUT2" delay="0" />
+		<connection sourcemodule="d_md" source="STATEOUT" targetmodule="stateHandler" target="INPUT3" delay="0" />
+		<connection sourcemodule="s_md" source="STATEOUT" targetmodule="stateHandler" target="INPUT4" delay="0" />
 		
 		<connection sourcemodule="stateHandler" source="OUTPUT1" targetmodule="closest" target="INSTATE" />
 		<connection sourcemodule="stateHandler" source="OUTPUT2" targetmodule="getCoords" target="STATE" />

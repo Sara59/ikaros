@@ -26,11 +26,11 @@
 		<module class="small_MvmntDetChooser" name="s_mdc" />
 		<module class="Splitter" name="splitter" />
 		
-		<input name="STATE" targetmodule="stateInt" target="INPUT" />
-		<input name="GETFACEMATRIX" targetmodule="chDet" target="INPUT" />
-		<input name="GETX" targetmodule="splitter" target="GETX" />
-		<input name="GETY" targetmodule="splitter" target="GETY" />
-		<connection sourcemodule="chDet" source="OUTPUT" targetmodule="splitter" target="GETCHANGEMATRIX" />
+		<input name="STATE" targetmodule="stateInt" target="INPUT" delay="0" />
+		<input name="GETFACEMATRIX" targetmodule="chDet" target="INPUT" delay="0" />
+		<input name="GETX" targetmodule="splitter" target="GETX" delay="0" />
+		<input name="GETY" targetmodule="splitter" target="GETY" delay="0" />
+		<connection sourcemodule="chDet" source="OUTPUT" targetmodule="splitter" target="GETCHANGEMATRIX" delay="0" />
 
 		<_connection sourcemodule="chDet" source="OUTPUT" targetmodule="tl" target="INPUT" />
 		<_connection sourcemodule="chDet" source="OUTPUT" targetmodule="tm" target="INPUT" />
@@ -62,17 +62,17 @@
 		<connection sourcemodule="splitter" source="MEAN4" targetmodule = "arb" target = "VALUE_4" delay="0" />
 		<connection sourcemodule="splitter" source="MEAN5" targetmodule = "arb" target = "VALUE_5" delay="0" />
 		<connection sourcemodule="splitter" source="MEAN6" targetmodule = "arb" target = "VALUE_6" delay="0" />
-		<connection sourcemodule="arb" source="VALUE" targetmodule="threshold" target="INPUT" />
+		<connection sourcemodule="arb" source="VALUE" targetmodule="threshold" target="INPUT" delay="0" />
 		
-		<connection sourcemodule="stateInt" source="OUTPUT" targetmodule="s_mdc" target="STATEIN" />
-		<connection sourcemodule="threshold" source="OUTPUT" targetmodule="s_mdc" target="DEMANDATTENTION" />
-		<connection sourcemodule="arb" source="OUTPUT" targetmodule="s_mdc" target="REGION" />
-		<connection sourcemodule="splitter" source="XOUT" targetmodule="s_mdc" target="GETX" />
-		<connection sourcemodule="splitter" source="YOUT" targetmodule="s_mdc" target="GETY" />
+		<connection sourcemodule="stateInt" source="OUTPUT" targetmodule="s_mdc" target="STATEIN" delay="0" />
+		<connection sourcemodule="threshold" source="OUTPUT" targetmodule="s_mdc" target="DEMANDATTENTION" delay="0" />
+		<connection sourcemodule="arb" source="OUTPUT" targetmodule="s_mdc" target="REGION" delay="0" />
+		<connection sourcemodule="splitter" source="XOUT" targetmodule="s_mdc" target="GETX" delay="0" />
+		<connection sourcemodule="splitter" source="YOUT" targetmodule="s_mdc" target="GETY" delay="0" />
 		
-		<output name="COORDS" sourcemodule="s_mdc" source="COORDSOUT" />
-		<output name="WEIGHT" sourcemodule="s_mdc" source="WEIGHTOUT" />
-		<output name="STATEOUT" sourcemodule="s_mdc" source="STATEOUT" />
+		<output name="COORDS" sourcemodule="s_mdc" source="COORDSOUT" delay="0" />
+		<output name="WEIGHT" sourcemodule="s_mdc" source="WEIGHTOUT" delay="0" />
+		<output name="STATEOUT" sourcemodule="s_mdc" source="STATEOUT" delay="0" />
 		
 		<!-- ><view name="View">
 			<object class="Image" type="rgb" module="video" source="RED+GREEN+BLUE" x="0" y="0" w="2" h="2" />

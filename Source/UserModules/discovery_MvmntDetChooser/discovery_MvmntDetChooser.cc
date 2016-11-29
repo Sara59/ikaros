@@ -53,9 +53,12 @@ discovery_MvmntDetChooser::~discovery_MvmntDetChooser() {}
 void
 discovery_MvmntDetChooser::Tick()
 {
-	cout << "d_md: STATEIN = " << stateIn[0] << endl;
+	cout << "d_mdc: STATEIN = " << stateIn[0] << endl;
+	cout << "d_mdc: demandAtt = " << demandAtt[0] << endl;
 	if (stateIn[0] == 0) {
 		weightOut[0] = 1;
+		stateOut[0] = stateIn[0];
+		
 		if (demandAtt[0] == 1/* && input[2] == 0*/) {
 			stateOut[0] = 1;
 			
@@ -94,6 +97,8 @@ discovery_MvmntDetChooser::Tick()
 		}
 	} else if (stateIn[0] == 1) {
 		weightOut[0] = 0.2;
+		stateOut[0] = stateIn[0];
+		
 		if (demandAtt[0] == 1) {
 			stateOut[0] = 1;
 			switch ((int) region[0]) {

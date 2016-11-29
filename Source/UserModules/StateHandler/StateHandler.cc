@@ -88,35 +88,39 @@ clock_t startTime;
 void
 StateHandler::StartTimer()
 {
-	startTime = clock();
-	//auto start = Clock::now();
-	waitTime = 1000000;
+	if (!(internalState == 0)) {
+		startTime = clock();
+		//auto start = Clock::now();
+		waitTime = 1000000;
 	
-	if (internalState == 4 || internalState == 5){
-		timerStarted = true;
-	    waitTime = rand() % 100 + 50;
-	    waitTime = waitTime/100;
-	} else if (internalState == 3){
-		timerStarted = true;
-	    waitTime = rand() % 200 + 50;
-	    waitTime = waitTime/100;
-	} else if (internalState == 2){
-		timerStarted = true;
-	    waitTime = rand() % 900 + 300;
-	    waitTime = waitTime/100;
-	    lookAway = true;
-	} else if (internalState == 1) {
-		timerStarted = true;
-	    waitTime = rand() % 200 + 50;
-	    waitTime = waitTime/100;
-		nothingFound = true;
+		if (internalState == 4 || internalState == 5){
+			timerStarted = true;
+		    waitTime = rand() % 100 + 50;
+		    waitTime = waitTime/100;
+		} else if (internalState == 3){
+			timerStarted = true;
+		    waitTime = rand() % 200 + 50;
+		    waitTime = waitTime/100;
+		} else if (internalState == 2){
+			timerStarted = true;
+		    waitTime = rand() % 900 + 300;
+		    waitTime = waitTime/100;
+		    lookAway = true;
+			cout << "inside timer if state 2" << endl;
+		} else if (internalState == 1) {
+			timerStarted = true;
+		    waitTime = rand() % 200 + 50;
+		    waitTime = waitTime/100;
+			nothingFound = true;
+		}
 	}
 }
 
 void
 StateHandler::Tick()
 {
-         cout << "INTERNALSTATE: " <<  internalState << "\n";
+         cout << "\t-------- NEW TICK ----------" << endl;
+		 cout << "INTERNALSTATE: " <<  internalState << "\n";
          cout << "PREVIOUSSTATE: " <<  previousState << "\n";
 
     //checks if any module wants to change state.
@@ -135,7 +139,7 @@ StateHandler::Tick()
 	if (input3[0] != internalState) d_md = true;
 	if (input4[0] != internalState) s_md = true;
 	
-	float chosen = previousState;
+	float chosen = internalState;
 	//cout << "d_md = " << d_md << endl;
 	if (internalState == float(0)) {
 		//cout << "inside internalState = 0\n";
@@ -145,7 +149,10 @@ StateHandler::Tick()
 		}
 		else if (face) chosen = input2[0];
 	} else if (internalState == 1) {
-		if (face) chosen = input2[0];
+		if (face) {
+			chosen = input2[0];
+			nothingFound = false;
+		}
 		else if (d_md) chosen = input3[0];
 	} else if (internalState == 2) {
 		if (s_md) chosen = input4[0];
@@ -157,15 +164,19 @@ StateHandler::Tick()
 		if (closest) chosen = input1[0];
 	}
     cout << "chosen = " << chosen << endl;
-	if (chosen != previousState) {
+	if (chosen != internalState && chosen != 0 && internalState != 3) {
 		cout << "inside chosen if" << endl;
-		
+
 		previousState = internalState;
 	    internalState = chosen;
 		StartTimer();
 	} else {
 		previousState = internalState;
 	}
+	
+	cout << "chosen = " << chosen << endl;
+ 	cout << "INTERNALSTATE2: " <<  internalState << "\n";
+    cout << "PREVIOUSSTATE2: " <<  previousState << "\n";
 	
     /*if (input1[0] != previousState){
 		
@@ -182,6 +193,8 @@ StateHandler::Tick()
 	    internalState = input4[0];
 		StartTimer();
     }*/
+	
+	
 
     if (timerStarted){
 		clock_t end = clock();	
@@ -192,16 +205,21 @@ StateHandler::Tick()
 		double t = wow / CLOCKS_PER_SEC;
 		//double t = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()/1000;
 		//double t = (end - star);
+		
+		cout << "\tt = " << t << " & " << "waitTime = " << waitTime << endl;
+		cout << "\tlookAway = " << lookAway << endl;
 		if (t > waitTime){
 		    if (lookAway){
-			cout << "INSIDE IF \n";
+				cout << "INSIDE lookAway IF \n";
 				previousState = 3;
 				internalState = 3;
 				waitTime = rand() % 200 + 50;
 				waitTime = waitTime/100;
+				startTime = clock();
 				timerStarted = true;
 				lookAway = false;
 		    } else if (nothingFound){
+				cout << "inside nothingFound if" << endl;
 				internalState = 0; 
 				startTime = 0;
 			    timerStarted = false;
@@ -209,9 +227,11 @@ StateHandler::Tick()
 				nothingFound = false;
 		    } else {
 				internalState = 2; 
-				startTime = 0;
-			    timerStarted = false;
-			    waitTime = 0;
+				startTime = clock();
+			    timerStarted = true;
+			    waitTime = rand() % 900 + 300;
+				waitTime /= 100;
+				lookAway = true;
 		    }
 		}
     }  
