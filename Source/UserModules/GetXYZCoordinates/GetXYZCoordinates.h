@@ -46,7 +46,6 @@ public:
     float       depth_size_y;
 	float **	facesinput;
 
-
     float*      outputX;
     float*      outputY;
     float**	outputmatrix;

@@ -50,6 +50,8 @@ GetXYZCoordinates::Init()
 
     outputmatrix = GetOutputMatrix("OUTPUTMATRIX");
     facematrix = GetOutputMatrix("OUTPUTFACEMATRIX");
+	
+	
 
     state = GetInputArray("STATE");
 	facesinput = GetInputMatrix("FACESINPUT");
@@ -60,6 +62,18 @@ GetXYZCoordinates::Init()
 	change_state[0] = 0;
 	previousFace = false;
 	lostFace = 0;
+	/*candyoutput[0] = 0;
+	candyoutput[1] = 0;
+	candyoutput[2] = 1;
+	candyoutput[3] = 0;
+	candyoutput[4] = 0;
+	candyoutput[5] = 1;
+	candyoutput[6] = 1;
+	candyoutput[7] = 1;
+	candyoutput[8] = 0;
+	candyoutput[9] = 0;
+	candyoutput[10] = 1;
+	candyoutput[11] = 1;*/
 }
 
 
@@ -74,6 +88,8 @@ GetXYZCoordinates::~GetXYZCoordinates()
 void
 GetXYZCoordinates::Tick()
 {
+	
+	
 	cout << "getCoords: STATE = " << state[0] << endl;
 
 //	printf("INPUTSTATE = " + state + "\n");
@@ -149,7 +165,20 @@ GetXYZCoordinates::Tick()
 	if (facesinput[0][0] > 0) {
 		lostFace = 0;
 		cout << "INSIDE XYZ IF" << endl;
-		//if (previousFace) { 
+		if (previousFace) { 
+			/*candyoutput[0] = 1;
+			candyoutput[1] = 1;
+			candyoutput[2] = 1;
+			candyoutput[3] = 0;
+			candyoutput[4] = 0;
+			candyoutput[5] = 0;
+			candyoutput[6] = 0;
+			candyoutput[7] = 0;
+			candyoutput[8] = 1;
+			candyoutput[9] = 1;
+			candyoutput[10] = 0;
+			candyoutput[11] = 0;*/
+			//for (int i=0;i<12;i++) candyoutput[i] = 1;
 			if(state[0] == 0){
 				value[0] = float(0.3);
 				//change_state[0] = float(2);
@@ -163,13 +192,26 @@ GetXYZCoordinates::Tick()
 				value[0] = 0;
 				change_state[0] = state[0];
 			}
-			//} else {
-			//previousFace = true;
-			//}
+		} else {
+			previousFace = true;
+		}
 	} else {
 		value[0] = 0;
-		if (lostFace > 7) change_state[0] = 10;
-		else {
+		if (lostFace > 7) {
+			change_state[0] = 10;
+			/*candyoutput[0] = 0;
+			candyoutput[1] = 0;
+			candyoutput[2] = 0;
+			candyoutput[3] = 1;
+			candyoutput[4] = 1;
+			candyoutput[5] = 0;
+			candyoutput[6] = 0;
+			candyoutput[7] = 0;
+			candyoutput[8] = 1;
+			candyoutput[9] = 1;
+			candyoutput[10] = 0;
+			candyoutput[11] = 0;*/
+		} else {
 			change_state[0] = state[0];
 			lostFace ++;
 		}

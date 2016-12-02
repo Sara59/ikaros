@@ -79,10 +79,10 @@ LookAway::Tick()
 		oldy = input_matrix[1][3]; 
 		oldz = input_matrix[2][3];
 
-		if(picture_size_x > (oldx + 50)){
-			newx = oldx + 50; 
+		if(picture_size_x > (oldx + 10)){
+			newx = oldx + 10; 
 		}else{ 
-			newx = oldx - 50; 
+			newx = oldx - 10; 
 		}
 		newy = oldy; 
 		newz = oldz; 

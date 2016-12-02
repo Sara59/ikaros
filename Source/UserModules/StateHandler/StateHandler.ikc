@@ -25,6 +25,10 @@
 	<output name="OUTPUT3" description="The third output" size_x="1" size_y="1" />
 	<output name="OUTPUT4" description="The fourth output" size_x="1" size_y="1" />
 	<output name="OUTPUT5" description="The fifth output" size_x="1" size_y="1" />
+	
+	<output name="CANDYOUTPUTGREEN" description="colorz" size="12" />
+	<output name="CANDYOUTPUTRED" description="colorz" size="12" />
+	<output name="CANDYOUTPUTBLUE" description="colorz" size="12" />
 
 	<module class="StateHandler" />
 

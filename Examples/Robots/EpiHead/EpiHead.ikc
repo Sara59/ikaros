@@ -32,6 +32,33 @@
 		<_module class="small_MovementDetector" name="s_md" />
 		<module class = "Arbiter" name = "arbiter" no_of_inputs="4" />
 		
+		<module class = "FadeCandy" name = "FadeCandy" >
+        	<channel name="MOUTH_TOP"  channel="0" size="8" />
+			<channel name="MOUTH_BOTTOM"  channel="1" size="8" />
+			<channel name="LEFT_EYE"  channel="2" size="8" />
+        	<channel name="RIGHT_EYE" channel="3" size="8" />
+		</module> 
+		
+        <module class="Constant" name = "theVoid" data = "0 0 0 0 0 0 0 0 0" />
+		
+		<connection sourcemodule = "stateHandler" source = "CANDYOUTPUTGREEN" targetmodule = "FadeCandy" target = "LEFT_EYE_GREEN" />
+		<connection sourcemodule = "stateHandler" source = "CANDYOUTPUTGREEN" targetmodule = "FadeCandy" target = "RIGHT_EYE_GREEN" />
+		<connection sourcemodule = "stateHandler" source = "CANDYOUTPUTRED" targetmodule = "FadeCandy" target = "LEFT_EYE_RED" />
+		<connection sourcemodule = "stateHandler" source = "CANDYOUTPUTRED" targetmodule = "FadeCandy" target = "RIGHT_EYE_RED" />
+		<connection sourcemodule = "stateHandler" source = "CANDYOUTPUTBLUE" targetmodule = "FadeCandy" target = "LEFT_EYE_BLUE" />
+		<connection sourcemodule = "stateHandler" source = "CANDYOUTPUTBLUE" targetmodule = "FadeCandy" target = "RIGHT_EYE_BLUE" />
+				
+		<_connection sourcemodule = "theVoid" source = "OUTPUT" targetmodule = "FadeCandy" target = "LEFT_EYE_RED" />
+		<_connection sourcemodule = "theVoid" source = "OUTPUT" targetmodule = "FadeCandy" target = "RIGHT_EYE_RED" />
+		<_connection sourcemodule = "theVoid" source = "OUTPUT" targetmodule = "FadeCandy" target = "LEFT_EYE_BLUE" />
+		<_connection sourcemodule = "theVoid" source = "OUTPUT" targetmodule = "FadeCandy" target = "RIGHT_EYE_BLUE" />
+		<connection sourcemodule="theVoid" source="OUTPUT" targetmodule="FadeCandy" target="MOUTH_TOP_RED" />
+		<connection sourcemodule="theVoid" source="OUTPUT" targetmodule="FadeCandy" target="MOUTH_TOP_GREEN" />
+		<connection sourcemodule="theVoid" source="OUTPUT" targetmodule="FadeCandy" target="MOUTH_TOP_BLUE" />
+		<connection sourcemodule="theVoid" source="OUTPUT" targetmodule="FadeCandy" target="MOUTH_BOTTOM_RED" />
+		<connection sourcemodule="theVoid" source="OUTPUT" targetmodule="FadeCandy" target="MOUTH_BOTTOM_GREEN" />
+		<connection sourcemodule="theVoid" source="OUTPUT" targetmodule="FadeCandy" target="MOUTH_BOTTOM_BLUE" />
+		
 		<_connection sourcemodule="faceDet" source="FACES" targetmodule="getCoords" target="FACESINPUT" delay="0" />
 		<connection sourcemodule="faceDet" source="FACE_POSITION" targetmodule="getCoords" target="FACESINPUT" delay="0" />
 			

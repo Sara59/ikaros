@@ -49,6 +49,10 @@ public:
     float *	output3;
     //float *	output4;
     float *	output5;
+	
+	float * candyoutputblue;
+	float * candyoutputred;
+	float * candyoutputgreen;
 
     float	internalState;
     float	previousState;

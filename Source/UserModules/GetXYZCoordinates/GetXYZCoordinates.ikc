@@ -23,6 +23,9 @@
 
 	<output name="OUTPUTMATRIX" description="The x, y, z coordinates in a matrix for epi blue" size_x="4" size_y="4"/>
 	<output name="OUTPUTFACEMATRIX" description="A smaller matrix around the face and body" size_x="640" size_y="480" />
+
+	<_output name="CANDYOUTPUT" description="To determine eyecolor" size="8" />
+	
 	
 	<output name="CHANGESTATE" description="Output to the State Module" size="1"/> 
 	<output name="VALUE" description="Output to be sent to Arbiter" size="1"/> 

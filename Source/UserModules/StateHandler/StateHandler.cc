@@ -54,6 +54,10 @@ StateHandler::Init()
     output3 = GetOutputArray("OUTPUT3");
     //output4 = GetOutputArray("OUTPUT4");
     output5 = GetOutputArray("OUTPUT5");
+	
+	candyoutputred = GetOutputArray("CANDYOUTPUTRED");
+	candyoutputgreen = GetOutputArray("CANDYOUTPUTGREEN");
+	candyoutputblue = GetOutputArray("CANDYOUTPUTBLUE");
 
     //internal_input_array = create_array(3);
     //internal_output_array = create_array(3);
@@ -71,6 +75,23 @@ StateHandler::Init()
 	//input4[0] = 0;
 	
 	nothingFound = false;
+	
+	/*candyoutput[0] = 0;
+	candyoutput[1] = 0;
+	candyoutput[2] = 1;
+	candyoutput[3] = 0;
+	candyoutput[4] = 0;
+	candyoutput[5] = 1;
+	candyoutput[6] = 1;
+	candyoutput[7] = 1;
+	candyoutput[8] = 0;
+	candyoutput[9] = 0;
+	candyoutput[10] = 1;
+	candyoutput[11] = 1;*/
+	
+	for (int i=0;i<12;i++) candyoutputred[i] = 0;
+	for (int i=0;i<12;i++) candyoutputgreen[i] = 0;
+	for (int i=0;i<12;i++) candyoutputblue[i] = 0;
 
 //./ikaros -R -t -r50 -p  ../Examples/Robots/EpiHead/EpiHead.ikc 
 
@@ -104,7 +125,7 @@ StateHandler::StartTimer()
 		    waitTime = waitTime/100;
 		} else if (internalState == 2){
 			timerStarted = true;
-		    waitTime = rand() % 900 + 300;
+		    waitTime = rand() % 500 + 100;
 		    waitTime = waitTime/100;
 		    lookAway = true;
 			cout << "inside timer if state 2" << endl;
@@ -129,6 +150,29 @@ StateHandler::Tick()
     cout << "Face value " << input2[0] << "\n";
 	cout << "DisMovement value " << input3[0] << "\n";
 	//cout << "SmallMovement value " << input4[0] << "\n";
+	
+	switch ((int)internalState) {
+		case 0:
+			for (int i=0;i<12;i++) candyoutputblue[i] = 0;
+			for (int i=0;i<12;i++) candyoutputgreen[i] = 0;
+			for (int i=0;i<12;i++) candyoutputred[i] = 0;
+			for (int i=0;i<12;i+=2) candyoutputblue[i] = 1;
+			break;
+		case 2:
+			for (int i=0;i<12;i++) candyoutputblue[i] = 0;
+			for (int i=0;i<12;i++) candyoutputred[i] = 0;
+			for (int i=0;i<12;i++) candyoutputgreen[i] = 1;
+			break;
+		case 3:
+			for (int i=0;i<12;i+=2) candyoutputgreen[i] = 0;
+			break;
+		case 5:
+			for (int i=0;i<12;i++) candyoutputgreen[i] = 0;
+			for (int i=0;i<12;i++) candyoutputblue[i] = 0;
+			for (int i=0;i<12;i++) candyoutputred[i] = 0;
+			for (int i=0;i<12;i+=2) candyoutputgreen[i] = 1;
+			for (int i=1;i<12;i+=4) candyoutputred[i] = 1;
+	}
 	
 	bool closest = false;
 	bool face = false;
@@ -222,7 +266,7 @@ StateHandler::Tick()
 				cout << "INSIDE lookAway IF \n";
 				previousState = 3;
 				internalState = 3;
-				waitTime = rand() % 200 + 50;
+				waitTime = rand() % 150 + 150;
 				waitTime = waitTime/100;
 				startTime = clock();
 				timerStarted = true;
@@ -238,7 +282,7 @@ StateHandler::Tick()
 				internalState = 2; 
 				startTime = clock();
 			    timerStarted = true;
-			    waitTime = rand() % 900 + 300;
+			    waitTime = rand() % 400 + 400;
 				waitTime /= 100;
 				lookAway = true;
 		    }
