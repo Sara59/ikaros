@@ -66,7 +66,7 @@ public:
     int 	x0; 
 	
 	bool previousFace;
-
+	int lostFace;
 };
 
 #endif

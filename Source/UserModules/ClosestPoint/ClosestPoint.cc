@@ -158,11 +158,11 @@ ClosestPoint::Tick()
 	scaler = 1;
     }
 
-    if (smallest <= 500){
+    if (smallest <= 550){
         value[0]= 1*scaler;
 
     } else {
-	value[0] = (500/(smallest*1.5))*scaler;
+	value[0] = (550/(smallest*1.5))*scaler;
     } 
     	//cout << "ClosestPoint value: " << value[0] << "\n";
     if (value[0] > 0.9*scaler){

@@ -59,6 +59,7 @@ GetXYZCoordinates::Init()
 	state[0] = 0;
 	change_state[0] = 0;
 	previousFace = false;
+	lostFace = 0;
 }
 
 
@@ -81,7 +82,6 @@ GetXYZCoordinates::Tick()
 	
 	int xcord = (int) x;
 	int ycord = (int) y;
-
 
     z = depth[ycord][xcord];
 
@@ -146,9 +146,10 @@ GetXYZCoordinates::Tick()
 		outputY[1] = depth_size_y;
 	}
 	
-	if (facesinput[0][0] >= 0) {
+	if (facesinput[0][0] > 0) {
+		lostFace = 0;
 		cout << "INSIDE XYZ IF" << endl;
-		if (previousFace) { 
+		//if (previousFace) { 
 			if(state[0] == 0){
 				value[0] = float(0.3);
 				//change_state[0] = float(2);
@@ -162,12 +163,16 @@ GetXYZCoordinates::Tick()
 				value[0] = 0;
 				change_state[0] = state[0];
 			}
-		} else {
-			previousFace = true;
-		}
+			//} else {
+			//previousFace = true;
+			//}
 	} else {
 		value[0] = 0;
-		change_state[0] = state[0];
+		if (lostFace > 7) change_state[0] = 10;
+		else {
+			change_state[0] = state[0];
+			lostFace ++;
+		}
 		previousFace = false;
 	}
 

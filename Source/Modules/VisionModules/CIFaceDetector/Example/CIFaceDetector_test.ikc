@@ -7,15 +7,16 @@
 <group title="Face Detector">
 
 		<module
-			class   = "InputVideoQT"
+			class   = "InputVideo"
 			name	= "CAMERA"			
 			_size_x  = "1280"
 			_size_y  = "720"
             size_x  = "640"
             size_y  = "480"
-			camera  = "iSight"
+			_camera  = "iSight"
             list_devices = "no"
             device_id = "0xfd15000005ac8508"
+			frame_rate="25.0000"
 		/>
 
         <module

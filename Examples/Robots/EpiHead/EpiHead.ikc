@@ -23,29 +23,31 @@
 		<module class="Kinect" name="kinect" mode="mm" xtion="false" />
 		<module class="ClosestPoint" name="closest" />
 		<module class="ConvertPixelToMeter" name="Convert"/>
-		<module class="MPIFaceDetector" name="faceDet" />
+		<_module class="MPIFaceDetector" name="faceDet" />
+		<module class="CIFaceDetector" name="faceDet" max_faces="1" />
 		<module class="GetXYZCoordinates" name="getCoords" />
 		<module class="StateHandler" name="stateHandler" />
 		<module class="LookAway" name="lookAway" />
 		<module class="discovery_MovementDetector" name="d_md" />
-		<module class="small_MovementDetector" name="s_md" />
-		<module class = "Arbiter" name = "arbiter" no_of_inputs="5" />
+		<_module class="small_MovementDetector" name="s_md" />
+		<module class = "Arbiter" name = "arbiter" no_of_inputs="4" />
 		
-		<connection sourcemodule="faceDet" source="FACES" targetmodule="getCoords" target="FACESINPUT" delay="0" />
+		<_connection sourcemodule="faceDet" source="FACES" targetmodule="getCoords" target="FACESINPUT" delay="0" />
+		<connection sourcemodule="faceDet" source="FACE_POSITION" targetmodule="getCoords" target="FACESINPUT" delay="0" />
 			
-		<connection sourcemodule="getCoords" source="OUTPUTX" targetmodule="s_md" target="GETX" delay="0" />
-		<connection sourcemodule="getCoords" source="OUTPUTY" targetmodule="s_md" target="GETY" delay="0" />
-		<connection sourcemodule="getCoords" source="OUTPUTFACEMATRIX" targetmodule="s_md" target="GETFACEMATRIX" delay="0" />
+		<_connection sourcemodule="getCoords" source="OUTPUTX" targetmodule="s_md" target="GETX" delay="0" />
+		<_connection sourcemodule="getCoords" source="OUTPUTY" targetmodule="s_md" target="GETY" delay="0" />
+		<_connection sourcemodule="getCoords" source="OUTPUTFACEMATRIX" targetmodule="s_md" target="GETFACEMATRIX" delay="0" />
 		
 		<connection sourcemodule="closest" source="OUTSTATE" targetmodule="stateHandler" target="INPUT1" delay="0" />
 		<connection sourcemodule="getCoords" source="CHANGESTATE" targetmodule="stateHandler" target="INPUT2" delay="0" />
 		<connection sourcemodule="d_md" source="STATEOUT" targetmodule="stateHandler" target="INPUT3" delay="0" />
-		<connection sourcemodule="s_md" source="STATEOUT" targetmodule="stateHandler" target="INPUT4" delay="0" />
+		<_connection sourcemodule="s_md" source="STATEOUT" targetmodule="stateHandler" target="INPUT4" delay="0" />
 		
 		<connection sourcemodule="stateHandler" source="OUTPUT1" targetmodule="closest" target="INSTATE" />
 		<connection sourcemodule="stateHandler" source="OUTPUT2" targetmodule="getCoords" target="STATE" />
 		<connection sourcemodule="stateHandler" source="OUTPUT3" targetmodule="d_md" target="STATE" />
-		<connection sourcemodule="stateHandler" source="OUTPUT4" targetmodule="s_md" target="STATE" />
+		<_connection sourcemodule="stateHandler" source="OUTPUT4" targetmodule="s_md" target="STATE" />
 		<connection sourcemodule="stateHandler" source="OUTPUT5" targetmodule="lookAway" target="STATE" />
 		
 		<connection sourcemodule="kinect" source="DEPTH" targetmodule="closest" target="DEPTH" />
@@ -67,8 +69,8 @@
 		<connection sourcemodule="lookAway" source="OUTPUTMATRIX" targetmodule="arbiter" target="INPUT_3" />
 		<connection sourcemodule="d_md" source="WEIGHT" targetmodule="arbiter" target="VALUE_4" />
 		<connection sourcemodule="d_md" source="COORDS" targetmodule="arbiter" target="INPUT_4" />
-		<connection sourcemodule="s_md" source="WEIGHT" targetmodule="arbiter" target="VALUE_5" />
-		<connection sourcemodule="s_md" source="COORDS" targetmodule="arbiter" target="INPUT_5" />
+		<_connection sourcemodule="s_md" source="WEIGHT" targetmodule="arbiter" target="VALUE_5" />
+		<_connection sourcemodule="s_md" source="COORDS" targetmodule="arbiter" target="INPUT_5" />
 
 		<connection sourcemodule = "arbiter" source = "OUTPUT" targetmodule = "Convert" target = "INPUT" />
 	

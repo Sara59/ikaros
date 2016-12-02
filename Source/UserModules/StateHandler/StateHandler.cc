@@ -46,13 +46,13 @@ StateHandler::Init()
     input1 = GetInputArray("INPUT1");
     input2 = GetInputArray("INPUT2");
     input3 = GetInputArray("INPUT3");
-    input4 = GetInputArray("INPUT4");
+    //input4 = GetInputArray("INPUT4");
     //input5 = GetInputArray("INPUT5");
 
     output1 = GetOutputArray("OUTPUT1");
     output2 = GetOutputArray("OUTPUT2");
     output3 = GetOutputArray("OUTPUT3");
-    output4 = GetOutputArray("OUTPUT4");
+    //output4 = GetOutputArray("OUTPUT4");
     output5 = GetOutputArray("OUTPUT5");
 
     //internal_input_array = create_array(3);
@@ -68,7 +68,7 @@ StateHandler::Init()
 	input1[0] = 0;
 	input2[0] = 0;
 	input3[0] = 0;
-	input4[0] = 0;
+	//input4[0] = 0;
 	
 	nothingFound = false;
 
@@ -97,6 +97,7 @@ StateHandler::StartTimer()
 			timerStarted = true;
 		    waitTime = rand() % 100 + 50;
 		    waitTime = waitTime/100;
+			lookAway = false;
 		} else if (internalState == 3){
 			timerStarted = true;
 		    waitTime = rand() % 200 + 50;
@@ -127,17 +128,21 @@ StateHandler::Tick()
     cout << "Closest value " << input1[0] << "\n";
     cout << "Face value " << input2[0] << "\n";
 	cout << "DisMovement value " << input3[0] << "\n";
-	cout << "SmallMovement value " << input4[0] << "\n";
+	//cout << "SmallMovement value " << input4[0] << "\n";
 	
 	bool closest = false;
 	bool face = false;
 	bool d_md = false;
-	bool s_md = false;
+	//bool s_md = false;
 	
 	if (input1[0] != internalState) closest = true;
 	if (input2[0] != internalState) face = true;
 	if (input3[0] != internalState) d_md = true;
-	if (input4[0] != internalState) s_md = true;
+	//if (input4[0] != internalState) s_md = true;
+	
+	if (internalState != 2 && internalState != 3) {
+		lookAway = false;
+	}
 	
 	float chosen = internalState;
 	//cout << "d_md = " << d_md << endl;
@@ -155,21 +160,25 @@ StateHandler::Tick()
 		}
 		else if (d_md) chosen = input3[0];
 	} else if (internalState == 2) {
-		if (s_md) chosen = input4[0];
-		else if (closest) chosen = input1[0];
+		//if (s_md) chosen = input4[0];
+		 if (closest) chosen = input1[0];
 		else if (face) chosen = input2[0];
 	} else if (internalState == 4) {
-		if (s_md) chosen = input4[0];
+		//if (s_md) chosen = input4[0];
 	} else if (internalState == 5) {
 		if (closest) chosen = input1[0];
 	}
     cout << "chosen = " << chosen << endl;
 	if (chosen != internalState && chosen != 0 && internalState != 3) {
 		cout << "inside chosen if" << endl;
-
-		previousState = internalState;
-	    internalState = chosen;
-		StartTimer();
+		if(chosen == 10){
+			previousState = 0;
+			internalState = 0;
+		} else {
+			previousState = internalState;
+	    	internalState = chosen;
+			StartTimer();
+		}
 	} else {
 		previousState = internalState;
 	}
@@ -239,7 +248,7 @@ StateHandler::Tick()
     output1[0] = internalState;
     output2[0] = internalState;
     output3[0] = internalState;
-    output4[0] = internalState;
+    //output4[0] = internalState;
     output5[0] = internalState;
 
 }
