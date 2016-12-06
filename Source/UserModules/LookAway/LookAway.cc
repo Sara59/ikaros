@@ -72,18 +72,25 @@ LookAway::Tick()
 {
 
 
-
 //	printf("INPUTSTATE = " + state + "\n");
 
 		oldx = input_matrix[0][3];
 		oldy = input_matrix[1][3]; 
 		oldz = input_matrix[2][3];
 
-		if(picture_size_x > (oldx + 10)){
-			newx = oldx + 10; 
-		}else{ 
-			newx = oldx - 10; 
-		}
+        //if ((rand() % 2) + 1 == 2) {
+            if(picture_size_x > (oldx + 200)){
+                newx = oldx + 200;
+            }else{
+                newx = oldx - 200;
+            }
+        /*} else {
+            if(0 < (oldx - 200)){
+                newx = oldx - 200;
+            }else{
+                newx = oldx + 200;
+            }
+        }*/
 		newy = oldy; 
 		newz = oldz; 
 
@@ -91,52 +98,27 @@ LookAway::Tick()
 		*outputY = float(newy); 
 		*outputZ = float(newz);
 
-
-		if ((rand() % 2) + 1 == 2){
-			output_matrix[0][0] = 1; 
-			output_matrix[0][1] = 0; 
-			output_matrix[0][2] = 0; 
-			output_matrix[0][3] = 600; 
-
-			output_matrix[1][0] = 0; 
-			output_matrix[1][1] = 1; 
-			output_matrix[1][2] = 0; 
-			output_matrix[1][3] = 240; 
-
-			output_matrix[2][0] = 0; 
-			output_matrix[2][1] = 0; 
-			output_matrix[2][2] = 1; 
-			output_matrix[2][3] = picture[600][240]; 
-
-			output_matrix[3][0] = 0; 
-			output_matrix[3][1] = 0; 
-			output_matrix[3][2] = 0; 
-			output_matrix[3][3] = 1; 
-
-		} else {
-			output_matrix[0][0] = 1; 
-			output_matrix[0][1] = 0; 
-			output_matrix[0][2] = 0; 
-			output_matrix[0][3] = 40; 
-
-			output_matrix[1][0] = 0; 
-			output_matrix[1][1] = 1; 
-			output_matrix[1][2] = 0; 
-			output_matrix[1][3] = 240; 
-
-			output_matrix[2][0] = 0; 
-			output_matrix[2][1] = 0; 
-			output_matrix[2][2] = 1; 
-			output_matrix[2][3] = picture[40][240]; 
-
-			output_matrix[3][0] = 0; 
-			output_matrix[3][1] = 0; 
-			output_matrix[3][2] = 0; 
-			output_matrix[3][3] = 1; 
-		}
-		
-		
-		if(state[0] == float(2)){
+        output_matrix[0][0] = 1;
+    	output_matrix[0][1] = 0;
+    	output_matrix[0][2] = 0;
+    	output_matrix[0][3] = newx;
+    
+        output_matrix[1][0] = 0;
+    	output_matrix[1][1] = 1;
+        output_matrix[1][2] = 0;
+        output_matrix[1][3] = newy;
+    
+        output_matrix[2][0] = 0;
+        output_matrix[2][1] = 0;
+        output_matrix[2][2] = 1;
+        output_matrix[2][3] = newz;
+    
+        output_matrix[3][0] = 0;
+        output_matrix[3][1] = 0;
+        output_matrix[3][2] = 0;
+        output_matrix[3][3] = 1;
+    
+		if(state[0] == float(3)){
 			value[0] = float(1);
 		} else {
 			value[0] = float(0);
