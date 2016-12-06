@@ -90,26 +90,52 @@ LookAway::Tick()
 		*outputX = float(newx);
 		*outputY = float(newy); 
 		*outputZ = float(newz);
-		output_matrix[0][0] = 1; 
-		output_matrix[0][1] = 0; 
-		output_matrix[0][2] = 0; 
-		output_matrix[0][3] = newx; 
 
-		output_matrix[1][0] = 0; 
-		output_matrix[1][1] = 1; 
-		output_matrix[1][2] = 0; 
-		output_matrix[1][3] = newy; 
 
-		output_matrix[2][0] = 0; 
-		output_matrix[2][1] = 0; 
-		output_matrix[2][2] = 1; 
-		output_matrix[2][3] = newz; 
+		if ((rand() % 2) + 1 == 2){
+			output_matrix[0][0] = 1; 
+			output_matrix[0][1] = 0; 
+			output_matrix[0][2] = 0; 
+			output_matrix[0][3] = 600; 
 
-		output_matrix[3][0] = 0; 
-		output_matrix[3][1] = 0; 
-		output_matrix[3][2] = 0; 
-		output_matrix[3][3] = 1; 
+			output_matrix[1][0] = 0; 
+			output_matrix[1][1] = 1; 
+			output_matrix[1][2] = 0; 
+			output_matrix[1][3] = 240; 
 
+			output_matrix[2][0] = 0; 
+			output_matrix[2][1] = 0; 
+			output_matrix[2][2] = 1; 
+			output_matrix[2][3] = picture[600][240]; 
+
+			output_matrix[3][0] = 0; 
+			output_matrix[3][1] = 0; 
+			output_matrix[3][2] = 0; 
+			output_matrix[3][3] = 1; 
+
+		} else {
+			output_matrix[0][0] = 1; 
+			output_matrix[0][1] = 0; 
+			output_matrix[0][2] = 0; 
+			output_matrix[0][3] = 40; 
+
+			output_matrix[1][0] = 0; 
+			output_matrix[1][1] = 1; 
+			output_matrix[1][2] = 0; 
+			output_matrix[1][3] = 240; 
+
+			output_matrix[2][0] = 0; 
+			output_matrix[2][1] = 0; 
+			output_matrix[2][2] = 1; 
+			output_matrix[2][3] = picture[40][240]; 
+
+			output_matrix[3][0] = 0; 
+			output_matrix[3][1] = 0; 
+			output_matrix[3][2] = 0; 
+			output_matrix[3][3] = 1; 
+		}
+		
+		
 		if(state[0] == float(2)){
 			value[0] = float(1);
 		} else {
