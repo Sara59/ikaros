@@ -61,36 +61,36 @@ discovery_MvmntDetChooser::Tick()
 		
 		if (demandAtt[0] == 1/* && input[2] == 0*/) {
 			stateOut[0] = 1;
-			
+            int height = 90;
 			switch ((int) region[0]) {
 				case 1:
 					coordsOut[0][3] = 106;
-					coordsOut[1][3] = 120;
+					coordsOut[1][3] = height;
 					coordsOut[2][3] = 2000;
 					break;
 				case 2:
 					coordsOut[0][3] = 3*106;
-					coordsOut[1][3] = 120;
+					coordsOut[1][3] = height;
 					coordsOut[2][3] = 2000;
 					break;
 				case 3:
 					coordsOut[0][3] = 5*106;
-					coordsOut[1][3] = 120;
+					coordsOut[1][3] = height;
 					coordsOut[2][3] = 2000;
 					break;
 				case 4:
 					coordsOut[0][3] = 106;
-					coordsOut[1][3] = 360;
+                    coordsOut[1][3] = height;
 					coordsOut[2][3] = 2000;
 					break;
 				case 5:
 					coordsOut[0][3] = 3*106;
-					coordsOut[1][3] = 360;
+                    coordsOut[1][3] = height;
 					coordsOut[2][3] = 2000;
 					break;
 				case 6:
 					coordsOut[0][3] = 5*106;
-					coordsOut[1][3] = 360;
+                    coordsOut[1][3] = height;
 					coordsOut[2][3] = 2000;
 					break;
 			}

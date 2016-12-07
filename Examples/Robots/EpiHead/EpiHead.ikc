@@ -21,7 +21,7 @@
 	    <_connection sourcemodule = "EpiHeadToFocus" source = "FOCUS_IN_EPI" targetmodule = "Motor" target = "TARGET" />
 		
 		<module class="Kinect" name="kinect" mode="mm" xtion="false" />
-		<module class="ClosestPoint" name="closest" />
+		<module class="ClosestPoint" name="closest" matrixsize="5" />
 		<module class="ConvertPixelToMeter" name="Convert"/>
 		<_module class="MPIFaceDetector" name="faceDet" />
 		<module class="CIFaceDetector" name="faceDet" max_faces="1" />
